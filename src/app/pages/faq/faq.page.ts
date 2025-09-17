@@ -7,6 +7,7 @@ import {
   IonAccordion,
   IonItem,
   IonLabel,
+  IonButton,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -20,6 +21,7 @@ import {
     IonAccordion,
     IonItem,
     IonLabel,
+    IonButton,
     CommonModule,
     FormsModule,
   ],

@@ -7,7 +7,7 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: saturate(180%) blur(8px);
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       border-bottom: 1px solid var(--color-border);
     "
   >
@@ -18,7 +18,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 64px;
+          height: 56px;
         "
       >
         <a
@@ -34,21 +34,23 @@
         >
           <div
             style="
-              width: 40px;
-              height: 40px;
+              width: 36px;
+              height: 36px;
               border-radius: 12px;
-              background: var(--color-primary);
-              color: #fff;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              color: white;
               display: grid;
               place-items: center;
               font-weight: 700;
               font-size: 16px;
+              box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
+              border: 1px solid #4a148c;
             "
             aria-hidden="true"
           >
             EP
           </div>
-          <strong style="font-size: 18px; color: var(--color-primary)"
+          <strong style="font-size: 18px; color: #5c2d91; font-weight: 700"
             >EPCO Compliance</strong
           >
         </a>
@@ -110,10 +112,7 @@
   </main>
 
   <ion-footer
-    style="
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface);
-    "
+    style="border-top: 1px solid var(--color-border); background: #f8e7f7"
   >
     <ion-toolbar color="light">
       <div

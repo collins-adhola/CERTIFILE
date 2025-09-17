@@ -55,8 +55,7 @@
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": [],
-            "browser": "src/main.ts",
-            "serviceWorker": true
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {

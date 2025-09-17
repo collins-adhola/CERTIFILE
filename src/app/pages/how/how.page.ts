@@ -7,7 +7,6 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonChip,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -21,7 +20,6 @@ import {
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonChip,
     CommonModule,
     FormsModule,
   ],

@@ -1,12 +1,53 @@
 <ion-content>
-  <section class="section">
+  <section class="section" style="background: var(--color-background)">
     <div class="container">
       <div style="text-align: center; max-width: 800px; margin: 0 auto">
-        <div class="badge badge-accent" style="margin-bottom: 16px">
+        <div
+          class="badge badge-accent"
+          style="
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #d81b60, #ff4081);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 12px rgba(216, 27, 96, 0.3);
+            border: 2px solid #c2185b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+          "
+        >
           ACSP — AML supervised by CGI UK & Ireland
         </div>
-        <h1 class="h1">Professional ID Verification for UK Companies</h1>
-        <p class="lead">
+        <h1
+          class="h1"
+          style="
+            color: #5c2d91;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #5c2d91, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          "
+        >
+          Professional ID Verification for UK Companies
+        </h1>
+        <p
+          class="lead"
+          style="
+            color: #1e293b;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
           Streamline your compliance process with secure, remote identity
           verification for directors and PSCs. Aligned with the Money Laundering
           Regulations 2017 (as amended).
@@ -27,6 +68,18 @@
             color="primary"
             routerLink="/contact"
             aria-label="Start an ID check demo to see how our verification process works"
+            style="
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              color: white;
+              border-radius: 10px;
+              font-weight: 700;
+              box-shadow: 0 6px 12px rgba(92, 45, 145, 0.3);
+              border: 2px solid #4a148c;
+              padding: 16px 32px;
+              font-size: 16px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            "
           >
             Start ID check demo
             <ion-icon
@@ -41,6 +94,18 @@
             color="primary"
             routerLink="/contact"
             aria-label="Book a call to discuss your compliance needs"
+            style="
+              border: 3px solid #007bff;
+              color: #007bff;
+              border-radius: 10px;
+              font-weight: 700;
+              padding: 16px 32px;
+              font-size: 16px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              background: rgba(0, 123, 255, 0.05);
+              box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            "
           >
             Book a call
           </ion-button>
@@ -49,7 +114,7 @@
     </div>
   </section>
 
-  <section class="section" style="background: var(--color-surface)">
+  <section class="section" style="background: #f8e7f7">
     <div class="container">
       <div style="text-align: center; margin-bottom: 48px">
         <h2 class="h2">Why choose EPCO Compliance?</h2>
@@ -65,9 +130,16 @@
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         "
       >
-        <ion-card class="card">
+        <ion-card
+          class="card"
+          style="
+            background: linear-gradient(135deg, #e0f2f7, #b3e5fc);
+            border: 1px solid #90caf9;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1);
+          "
+        >
           <ion-card-content>
-            <h3 class="h3">Fast & Secure</h3>
+            <h3 class="h3" style="color: #007bff">Fast & Secure</h3>
             <p class="text-body">
               Complete verifications in minutes with bank-grade security and
               real-time results. Data retention for minimum 5 years as required
@@ -76,9 +148,16 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="card">
+        <ion-card
+          class="card"
+          style="
+            background: linear-gradient(135deg, #f8e7f7, #fce4ec);
+            border: 1px solid #f48fb1;
+            box-shadow: 0 4px 8px rgba(216, 27, 96, 0.1);
+          "
+        >
           <ion-card-content>
-            <h3 class="h3">Fully Remote</h3>
+            <h3 class="h3" style="color: #d81b60">Fully Remote</h3>
             <p class="text-body">
               No physical meetings required. Your clients complete everything
               through our secure mobile portal with built-in liveness detection.
@@ -86,9 +165,16 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="card">
+        <ion-card
+          class="card"
+          style="
+            background: linear-gradient(135deg, #e0f2f7, #cfd8dc);
+            border: 1px solid #b0bec5;
+            box-shadow: 0 4px 8px rgba(92, 45, 145, 0.1);
+          "
+        >
           <ion-card-content>
-            <h3 class="h3">Compliance Ready</h3>
+            <h3 class="h3" style="color: #5c2d91">Compliance Ready</h3>
             <p class="text-body">
               Full audit trails, Companies House filings, and regulatory
               compliance built-in. SAR escalation procedures and no tipping-off
@@ -119,26 +205,58 @@
         "
       >
         <div style="text-align: center">
-          <div class="badge badge-primary" style="margin-bottom: 12px">
+          <div
+            class="badge"
+            style="
+              margin-bottom: 12px;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              color: white;
+              padding: 8px 16px;
+              border-radius: 20px;
+              font-weight: 600;
+            "
+          >
             Data Protection
           </div>
-          <p class="text-fine">
+          <p class="text-fine" style="color: #475569">
             ICO registered with comprehensive data processing policies
           </p>
         </div>
 
         <div style="text-align: center">
-          <div class="badge badge-primary" style="margin-bottom: 12px">
+          <div
+            class="badge"
+            style="
+              margin-bottom: 12px;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              color: white;
+              padding: 8px 16px;
+              border-radius: 20px;
+              font-weight: 600;
+            "
+          >
             AML Supervised
           </div>
-          <p class="text-fine">Supervised by CGI UK & Ireland under MLR 2017</p>
+          <p class="text-fine" style="color: #475569">
+            Supervised by CGI UK & Ireland under MLR 2017
+          </p>
         </div>
 
         <div style="text-align: center">
-          <div class="badge badge-primary" style="margin-bottom: 12px">
+          <div
+            class="badge"
+            style="
+              margin-bottom: 12px;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              color: white;
+              padding: 8px 16px;
+              border-radius: 20px;
+              font-weight: 600;
+            "
+          >
             Secure Processing
           </div>
-          <p class="text-fine">
+          <p class="text-fine" style="color: #475569">
             Bank-grade encryption and secure data handling
           </p>
         </div>

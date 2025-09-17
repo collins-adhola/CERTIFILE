@@ -9,6 +9,7 @@ import {
   IonIcon,
   IonFooter,
 } from '@ionic/angular/standalone';
+import { RouterModule } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { arrowForwardOutline } from 'ionicons/icons';
 
@@ -24,6 +25,7 @@ import { arrowForwardOutline } from 'ionicons/icons';
     IonButton,
     IonIcon,
     IonFooter,
+    RouterModule,
   ],
 })
 export class AppComponent {

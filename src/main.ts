@@ -9,12 +9,8 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { isDevMode } from '@angular/core';
-
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { CheckForUpdateService } from './sw-registration';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -30,10 +26,5 @@ bootstrapApplication(AppComponent, {
       swipeBackEnabled: true,
     }),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000',
-    }).providers || [],
-    CheckForUpdateService,
   ],
 });
