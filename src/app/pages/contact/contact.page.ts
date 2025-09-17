@@ -50,10 +50,14 @@ export class ContactPage implements OnInit {
   showToast = false;
 
   topics = [
-    { value: 'idv', label: 'IDV' },
-    { value: 'confirmation-statement', label: 'Confirmation statement' },
-    { value: 'director-psc-changes', label: 'Director/PSC changes' },
-    { value: 'company-incorporation', label: 'Company incorporation' },
+    { value: 'id-verification', label: 'ID Verification Services' },
+    { value: 'companies-house-filings', label: 'Companies House Filings' },
+    { value: 'kyc-shareholders', label: 'KYC for Shareholders' },
+    { value: 'ongoing-monitoring', label: 'Ongoing Monitoring' },
+    { value: 'registered-office', label: 'Registered Office Services' },
+    { value: 'training-advisory', label: 'Training & Advisory' },
+    { value: 'enterprise-solution', label: 'Enterprise Solution' },
+    { value: 'api-integration', label: 'API Integration' },
     { value: 'other', label: 'Other' },
   ];
 
@@ -62,6 +66,7 @@ export class ContactPage implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.pattern(/^[\+]?[\d\s\-\(\)]+$/)]],
+      company: ['', [Validators.required, Validators.minLength(2)]],
       topic: ['', Validators.required],
       message: ['', [Validators.required, Validators.minLength(10)]],
     });

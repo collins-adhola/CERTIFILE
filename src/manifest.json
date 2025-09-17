@@ -1,8 +1,8 @@
 {
-  "name": "[Your Firm Name] - Professional ID Verification",
-  "short_name": "[Your Firm Name]",
-  "description": "Professional ID verification and compliance services for modern businesses. Secure, remote identity verification for directors and PSCs.",
-  "theme_color": "#111111",
+  "name": "EPCO Compliance - Professional ID Verification",
+  "short_name": "EPCO Compliance",
+  "description": "Professional ID verification and compliance services for UK companies. ACSP supervised, GDPR compliant, and aligned with MLR 2017. Secure, remote identity verification for directors and PSCs.",
+  "theme_color": "#0B0F19",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",

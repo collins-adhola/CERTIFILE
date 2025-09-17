@@ -1,18 +1,20 @@
 <ion-content>
   <section class="section">
     <div class="container">
-      <h2 class="h2">Simple, Transparent Pricing</h2>
-      <p class="lead">Choose the plan that fits your business needs.</p>
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Simple, Transparent Pricing</h2>
+        <p class="lead">
+          Choose the plan that fits your business needs. All prices exclude VAT.
+        </p>
+      </div>
 
       <div
         style="
           display: grid;
           gap: 24px;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          margin-top: 32px;
           max-width: 800px;
-          margin-left: auto;
-          margin-right: auto;
+          margin: 0 auto;
         "
       >
         <ion-card class="card">
@@ -23,24 +25,33 @@
                 style="
                   font-size: 32px;
                   font-weight: 700;
-                  color: var(--ion-color-primary);
+                  color: var(--color-primary);
                 "
                 >From £25</span
               >
-              <span style="color: #6b7280; margin-left: 4px">/ check</span>
+              <span style="color: var(--color-muted); margin-left: 4px"
+                >/ verification</span
+              >
             </div>
           </ion-card-header>
           <ion-card-content>
-            <ul style="margin: 0 0 24px 0; padding-left: 20px; color: #374151">
+            <ul
+              style="
+                margin: 0 0 24px 0;
+                padding-left: 20px;
+                color: var(--color-muted);
+              "
+            >
               <li>Per-verification pricing</li>
               <li>No monthly commitments</li>
               <li>Instant processing</li>
               <li>Full compliance reporting</li>
+              <li>Standard support</li>
             </ul>
             <ion-button
               expand="block"
               fill="outline"
-              color="dark"
+              color="primary"
               routerLink="/contact"
             >
               Choose Pay-as-you-go
@@ -52,21 +63,21 @@
           class="card"
           style="
             position: relative;
-            background: #111;
+            background: var(--color-primary);
             color: #fff;
-            border: 2px solid #111;
+            border: 2px solid var(--color-primary);
           "
         >
           <div
-            class="badge"
+            class="badge badge-accent"
             style="
               position: absolute;
               top: -8px;
               left: 50%;
               transform: translateX(-50%);
-              background: #fff;
-              color: #111;
-              border: 1px solid #111;
+              background: var(--color-accent);
+              color: white;
+              border: 1px solid var(--color-accent);
               font-weight: 600;
             "
           >
@@ -87,6 +98,7 @@
               <li>Priority support</li>
               <li>Advanced reporting</li>
               <li>Dedicated account manager</li>
+              <li>Companies House filings included</li>
             </ul>
             <ion-button
               expand="block"
@@ -100,18 +112,208 @@
         </ion-card>
       </div>
 
+      <div style="text-align: center; margin-top: 48px">
+        <div style="max-width: 600px; margin: 0 auto">
+          <h3 class="h3">What's included in Company pack?</h3>
+          <div
+            style="
+              display: grid;
+              gap: 16px;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              margin-top: 24px;
+            "
+          >
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 50%;
+                  background: var(--color-accent);
+                  color: white;
+                  display: grid;
+                  place-items: center;
+                  margin: 0 auto 12px;
+                  font-size: 20px;
+                "
+              >
+                ✓
+              </div>
+              <p class="text-fine">ID verification</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 50%;
+                  background: var(--color-accent);
+                  color: white;
+                  display: grid;
+                  place-items: center;
+                  margin: 0 auto 12px;
+                  font-size: 20px;
+                "
+              >
+                ✓
+              </div>
+              <p class="text-fine">Companies House filings</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 50%;
+                  background: var(--color-accent);
+                  color: white;
+                  display: grid;
+                  place-items: center;
+                  margin: 0 auto 12px;
+                  font-size: 20px;
+                "
+              >
+                ✓
+              </div>
+              <p class="text-fine">PEP & sanctions screening</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 50%;
+                  background: var(--color-accent);
+                  color: white;
+                  display: grid;
+                  place-items: center;
+                  margin: 0 auto 12px;
+                  font-size: 20px;
+                "
+              >
+                ✓
+              </div>
+              <p class="text-fine">Compliance documentation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div
         style="
           text-align: center;
-          margin-top: 32px;
-          color: #6b7280;
+          margin-top: 48px;
+          color: var(--color-muted);
           font-size: 14px;
         "
       >
-        <p style="margin: 0">
-          All prices exclude VAT and third-party fees. Contact us for custom
-          enterprise pricing.
+        <p style="margin: 0 0 8px 0">
+          All prices exclude VAT and third-party fees. Volume discounts
+          available for larger organisations.
         </p>
+        <p style="margin: 0">
+          Contact us for custom enterprise pricing and bespoke compliance
+          solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface)">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Need a custom solution?</h2>
+        <p class="lead">
+          We work with professional services firms and large organisations.
+        </p>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          max-width: 800px;
+          margin: 0 auto;
+        "
+      >
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            🏢
+          </div>
+          <h3 class="h3">Enterprise Solutions</h3>
+          <p class="text-body">
+            Custom pricing for large organisations with high-volume requirements
+          </p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            ⚖️
+          </div>
+          <h3 class="h3">Professional Services</h3>
+          <p class="text-body">
+            Specialised solutions for law firms, accountants, and corporate
+            service providers
+          </p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            🔧
+          </div>
+          <h3 class="h3">API Integration</h3>
+          <p class="text-body">
+            Seamless integration with your existing systems and workflows
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px">
+        <ion-button
+          size="large"
+          fill="solid"
+          color="primary"
+          routerLink="/contact"
+        >
+          Request a proposal
+        </ion-button>
       </div>
     </div>
   </section>

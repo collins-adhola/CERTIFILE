@@ -1,109 +1,343 @@
 <ion-content>
   <section class="section">
     <div class="container">
-      <h2 class="h2">Frequently Asked Questions</h2>
-      <p class="lead">
-        Everything you need to know about our ID verification process.
-      </p>
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Frequently Asked Questions</h2>
+        <p class="lead">
+          Everything you need to know about our ID verification and compliance
+          services.
+        </p>
+      </div>
 
-      <div style="max-width: 800px; margin: 32px auto 0">
+      <div style="max-width: 800px; margin: 0 auto">
         <ion-accordion-group>
           <ion-accordion value="non-uk-passports">
             <ion-item slot="header">
-              <ion-label>Do you accept non-UK passports?</ion-label>
+              <ion-label
+                >Do you accept non-UK passports and driving licences?</ion-label
+              >
             </ion-item>
             <div
               slot="content"
               style="
                 padding: 16px 20px;
-                color: #374151;
+                color: var(--color-muted);
                 font-size: 14px;
                 line-height: 1.6;
               "
             >
-              Yes, we accept passports from all countries that meet
-              international standards. Our system supports over 200 different
-              passport types and automatically detects the document type for
-              verification.
+              Yes, we accept passports and driving licences from all countries
+              that meet international standards. Our system supports over 200
+              different document types and automatically detects the document
+              type for verification. We can verify documents from EU countries,
+              Commonwealth nations, and most other jurisdictions.
             </div>
           </ion-accordion>
 
           <ion-accordion value="fully-remote">
             <ion-item slot="header">
-              <ion-label>Is the process fully remote?</ion-label>
+              <ion-label>Is the entire process fully remote?</ion-label>
             </ion-item>
             <div
               slot="content"
               style="
                 padding: 16px 20px;
-                color: #374151;
+                color: var(--color-muted);
                 font-size: 14px;
                 line-height: 1.6;
               "
             >
               Absolutely. The entire verification process is completed remotely
-              through our secure mobile portal. No physical meetings or document
-              posting required.
+              through our secure mobile portal. No physical meetings, document
+              posting, or in-person verification required. Your clients can
+              complete everything from their mobile device or computer.
             </div>
           </ion-accordion>
 
           <ion-accordion value="turnaround-time">
             <ion-item slot="header">
-              <ion-label>What's the typical turnaround time?</ion-label>
+              <ion-label
+                >What's the typical turnaround time for verification?</ion-label
+              >
             </ion-item>
             <div
               slot="content"
               style="
                 padding: 16px 20px;
-                color: #374151;
+                color: var(--color-muted);
                 font-size: 14px;
                 line-height: 1.6;
               "
             >
               Most verifications are completed within 2-4 hours during business
               hours. Complex cases or additional screening may take up to 24
-              hours. You'll receive email notifications at each stage.
+              hours. You'll receive email notifications at each stage of the
+              process, and our dashboard provides real-time status updates.
             </div>
           </ion-accordion>
 
           <ion-accordion value="data-retention">
             <ion-item slot="header">
-              <ion-label>How long do you retain data?</ion-label>
+              <ion-label>How long do you retain verification data?</ion-label>
             </ion-item>
             <div
               slot="content"
               style="
                 padding: 16px 20px;
-                color: #374151;
+                color: var(--color-muted);
                 font-size: 14px;
                 line-height: 1.6;
               "
             >
-              We retain verification data for 7 years as required by UK
-              regulations. All data is encrypted and stored securely. You can
-              request data deletion after the retention period.
+              We retain verification data for a minimum of 5 years as required
+              by UK Money Laundering Regulations 2017. All data is encrypted and
+              stored securely in UK-based data centres. You can request data
+              deletion after the retention period, subject to regulatory
+              requirements.
             </div>
           </ion-accordion>
 
           <ion-accordion value="companies-house-filings">
             <ion-item slot="header">
-              <ion-label>Do you handle Companies House filings?</ion-label>
+              <ion-label
+                >Do you handle Companies House filings automatically?</ion-label
+              >
             </ion-item>
             <div
               slot="content"
               style="
                 padding: 16px 20px;
-                color: #374151;
+                color: var(--color-muted);
                 font-size: 14px;
                 line-height: 1.6;
               "
             >
-              Yes, we can submit director appointment and PSC register updates
-              to Companies House on your behalf. This is included in our Company
-              pack pricing.
+              Yes, for Company pack customers, we automatically submit director
+              appointment and PSC register updates to Companies House on your
+              behalf. This includes all necessary forms and documentation.
+              You'll receive confirmation once filings are submitted and
+              accepted.
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="pep-sanctions">
+            <ion-item slot="header">
+              <ion-label
+                >What PEP and sanctions screening do you perform?</ion-label
+              >
+            </ion-item>
+            <div
+              slot="content"
+              style="
+                padding: 16px 20px;
+                color: var(--color-muted);
+                font-size: 14px;
+                line-height: 1.6;
+              "
+            >
+              We screen against UK and international PEP lists, sanctions lists,
+              and adverse media databases. This includes HM Treasury sanctions,
+              EU sanctions, UN sanctions, and other relevant databases. Any
+              matches are flagged for manual review and escalation if necessary.
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="sar-procedures">
+            <ion-item slot="header">
+              <ion-label
+                >What are your SAR (Suspicious Activity Report)
+                procedures?</ion-label
+              >
+            </ion-item>
+            <div
+              slot="content"
+              style="
+                padding: 16px 20px;
+                color: var(--color-muted);
+                font-size: 14px;
+                line-height: 1.6;
+              "
+            >
+              We have established procedures for identifying and reporting
+              suspicious activity to the National Crime Agency (NCA). Our
+              compliance team reviews all flagged cases and submits SARs where
+              appropriate. We maintain strict confidentiality and follow no
+              tipping-off protocols.
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="data-protection">
+            <ion-item slot="header">
+              <ion-label
+                >How do you ensure data protection and GDPR
+                compliance?</ion-label
+              >
+            </ion-item>
+            <div
+              slot="content"
+              style="
+                padding: 16px 20px;
+                color: var(--color-muted);
+                font-size: 14px;
+                line-height: 1.6;
+              "
+            >
+              We are ICO registered and fully GDPR compliant. All data is
+              encrypted in transit and at rest, stored in UK-based data centres,
+              and processed according to our comprehensive data processing
+              policies. We have appointed a Data Protection Officer and maintain
+              detailed records of processing activities.
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="acsp-supervision">
+            <ion-item slot="header">
+              <ion-label
+                >What does ACSP supervision mean for your services?</ion-label
+              >
+            </ion-item>
+            <div
+              slot="content"
+              style="
+                padding: 16px 20px;
+                color: var(--color-muted);
+                font-size: 14px;
+                line-height: 1.6;
+              "
+            >
+              As an ACSP (Anti-Money Laundering and Counter-Terrorist Financing
+              Supervised Person), we are supervised by CGI UK & Ireland under
+              the Money Laundering Regulations 2017. This ensures our processes
+              meet the highest regulatory standards and provides additional
+              assurance for our clients.
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="integration">
+            <ion-item slot="header">
+              <ion-label
+                >Can you integrate with our existing systems?</ion-label
+              >
+            </ion-item>
+            <div
+              slot="content"
+              style="
+                padding: 16px 20px;
+                color: var(--color-muted);
+                font-size: 14px;
+                line-height: 1.6;
+              "
+            >
+              Yes, we offer API integration for enterprise customers and can
+              work with your existing case management, CRM, or compliance
+              systems. We also provide webhook notifications and can export data
+              in various formats to suit your requirements.
             </div>
           </ion-accordion>
         </ion-accordion-group>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface)">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Still have questions?</h2>
+        <p class="lead">
+          Our compliance team is here to help with any specific requirements.
+        </p>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          max-width: 800px;
+          margin: 0 auto;
+        "
+      >
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            📞
+          </div>
+          <h3 class="h3">Phone Support</h3>
+          <p class="text-body">
+            Call us for immediate assistance with your verification needs
+          </p>
+          <p class="text-fine" style="margin-top: 8px">+44 20 1234 5678</p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            ✉️
+          </div>
+          <h3 class="h3">Email Support</h3>
+          <p class="text-body">
+            Send us detailed questions and we'll respond within 24 hours
+          </p>
+          <p class="text-fine" style="margin-top: 8px">
+            hello@epcocompliance.co.uk
+          </p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            💬
+          </div>
+          <h3 class="h3">Live Chat</h3>
+          <p class="text-body">
+            Get instant answers to common questions during business hours
+          </p>
+          <p class="text-fine" style="margin-top: 8px">Mon-Fri 9am-5pm GMT</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px">
+        <ion-button
+          size="large"
+          fill="solid"
+          color="primary"
+          routerLink="/contact"
+        >
+          Contact our team
+        </ion-button>
       </div>
     </div>
   </section>

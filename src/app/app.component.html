@@ -7,8 +7,8 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: saturate(180%) blur(8px);
-      background: rgba(255, 255, 255, 0.85);
-      border-bottom: 1px solid #e5e7eb;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--color-border);
     "
   >
     <ion-toolbar color="light">
@@ -18,59 +18,69 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 56px;
+          height: 64px;
         "
       >
         <a
           routerLink="/home"
-          aria-label="Go to home page"
+          aria-label="Go to EPCO Compliance home page"
           style="
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             color: inherit;
           "
         >
           <div
             style="
-              width: 36px;
-              height: 36px;
+              width: 40px;
+              height: 40px;
               border-radius: 12px;
-              background: #111;
+              background: var(--color-primary);
               color: #fff;
               display: grid;
               place-items: center;
               font-weight: 700;
+              font-size: 16px;
             "
             aria-hidden="true"
           >
-            ID
+            EP
           </div>
-          <strong>[Your Firm Name]</strong>
+          <strong style="font-size: 18px; color: var(--color-primary)"
+            >EPCO Compliance</strong
+          >
         </a>
         <nav class="ion-hide-md-down" aria-label="Main navigation">
           <ion-buttons>
             <ion-button
               routerLink="/how"
+              fill="clear"
               aria-label="Learn how our ID verification process works"
               >How it works</ion-button
             >
             <ion-button
               routerLink="/services"
+              fill="clear"
               aria-label="View our compliance services"
               >Services</ion-button
             >
-            <ion-button routerLink="/pricing" aria-label="View pricing plans"
+            <ion-button
+              routerLink="/pricing"
+              fill="clear"
+              aria-label="View pricing plans"
               >Pricing</ion-button
             >
             <ion-button
               routerLink="/faq"
+              fill="clear"
               aria-label="Read frequently asked questions"
               >FAQ</ion-button
             >
             <ion-button
               routerLink="/contact"
+              fill="clear"
               aria-label="Contact us for support"
               >Contact</ion-button
             >
@@ -79,11 +89,11 @@
         <ion-buttons>
           <ion-button
             fill="solid"
-            color="dark"
+            color="primary"
             routerLink="/contact"
             aria-label="Start an ID check demo"
           >
-            Start an ID check demo
+            Start ID check demo
             <ion-icon
               slot="end"
               name="arrow-forward-outline"
@@ -99,7 +109,12 @@
     <ion-router-outlet></ion-router-outlet>
   </main>
 
-  <ion-footer style="border-top: 1px solid #e5e7eb; background: #f7f7f7">
+  <ion-footer
+    style="
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+    "
+  >
     <ion-toolbar color="light">
       <div
         class="container"
@@ -108,14 +123,28 @@
           gap: 16px;
           align-items: center;
           justify-content: space-between;
-          padding-block: 12px;
+          padding-block: 16px;
+          flex-wrap: wrap;
         "
       >
-        <small
-          >© {{ currentYear }} [Your Firm Name]. All rights reserved.</small
-        >
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <small style="color: var(--color-muted)"
+            >© {{ currentYear }} EPCO Compliance. All rights reserved.</small
+          >
+          <div style="display: flex; gap: 16px; flex-wrap: wrap">
+            <span class="badge badge-primary" style="font-size: 11px"
+              >ACSP {{ acspRef }}</span
+            >
+            <span class="badge" style="font-size: 11px"
+              >ICO {{ icoNumber }}</span
+            >
+            <span class="badge" style="font-size: 11px"
+              >Supervised by {{ supervisoryBody }}</span
+            >
+          </div>
+        </div>
         <nav
-          style="display: flex; gap: 12px; flex-wrap: wrap"
+          style="display: flex; gap: 16px; flex-wrap: wrap"
           aria-label="Legal links"
         >
           <a
@@ -123,6 +152,11 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Read our terms of service"
+            style="
+              color: var(--color-muted);
+              text-decoration: none;
+              font-size: 14px;
+            "
             >Terms</a
           >
           <a
@@ -130,6 +164,11 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Read our privacy policy"
+            style="
+              color: var(--color-muted);
+              text-decoration: none;
+              font-size: 14px;
+            "
             >Privacy</a
           >
           <a
@@ -137,7 +176,24 @@
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Read our cookie policy"
+            style="
+              color: var(--color-muted);
+              text-decoration: none;
+              font-size: 14px;
+            "
             >Cookies</a
+          >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read our data processing policy"
+            style="
+              color: var(--color-muted);
+              text-decoration: none;
+              font-size: 14px;
+            "
+            >Data Processing</a
           >
         </nav>
       </div>

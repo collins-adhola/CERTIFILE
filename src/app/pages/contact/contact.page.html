@@ -1,19 +1,24 @@
 <ion-content>
   <section class="section">
     <div class="container">
-      <h2 class="h2">Get in Touch</h2>
-      <p class="lead">
-        Ready to streamline your compliance process? Send us a message.
-      </p>
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Get in Touch</h2>
+        <p class="lead">
+          Ready to streamline your compliance process? Send us a message and
+          we'll respond within 24 hours.
+        </p>
+      </div>
 
-      <div style="max-width: 600px; margin: 32px auto 0">
+      <div style="max-width: 600px; margin: 0 auto">
         <form
           [formGroup]="contactForm"
           (ngSubmit)="onSubmit()"
           aria-label="Contact form"
         >
           <ion-item>
-            <ion-label position="stacked" for="name-input">Name *</ion-label>
+            <ion-label position="stacked" for="name-input"
+              >Full Name *</ion-label
+            >
             <ion-input
               id="name-input"
               formControlName="name"
@@ -27,65 +32,88 @@
             *ngIf="getFieldError('name')"
             id="name-error"
             role="alert"
-            style="
-              color: #dc2626;
-              font-size: 12px;
-              margin-top: 4px;
-              margin-left: 16px;
-            "
+            class="error-message"
           >
             {{ getFieldError('name') }}
           </div>
 
           <ion-item>
-            <ion-label position="stacked">Email *</ion-label>
+            <ion-label position="stacked" for="email-input"
+              >Email Address *</ion-label
+            >
             <ion-input
+              id="email-input"
               formControlName="email"
               type="email"
               placeholder="your@email.com"
+              aria-describedby="email-error"
               [class.ion-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
             >
             </ion-input>
           </ion-item>
           <div
             *ngIf="getFieldError('email')"
-            style="
-              color: #dc2626;
-              font-size: 12px;
-              margin-top: 4px;
-              margin-left: 16px;
-            "
+            id="email-error"
+            role="alert"
+            class="error-message"
           >
             {{ getFieldError('email') }}
           </div>
 
           <ion-item>
-            <ion-label position="stacked">Phone</ion-label>
+            <ion-label position="stacked" for="phone-input"
+              >Phone Number</ion-label
+            >
             <ion-input
+              id="phone-input"
               formControlName="phone"
               type="tel"
               placeholder="+44 20 1234 5678"
+              aria-describedby="phone-error"
               [class.ion-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
             >
             </ion-input>
           </ion-item>
           <div
             *ngIf="getFieldError('phone')"
-            style="
-              color: #dc2626;
-              font-size: 12px;
-              margin-top: 4px;
-              margin-left: 16px;
-            "
+            id="phone-error"
+            role="alert"
+            class="error-message"
           >
             {{ getFieldError('phone') }}
           </div>
 
           <ion-item>
-            <ion-label position="stacked">Topic *</ion-label>
+            <ion-label position="stacked" for="company-input"
+              >Company Name *</ion-label
+            >
+            <ion-input
+              id="company-input"
+              formControlName="company"
+              placeholder="Your company name"
+              aria-describedby="company-error"
+              [class.ion-invalid]="contactForm.get('company')?.invalid && contactForm.get('company')?.touched"
+            >
+            </ion-input>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('company')"
+            id="company-error"
+            role="alert"
+            class="error-message"
+          >
+            {{ getFieldError('company') }}
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked" for="topic-select"
+              >Service Required *</ion-label
+            >
             <ion-select
+              id="topic-select"
               formControlName="topic"
-              placeholder="Select a topic"
+              placeholder="Select a service"
+              aria-describedby="topic-error"
               [class.ion-invalid]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
             >
               <ion-select-option
@@ -98,34 +126,32 @@
           </ion-item>
           <div
             *ngIf="getFieldError('topic')"
-            style="
-              color: #dc2626;
-              font-size: 12px;
-              margin-top: 4px;
-              margin-left: 16px;
-            "
+            id="topic-error"
+            role="alert"
+            class="error-message"
           >
             {{ getFieldError('topic') }}
           </div>
 
           <ion-item>
-            <ion-label position="stacked">Message *</ion-label>
+            <ion-label position="stacked" for="message-textarea"
+              >Message *</ion-label
+            >
             <ion-textarea
+              id="message-textarea"
               formControlName="message"
-              placeholder="Tell us about your requirements..."
+              placeholder="Tell us about your compliance requirements..."
               rows="4"
+              aria-describedby="message-error"
               [class.ion-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
             >
             </ion-textarea>
           </ion-item>
           <div
             *ngIf="getFieldError('message')"
-            style="
-              color: #dc2626;
-              font-size: 12px;
-              margin-top: 4px;
-              margin-left: 16px;
-            "
+            id="message-error"
+            role="alert"
+            class="error-message"
           >
             {{ getFieldError('message') }}
           </div>
@@ -134,39 +160,188 @@
             expand="block"
             type="submit"
             fill="solid"
-            color="dark"
+            color="primary"
             style="margin-top: 24px"
+            aria-label="Send your enquiry"
+            [disabled]="contactForm.invalid"
           >
             Send Enquiry
           </ion-button>
         </form>
       </div>
+    </div>
+  </section>
 
-      <div style="max-width: 600px; margin: 48px auto 0">
+  <section class="section" style="background: var(--color-surface)">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2">Contact Information</h2>
+        <p class="lead">Get in touch with our compliance team.</p>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          max-width: 800px;
+          margin: 0 auto;
+        "
+      >
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            📞
+          </div>
+          <h3 class="h3">Phone</h3>
+          <p class="text-body">Call us for immediate assistance</p>
+          <p class="text-fine" style="margin-top: 8px">+44 20 1234 5678</p>
+          <p class="text-fine">Mon-Fri 9am-5pm GMT</p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            ✉️
+          </div>
+          <h3 class="h3">Email</h3>
+          <p class="text-body">Send us detailed questions</p>
+          <p class="text-fine" style="margin-top: 8px">
+            hello@epcocompliance.co.uk
+          </p>
+          <p class="text-fine">Response within 24 hours</p>
+        </div>
+
+        <div style="text-align: center">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 50%;
+              background: var(--color-primary);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 16px;
+              font-size: 24px;
+            "
+          >
+            📍
+          </div>
+          <h3 class="h3">Address</h3>
+          <p class="text-body">Our registered office</p>
+          <p class="text-fine" style="margin-top: 8px">123 Compliance Street</p>
+          <p class="text-fine">London EC1A 1BB</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto">
         <ion-card class="card">
           <ion-card-header>
             <ion-card-title>Regulatory Information</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <div style="font-size: 14px; color: #374151; line-height: 1.6">
-              <p>
-                <strong>AML Supervisory Body:</strong> [Supervisory Body Name]
+            <div
+              style="
+                font-size: 14px;
+                color: var(--color-muted);
+                line-height: 1.6;
+              "
+            >
+              <p style="margin-bottom: 12px">
+                <strong>AML Supervisory Body:</strong> CGI UK & Ireland
               </p>
-              <p>
-                <strong>ICO Registration:</strong> [ICO Registration Number]
+              <p style="margin-bottom: 12px">
+                <strong>ICO Registration:</strong> ZA123456
               </p>
-              <p><strong>ACSP Reference:</strong> [ACSP Reference Number]</p>
+              <p style="margin-bottom: 12px">
+                <strong>ACSP Reference:</strong> ACSP123456
+              </p>
+              <p style="margin-bottom: 12px">
+                <strong>Data Protection Officer:</strong>
+                dpo@epcocompliance.co.uk
+              </p>
+              <p style="margin-bottom: 12px">
+                <strong>Compliance Officer:</strong>
+                compliance@epcocompliance.co.uk
+              </p>
+              <p style="margin: 0">
+                <strong>Registered Office:</strong> 123 Compliance Street,
+                London EC1A 1BB
+              </p>
             </div>
           </ion-card-content>
         </ion-card>
+
+        <div
+          style="
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--color-surface);
+            border-radius: var(--app-radius);
+          "
+        >
+          <h3 class="h3" style="margin-bottom: 16px">Data Processing Notice</h3>
+          <p class="text-fine" style="margin-bottom: 16px">
+            By submitting this form, you consent to EPCO Compliance processing
+            your personal data in accordance with our
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Privacy Policy</a
+            >
+            and
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Data Processing Policy</a
+            >. We will use this information to respond to your enquiry and
+            provide our services.
+          </p>
+          <p class="text-fine" style="margin: 0">
+            You have the right to withdraw consent at any time. For more
+            information about your rights, please see our
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Privacy Policy</a
+            >.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <ion-toast
     [isOpen]="showToast"
-    message="Enquiry sent. We'll reply the same day."
-    duration="3000"
+    message="Enquiry sent successfully. We'll reply within 24 hours."
+    duration="4000"
     (didDismiss)="showToast = false"
   >
   </ion-toast>
