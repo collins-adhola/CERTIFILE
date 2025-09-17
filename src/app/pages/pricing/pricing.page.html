@@ -1,0 +1,118 @@
+<ion-content>
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Simple, Transparent Pricing</h2>
+      <p class="lead">Choose the plan that fits your business needs.</p>
+
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          margin-top: 32px;
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <ion-card class="card">
+          <ion-card-header>
+            <ion-card-title>Pay-as-you-go</ion-card-title>
+            <div style="margin-top: 8px">
+              <span
+                style="
+                  font-size: 32px;
+                  font-weight: 700;
+                  color: var(--ion-color-primary);
+                "
+                >From £25</span
+              >
+              <span style="color: #6b7280; margin-left: 4px">/ check</span>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ul style="margin: 0 0 24px 0; padding-left: 20px; color: #374151">
+              <li>Per-verification pricing</li>
+              <li>No monthly commitments</li>
+              <li>Instant processing</li>
+              <li>Full compliance reporting</li>
+            </ul>
+            <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              routerLink="/contact"
+            >
+              Choose Pay-as-you-go
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card
+          class="card"
+          style="
+            position: relative;
+            background: #111;
+            color: #fff;
+            border: 2px solid #111;
+          "
+        >
+          <div
+            class="badge"
+            style="
+              position: absolute;
+              top: -8px;
+              left: 50%;
+              transform: translateX(-50%);
+              background: #fff;
+              color: #111;
+              border: 1px solid #111;
+              font-weight: 600;
+            "
+          >
+            Popular
+          </div>
+          <ion-card-header>
+            <ion-card-title style="color: #fff">Company pack</ion-card-title>
+            <div style="margin-top: 8px">
+              <span style="font-size: 32px; font-weight: 700; color: #fff"
+                >From £149</span
+              >
+              <span style="color: #9ca3af; margin-left: 4px">/ entity</span>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ul style="margin: 0 0 24px 0; padding-left: 20px; color: #e5e7eb">
+              <li>Bulk verification discounts</li>
+              <li>Priority support</li>
+              <li>Advanced reporting</li>
+              <li>Dedicated account manager</li>
+            </ul>
+            <ion-button
+              expand="block"
+              fill="solid"
+              color="light"
+              routerLink="/contact"
+            >
+              Choose Company pack
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          margin-top: 32px;
+          color: #6b7280;
+          font-size: 14px;
+        "
+      >
+        <p style="margin: 0">
+          All prices exclude VAT and third-party fees. Contact us for custom
+          enterprise pricing.
+        </p>
+      </div>
+    </div>
+  </section>
+</ion-content>

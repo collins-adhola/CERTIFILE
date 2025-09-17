@@ -1,2 +1,28 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+:root {
+  // Primary brand colors - neutral palette
+  --ion-color-primary: #111111;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #0e0e0e;
+  --ion-color-primary-tint: #292929;
+
+  // Neutral color palette
+  --ion-color-medium: #6b7280; /* neutral-500 */
+  --ion-color-light: #f5f5f5; /* neutral-100 */
+  --ion-color-dark: #0a0a0a;
+
+  // Design system variables
+  --app-radius: 16px;
+  --app-card-border: 1px solid #e5e7eb;
+  --app-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  --app-maxw: 1120px;
+
+  // Typography scale
+  --ion-font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --ion-font-weight: 400;
+  --ion-line-height: 1.5;
+}

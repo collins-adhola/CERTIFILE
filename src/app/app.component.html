@@ -1,3 +1,146 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <ion-header
+    class="ion-no-border"
+    style="
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid #e5e7eb;
+    "
+  >
+    <ion-toolbar color="light">
+      <div
+        class="container"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 56px;
+        "
+      >
+        <a
+          routerLink="/home"
+          aria-label="Go to home page"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+          "
+        >
+          <div
+            style="
+              width: 36px;
+              height: 36px;
+              border-radius: 12px;
+              background: #111;
+              color: #fff;
+              display: grid;
+              place-items: center;
+              font-weight: 700;
+            "
+            aria-hidden="true"
+          >
+            ID
+          </div>
+          <strong>[Your Firm Name]</strong>
+        </a>
+        <nav class="ion-hide-md-down" aria-label="Main navigation">
+          <ion-buttons>
+            <ion-button
+              routerLink="/how"
+              aria-label="Learn how our ID verification process works"
+              >How it works</ion-button
+            >
+            <ion-button
+              routerLink="/services"
+              aria-label="View our compliance services"
+              >Services</ion-button
+            >
+            <ion-button routerLink="/pricing" aria-label="View pricing plans"
+              >Pricing</ion-button
+            >
+            <ion-button
+              routerLink="/faq"
+              aria-label="Read frequently asked questions"
+              >FAQ</ion-button
+            >
+            <ion-button
+              routerLink="/contact"
+              aria-label="Contact us for support"
+              >Contact</ion-button
+            >
+          </ion-buttons>
+        </nav>
+        <ion-buttons>
+          <ion-button
+            fill="solid"
+            color="dark"
+            routerLink="/contact"
+            aria-label="Start an ID check demo"
+          >
+            Start an ID check demo
+            <ion-icon
+              slot="end"
+              name="arrow-forward-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <main id="main-content">
+    <ion-router-outlet></ion-router-outlet>
+  </main>
+
+  <ion-footer style="border-top: 1px solid #e5e7eb; background: #f7f7f7">
+    <ion-toolbar color="light">
+      <div
+        class="container"
+        style="
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          justify-content: space-between;
+          padding-block: 12px;
+        "
+      >
+        <small
+          >© {{ currentYear }} [Your Firm Name]. All rights reserved.</small
+        >
+        <nav
+          style="display: flex; gap: 12px; flex-wrap: wrap"
+          aria-label="Legal links"
+        >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read our terms of service"
+            >Terms</a
+          >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read our privacy policy"
+            >Privacy</a
+          >
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read our cookie policy"
+            >Cookies</a
+          >
+        </nav>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
 </ion-app>

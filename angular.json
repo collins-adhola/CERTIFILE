@@ -23,9 +23,7 @@
               "browser": ""
             },
             "index": "src/index.html",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -33,11 +31,33 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "manifest.json",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "offline.html",
+                "input": "src",
+                "output": ""
               }
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
             "scripts": [],
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -107,6 +127,26 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "robots.txt",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "manifest.json",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "offline.html",
+                "input": "src",
+                "output": ""
               }
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
@@ -129,7 +169,8 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": ["@ionic/angular-toolkit"],
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

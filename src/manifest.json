@@ -1,0 +1,28 @@
+{
+  "name": "[Your Firm Name] - Professional ID Verification",
+  "short_name": "[Your Firm Name]",
+  "description": "Professional ID verification and compliance services for modern businesses. Secure, remote identity verification for directors and PSCs.",
+  "theme_color": "#111111",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en-GB",
+  "dir": "ltr"
+}

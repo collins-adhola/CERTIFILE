@@ -1,0 +1,173 @@
+<ion-content>
+  <section class="section">
+    <div class="container">
+      <h2 class="h2">Get in Touch</h2>
+      <p class="lead">
+        Ready to streamline your compliance process? Send us a message.
+      </p>
+
+      <div style="max-width: 600px; margin: 32px auto 0">
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="onSubmit()"
+          aria-label="Contact form"
+        >
+          <ion-item>
+            <ion-label position="stacked" for="name-input">Name *</ion-label>
+            <ion-input
+              id="name-input"
+              formControlName="name"
+              placeholder="Your full name"
+              aria-describedby="name-error"
+              [class.ion-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+            >
+            </ion-input>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('name')"
+            id="name-error"
+            role="alert"
+            style="
+              color: #dc2626;
+              font-size: 12px;
+              margin-top: 4px;
+              margin-left: 16px;
+            "
+          >
+            {{ getFieldError('name') }}
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Email *</ion-label>
+            <ion-input
+              formControlName="email"
+              type="email"
+              placeholder="your@email.com"
+              [class.ion-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+            >
+            </ion-input>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('email')"
+            style="
+              color: #dc2626;
+              font-size: 12px;
+              margin-top: 4px;
+              margin-left: 16px;
+            "
+          >
+            {{ getFieldError('email') }}
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Phone</ion-label>
+            <ion-input
+              formControlName="phone"
+              type="tel"
+              placeholder="+44 20 1234 5678"
+              [class.ion-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+            >
+            </ion-input>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('phone')"
+            style="
+              color: #dc2626;
+              font-size: 12px;
+              margin-top: 4px;
+              margin-left: 16px;
+            "
+          >
+            {{ getFieldError('phone') }}
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Topic *</ion-label>
+            <ion-select
+              formControlName="topic"
+              placeholder="Select a topic"
+              [class.ion-invalid]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
+            >
+              <ion-select-option
+                *ngFor="let topic of topics"
+                [value]="topic.value"
+              >
+                {{ topic.label }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('topic')"
+            style="
+              color: #dc2626;
+              font-size: 12px;
+              margin-top: 4px;
+              margin-left: 16px;
+            "
+          >
+            {{ getFieldError('topic') }}
+          </div>
+
+          <ion-item>
+            <ion-label position="stacked">Message *</ion-label>
+            <ion-textarea
+              formControlName="message"
+              placeholder="Tell us about your requirements..."
+              rows="4"
+              [class.ion-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+            >
+            </ion-textarea>
+          </ion-item>
+          <div
+            *ngIf="getFieldError('message')"
+            style="
+              color: #dc2626;
+              font-size: 12px;
+              margin-top: 4px;
+              margin-left: 16px;
+            "
+          >
+            {{ getFieldError('message') }}
+          </div>
+
+          <ion-button
+            expand="block"
+            type="submit"
+            fill="solid"
+            color="dark"
+            style="margin-top: 24px"
+          >
+            Send Enquiry
+          </ion-button>
+        </form>
+      </div>
+
+      <div style="max-width: 600px; margin: 48px auto 0">
+        <ion-card class="card">
+          <ion-card-header>
+            <ion-card-title>Regulatory Information</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div style="font-size: 14px; color: #374151; line-height: 1.6">
+              <p>
+                <strong>AML Supervisory Body:</strong> [Supervisory Body Name]
+              </p>
+              <p>
+                <strong>ICO Registration:</strong> [ICO Registration Number]
+              </p>
+              <p><strong>ACSP Reference:</strong> [ACSP Reference Number]</p>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </section>
+
+  <ion-toast
+    [isOpen]="showToast"
+    message="Enquiry sent. We'll reply the same day."
+    duration="3000"
+    (didDismiss)="showToast = false"
+  >
+  </ion-toast>
+</ion-content>
