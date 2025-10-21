@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "npx ionic build --configuration production"
+  command = "ng build --configuration production"
   publish = "www"
 
 [[redirects]]
