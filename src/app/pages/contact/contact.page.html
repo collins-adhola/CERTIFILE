@@ -1,0 +1,865 @@
+<ion-content>
+  <!-- Hero Section -->
+  <section
+    class="section"
+    style="
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      padding-top: 60px;
+      padding-bottom: 60px;
+    "
+  >
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <div
+          class="badge badge-accent"
+          style="
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #d81b60, #ff4081);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 12px rgba(216, 27, 96, 0.3);
+            border: 2px solid #c2185b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+            display: inline-block;
+          "
+        >
+          Expert Support Available
+        </div>
+        <h1
+          class="h1"
+          style="
+            color: #5c2d91;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #5c2d91, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          "
+        >
+          Get Expert Compliance Support
+        </h1>
+        <p
+          class="lead"
+          style="
+            color: #1e293b;
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          🚀 Ready to streamline your compliance process? Our experts are here
+          to help you navigate UK identity verification requirements with
+          confidence.
+        </p>
+        <div
+          style="
+            margin-top: 32px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            style="
+              text-align: center;
+              padding: 16px;
+              background: white;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              min-width: 200px;
+            "
+          >
+            <div style="font-size: 24px; margin-bottom: 8px">⚡</div>
+            <div style="font-weight: 700; color: #5c2d91; margin-bottom: 4px">
+              24 Hour Response
+            </div>
+            <div style="font-size: 14px; color: #64748b">
+              Guaranteed reply time
+            </div>
+          </div>
+          <div
+            style="
+              text-align: center;
+              padding: 16px;
+              background: white;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              min-width: 200px;
+            "
+          >
+            <div style="font-size: 24px; margin-bottom: 8px">🎯</div>
+            <div style="font-weight: 700; color: #5c2d91; margin-bottom: 4px">
+              Free Consultation
+            </div>
+            <div style="font-size: 14px; color: #64748b">
+              No obligation advice
+            </div>
+          </div>
+          <div
+            style="
+              text-align: center;
+              padding: 16px;
+              background: white;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              min-width: 200px;
+            "
+          >
+            <div style="font-size: 24px; margin-bottom: 8px">🛡️</div>
+            <div style="font-weight: 700; color: #5c2d91; margin-bottom: 4px">
+              ACSP Supervised
+            </div>
+            <div style="font-size: 14px; color: #64748b">
+              Fully regulated service
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto">
+        <div style="text-align: center; margin-bottom: 48px">
+          <h2
+            class="h2"
+            style="
+              color: #5c2d91;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+          >
+            Send Us Your Requirements
+          </h2>
+          <p
+            class="lead"
+            style="color: #1e293b; font-size: 1.2rem; font-weight: 500"
+          >
+            📝 Tell us about your compliance needs and we'll provide tailored
+            guidance.
+          </p>
+        </div>
+
+        <div
+          style="
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(92, 45, 145, 0.15);
+            border: 1px solid rgba(92, 45, 145, 0.1);
+          "
+        >
+          <form
+            [formGroup]="contactForm"
+            (ngSubmit)="onSubmit()"
+            aria-label="Contact form"
+          >
+            <ion-item>
+              <ion-label position="stacked" for="name-input"
+                >Full Name *</ion-label
+              >
+              <ion-input
+                id="name-input"
+                formControlName="name"
+                placeholder="Your full name"
+                aria-describedby="name-error"
+                [class.ion-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+              >
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('name')"
+              id="name-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('name') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="email-input"
+                >Email Address *</ion-label
+              >
+              <ion-input
+                id="email-input"
+                formControlName="email"
+                type="email"
+                placeholder="your@email.com"
+                aria-describedby="email-error"
+                [class.ion-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+              >
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('email')"
+              id="email-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('email') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="phone-input"
+                >Phone Number</ion-label
+              >
+              <ion-input
+                id="phone-input"
+                formControlName="phone"
+                type="tel"
+                placeholder="+44 20 1234 5678"
+                aria-describedby="phone-error"
+                [class.ion-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+              >
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('phone')"
+              id="phone-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('phone') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="company-input"
+                >Company Name *</ion-label
+              >
+              <ion-input
+                id="company-input"
+                formControlName="company"
+                placeholder="Your company name"
+                aria-describedby="company-error"
+                [class.ion-invalid]="contactForm.get('company')?.invalid && contactForm.get('company')?.touched"
+              >
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('company')"
+              id="company-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('company') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="topic-select"
+                >Service Required *</ion-label
+              >
+              <ion-select
+                id="topic-select"
+                formControlName="topic"
+                placeholder="Select a service"
+                aria-describedby="topic-error"
+                [class.ion-invalid]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
+              >
+                <ion-select-option
+                  *ngFor="let topic of topics"
+                  [value]="topic.value"
+                >
+                  {{ topic.label }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('topic')"
+              id="topic-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('topic') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="message-textarea"
+                >Message *</ion-label
+              >
+              <ion-textarea
+                id="message-textarea"
+                formControlName="message"
+                placeholder="Tell us about your compliance requirements..."
+                rows="4"
+                aria-describedby="message-error"
+                [class.ion-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+              >
+              </ion-textarea>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('message')"
+              id="message-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('message') }}
+            </div>
+
+            <ion-button
+              expand="block"
+              type="submit"
+              fill="solid"
+              color="primary"
+              style="
+                margin-top: 32px;
+                background: linear-gradient(135deg, #5c2d91, #8a2be2);
+                color: white;
+                border-radius: 12px;
+                font-weight: 700;
+                box-shadow: 0 6px 12px rgba(92, 45, 145, 0.3);
+                border: 2px solid #4a148c;
+                padding: 16px 32px;
+                font-size: 16px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              "
+              aria-label="Send your enquiry"
+              [disabled]="contactForm.invalid"
+            >
+              Send Enquiry
+            </ion-button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section
+    class="section"
+    style="background: linear-gradient(135deg, #5c2d91, #8a2be2); color: white"
+  >
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2" style="color: white; margin-bottom: 16px">
+          What Our Clients Say
+        </h2>
+        <p
+          class="lead"
+          style="
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 500;
+          "
+        >
+          💬 Trusted by professional advisors and companies across the UK
+        </p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto">
+        <div
+          style="
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+          "
+        >
+          <div style="text-align: center; margin-bottom: 32px">
+            <div style="font-size: 48px; margin-bottom: 16px">💼</div>
+            <blockquote
+              style="
+                font-size: 1.3rem;
+                line-height: 1.6;
+                font-style: italic;
+                margin: 0;
+                color: white;
+              "
+            >
+              "CertiFile Compliance has been invaluable in helping us navigate
+              the complex UK identity verification requirements. Their expert
+              guidance and streamlined process saved us significant time and
+              ensured full regulatory compliance."
+            </blockquote>
+          </div>
+          <div
+            style="
+              text-align: center;
+              border-top: 1px solid rgba(255, 255, 255, 0.2);
+              padding-top: 24px;
+            "
+          >
+            <div
+              style="
+                font-weight: 700;
+                font-size: 1.1rem;
+                color: white;
+                margin-bottom: 4px;
+              "
+            >
+              Sarah Mitchell
+            </div>
+            <div style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem">
+              Compliance Director, London Law Firm
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information Section -->
+  <section class="section" style="background: #f8fafc">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px">
+        <h2 class="h2" style="color: #5c2d91">Get in Touch Today</h2>
+        <p
+          class="lead"
+          style="color: #1e293b; font-size: 1.2rem; font-weight: 500"
+        >
+          🤝 Multiple ways to reach our expert compliance team.
+        </p>
+      </div>
+
+      <div
+        style="
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          max-width: 800px;
+          margin: 0 auto;
+        "
+      >
+        <div
+          style="
+            text-align: center;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(30, 64, 175, 0.1);
+          "
+        >
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #1e40af, #3b82f6);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 20px;
+              font-size: 32px;
+              box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+            "
+          >
+            📞
+          </div>
+          <h3
+            class="h3"
+            style="color: #1e40af; font-weight: 700; margin-bottom: 12px"
+          >
+            Phone Support
+          </h3>
+          <p class="text-body" style="color: #1e293b; margin-bottom: 16px">
+            Call us for immediate assistance with your compliance needs
+          </p>
+          <div
+            style="
+              background: #f8fafc;
+              padding: 16px;
+              border-radius: 12px;
+              margin-bottom: 12px;
+            "
+          >
+            <div
+              style="
+                font-weight: 700;
+                color: #1e40af;
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+              "
+            >
+              +44 20 1234 5678
+            </div>
+            <div style="color: #64748b; font-size: 0.9rem">
+              Mon-Fri 9am-5pm GMT
+            </div>
+          </div>
+          <div style="font-size: 14px; color: #64748b">
+            ⚡ Instant expert guidance
+          </div>
+        </div>
+
+        <div
+          style="
+            text-align: center;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(5, 150, 105, 0.1);
+          "
+        >
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #059669, #10b981);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 20px;
+              font-size: 32px;
+              box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+            "
+          >
+            ✉️
+          </div>
+          <h3
+            class="h3"
+            style="color: #059669; font-weight: 700; margin-bottom: 12px"
+          >
+            Email Support
+          </h3>
+          <p class="text-body" style="color: #1e293b; margin-bottom: 16px">
+            Send us detailed questions and receive comprehensive responses
+          </p>
+          <div
+            style="
+              background: #f8fafc;
+              padding: 16px;
+              border-radius: 12px;
+              margin-bottom: 12px;
+            "
+          >
+            <div
+              style="
+                font-weight: 700;
+                color: #059669;
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+              "
+            >
+              hello@epcocompliance.co.uk
+            </div>
+            <div style="color: #64748b; font-size: 0.9rem">
+              Response within 24 hours
+            </div>
+          </div>
+          <div style="font-size: 14px; color: #64748b">
+            📋 Detailed written guidance
+          </div>
+        </div>
+
+        <div
+          style="
+            text-align: center;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(124, 58, 237, 0.1);
+          "
+        >
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #7c3aed, #a855f7);
+              color: white;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 20px;
+              font-size: 32px;
+              box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+            "
+          >
+            📍
+          </div>
+          <h3
+            class="h3"
+            style="color: #7c3aed; font-weight: 700; margin-bottom: 12px"
+          >
+            Registered Office
+          </h3>
+          <p class="text-body" style="color: #1e293b; margin-bottom: 16px">
+            Our professional registered office in London
+          </p>
+          <div
+            style="
+              background: #f8fafc;
+              padding: 16px;
+              border-radius: 12px;
+              margin-bottom: 12px;
+            "
+          >
+            <div
+              style="
+                font-weight: 700;
+                color: #7c3aed;
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+              "
+            >
+              123 Compliance Street
+            </div>
+            <div style="color: #64748b; font-size: 0.9rem">London EC1A 1BB</div>
+          </div>
+          <div style="font-size: 14px; color: #64748b">
+            🏢 Professional business address
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise Section -->
+  <section
+    class="section"
+    style="background: linear-gradient(135deg, #f8fafc, #e2e8f0)"
+  >
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center">
+        <h2 class="h2" style="color: #5c2d91; margin-bottom: 24px">
+          Our Promise to You
+        </h2>
+        <div
+          style="
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(92, 45, 145, 0.15);
+            border: 1px solid rgba(92, 45, 145, 0.1);
+          "
+        >
+          <p
+            style="
+              font-size: 1.2rem;
+              color: #1e293b;
+              line-height: 1.7;
+              margin-bottom: 32px;
+            "
+          >
+            <strong
+              >Our experts are always happy to talk to you and discuss your
+              needs, so please get in touch.</strong
+            >
+          </p>
+          <div
+            style="
+              display: grid;
+              gap: 24px;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            "
+          >
+            <div
+              style="
+                text-align: left;
+                padding: 24px;
+                background: #f8fafc;
+                border-radius: 16px;
+                border-left: 4px solid #5c2d91;
+              "
+            >
+              <h4 style="color: #5c2d91; font-weight: 700; margin-bottom: 12px">
+                ✓ Tailored Information
+              </h4>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0">
+                We provide tailored information explaining exactly how we will
+                help you with your specific compliance requirements.
+              </p>
+            </div>
+            <div
+              style="
+                text-align: left;
+                padding: 24px;
+                background: #f8fafc;
+                border-radius: 16px;
+                border-left: 4px solid #5c2d91;
+              "
+            >
+              <h4 style="color: #5c2d91; font-weight: 700; margin-bottom: 12px">
+                ✓ Transparent Pricing
+              </h4>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0">
+                We clearly set out our fees and what these will cover, so you
+                can be confident how much our expert knowledge and assistance
+                will cost you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regulatory Information Section -->
+  <section class="section">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto">
+        <div style="text-align: center; margin-bottom: 32px">
+          <h2 class="h2" style="color: #5c2d91">Regulatory Information</h2>
+          <p
+            class="lead"
+            style="color: #1e293b; font-size: 1.1rem; font-weight: 500"
+          >
+            🛡️ Fully regulated and compliant with UK requirements
+          </p>
+        </div>
+
+        <div
+          style="
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(92, 45, 145, 0.15);
+            border: 1px solid rgba(92, 45, 145, 0.1);
+          "
+        >
+          <div
+            style="
+              display: grid;
+              gap: 24px;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            "
+          >
+            <div
+              style="
+                padding: 24px;
+                background: #f8fafc;
+                border-radius: 16px;
+                border: 2px solid rgba(92, 45, 145, 0.1);
+              "
+            >
+              <h4
+                style="
+                  color: #5c2d91;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+                  font-size: 1.1rem;
+                "
+              >
+                AML Supervision
+              </h4>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0 0 12px 0">
+                <strong>Supervisory Body:</strong> CGI UK & Ireland
+              </p>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0">
+                <strong>ACSP Reference:</strong> ACSP123456
+              </p>
+            </div>
+
+            <div
+              style="
+                padding: 24px;
+                background: #f8fafc;
+                border-radius: 16px;
+                border: 2px solid rgba(92, 45, 145, 0.1);
+              "
+            >
+              <h4
+                style="
+                  color: #5c2d91;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+                  font-size: 1.1rem;
+                "
+              >
+                Data Protection
+              </h4>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0 0 12px 0">
+                <strong>ICO Registration:</strong> ZA123456
+              </p>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0">
+                <strong>DPO:</strong> dpo@epcocompliance.co.uk
+              </p>
+            </div>
+
+            <div
+              style="
+                padding: 24px;
+                background: #f8fafc;
+                border-radius: 16px;
+                border: 2px solid rgba(92, 45, 145, 0.1);
+              "
+            >
+              <h4
+                style="
+                  color: #5c2d91;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+                  font-size: 1.1rem;
+                "
+              >
+                Compliance Team
+              </h4>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0 0 12px 0">
+                <strong>Compliance Officer:</strong>
+                compliance@epcocompliance.co.uk
+              </p>
+              <p style="color: #1e293b; line-height: 1.6; margin: 0">
+                <strong>Registered Office:</strong> 123 Compliance Street,
+                London EC1A 1BB
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--color-surface);
+            border-radius: var(--app-radius);
+          "
+        >
+          <h3 class="h3" style="margin-bottom: 16px">Data Processing Notice</h3>
+          <p class="text-fine" style="margin-bottom: 16px">
+            By submitting this form, you consent to CertiFile Compliance
+            processing your personal data in accordance with our
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Privacy Policy</a
+            >
+            and
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Data Processing Policy</a
+            >. We will use this information to respond to your enquiry and
+            provide our services.
+          </p>
+          <p class="text-fine" style="margin: 0">
+            You have the right to withdraw consent at any time. For more
+            information about your rights, please see our
+            <a
+              href="#"
+              style="color: var(--color-accent); text-decoration: underline"
+              >Privacy Policy</a
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ion-toast
+    [isOpen]="showToast"
+    message="Enquiry sent successfully. We'll reply within 24 hours."
+    duration="4000"
+    (didDismiss)="showToast = false"
+  >
+  </ion-toast>
+</ion-content>

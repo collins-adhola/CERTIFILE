@@ -1,0 +1,28 @@
+{
+  "name": "CertiFile Compliance - Professional ID Verification",
+  "short_name": "CertiFile Compliance",
+  "description": "Professional ID verification and compliance services for UK companies. ACSP supervised, GDPR compliant, and aligned with MLR 2017. Secure, remote identity verification for directors and PSCs.",
+  "theme_color": "#0B0F19",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en-GB",
+  "dir": "ltr"
+}
