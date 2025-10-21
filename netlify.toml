@@ -1,0 +1,9 @@
+[build]
+  base = "frontend"
+  command = "npx ionic build --configuration production"
+  publish = "www"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
