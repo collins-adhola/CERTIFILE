@@ -1,4 +1,27 @@
 [build]
-base = "frontend"
-command = "ng build --configuration production"
-publish = "www"
+  base = "frontend"
+  command = "ng build --configuration production"
+  publish = "www"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback (Angular routes)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# (Optional but nice) force root → www over HTTPS
+[[redirects]]
+  from = "https://certifile.co.uk/*"
+  to = "https://www.certifile.co.uk/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://certifile.co.uk/*"
+  to = "https://www.certifile.co.uk/:splat"
+  status = 301
+  force = true
+g
