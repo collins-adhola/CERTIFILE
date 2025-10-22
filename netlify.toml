@@ -12,15 +12,15 @@
   to = "/index.html"
   status = 200
 
-# (Optional but nice) force root → www over HTTPS
-[[redirects]]
-  from = "https://certifile.co.uk/*"
-  to = "https://www.certifile.co.uk/:splat"
-  status = 301
-  force = true
+# HTTPS redirects (only if you have both certifile.co.uk and www.certifile.co.uk)
+# [[redirects]]
+#   from = "https://certifile.co.uk/*"
+#   to = "https://www.certifile.co.uk/:splat"
+#   status = 301
+#   force = true
 
-[[redirects]]
-  from = "http://certifile.co.uk/*"
-  to = "https://www.certifile.co.uk/:splat"
-  status = 301
-  force = true
+# [[redirects]]
+#   from = "http://certifile.co.uk/*"
+#   to = "https://www.certifile.co.uk/:splat"
+#   status = 301
+#   force = true
