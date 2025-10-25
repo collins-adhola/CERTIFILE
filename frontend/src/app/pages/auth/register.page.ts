@@ -1,115 +1,49 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
+import {
+  IonButton,
+  IonInput,
+  IonItem,
+  IonList,
+} from '@ionic/angular/standalone';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
-  selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  selector: 'app-register',
+  imports: [FormsModule, IonList, IonItem, IonInput, IonButton, RouterModule],
   template: `
-    <ion-content class="ion-padding">
-      <div class="register-container">
-        <h1>Create CertiFile Account</h1>
-        <form (ngSubmit)="onRegister()" #registerForm="ngForm">
-          <ion-item>
-            <ion-label position="stacked">Full Name</ion-label>
-            <ion-input
-              type="text"
-              [(ngModel)]="userData.fullName"
-              name="fullName"
-              required
-            >
-            </ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input
-              type="email"
-              [(ngModel)]="userData.email"
-              name="email"
-              required
-            >
-            </ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input
-              type="password"
-              [(ngModel)]="userData.password"
-              name="password"
-              required
-            >
-            </ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Confirm Password</ion-label>
-            <ion-input
-              type="password"
-              [(ngModel)]="userData.confirmPassword"
-              name="confirmPassword"
-              required
-            >
-            </ion-input>
-          </ion-item>
-
-          <ion-button
-            expand="block"
-            type="submit"
-            [disabled]="!registerForm.form.valid || isLoading"
-          >
-            {{ isLoading ? 'Creating Account...' : 'Create Account' }}
-          </ion-button>
-        </form>
-
-        <div class="ion-text-center ion-margin-top">
-          <p>Already have an account? <a routerLink="/login">Login here</a></p>
-        </div>
-      </div>
-    </ion-content>
+    <h2>Create account</h2>
+    <ion-list>
+      <ion-item>
+        <ion-input
+          label="Email"
+          labelPlacement="floating"
+          [(ngModel)]="email"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          label="Password"
+          labelPlacement="floating"
+          [(ngModel)]="password"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="doRegister()">Register</ion-button>
   `,
-  styles: [
-    `
-      .register-container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding-top: 2rem;
-      }
-    `,
-  ],
 })
 export class RegisterPage {
-  userData = {
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-  isLoading = false;
+  private auth = inject(AuthService);
+  private router = inject(Router);
+  email = '';
+  password = '';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
-
-  onRegister() {
-    this.isLoading = true;
-    this.authService.register(this.userData).subscribe({
-      next: (success) => {
-        this.isLoading = false;
-        if (success) {
-          this.router.navigate(['/login']);
-        }
-      },
-      error: () => {
-        this.isLoading = false;
-        // Handle registration error
-      },
-    });
+  doRegister() {
+    if (this.auth.register(this.email, this.password)) {
+      this.router.navigate(['/dashboard']).catch(() => {});
+    }
   }
 }

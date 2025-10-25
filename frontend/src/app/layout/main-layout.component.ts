@@ -11,10 +11,10 @@ import { IonicModule } from '@ionic/angular';
     <ion-app>
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>CertiFile</ion-title>
+          <ion-title>CertiFile Compliance</ion-title>
           <ion-buttons slot="end">
-            <ion-button routerLink="/login">Login</ion-button>
-            <ion-button routerLink="/register">Register</ion-button>
+            <ion-button routerLink="/login" fill="clear" color="light">Login</ion-button>
+            <ion-button routerLink="/register" fill="solid" color="light">Register</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -24,7 +24,7 @@ import { IonicModule } from '@ionic/angular';
       </ion-content>
 
       <ion-footer class="ion-text-center ion-padding">
-        <small>© {{ year }} CertiFile</small>
+        <small>© {{ year }} CertiFile Compliance</small>
       </ion-footer>
     </ion-app>
   `,
