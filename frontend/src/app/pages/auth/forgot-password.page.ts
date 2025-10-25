@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
@@ -8,77 +9,80 @@ import {
   IonList,
   IonCard,
   IonCardContent,
+  IonContent,
 } from '@ionic/angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-forgot-password',
-  imports: [FormsModule, RouterModule, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent],
+  imports: [CommonModule, FormsModule, RouterModule, IonContent, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent],
   template: `
-    <div style="max-width: 400px; margin: 0 auto; padding: 20px;">
-      <h2>Reset Password</h2>
-      
-      <!-- Email Step -->
-      <div *ngIf="!otpSent">
-        <p>Enter your email address and we'll send you a verification code.</p>
-        <ion-list>
-          <ion-item>
-            <ion-input 
-              label="Email" 
-              labelPlacement="floating" 
-              type="email"
-              [(ngModel)]="email"
-              placeholder="Enter your email address">
-            </ion-input>
-          </ion-item>
-        </ion-list>
-        <ion-button expand="block" (click)="sendOTP()" [disabled]="!email">
-          Send Verification Code
-        </ion-button>
-      </div>
-
-      <!-- OTP Step -->
-      <div *ngIf="otpSent">
-        <p>We've sent a 6-digit verification code to <strong>{{ email }}</strong></p>
-        <p>Please enter the code below:</p>
+    <ion-content class="ion-padding">
+      <div style="max-width: 400px; margin: 0 auto;">
+        <h2>Reset Password</h2>
         
-        <ion-card>
-          <ion-card-content>
-            <div style="display: flex; gap: 8px; justify-content: center; margin: 20px 0;">
+        <!-- Email Step -->
+        <div *ngIf="!otpSent">
+          <p>Enter your email address and we'll send you a verification code.</p>
+          <ion-list>
+            <ion-item>
               <ion-input 
-                *ngFor="let digit of otpDigits; let i = index"
-                [(ngModel)]="otpDigits[i]"
-                maxlength="1"
-                style="width: 40px; text-align: center; font-size: 18px; font-weight: bold;"
-                (input)="onOTPInput(i, $event)"
-                (keydown)="onOTPKeydown(i, $event)">
+                label="Email" 
+                labelPlacement="floating" 
+                type="email"
+                [(ngModel)]="email"
+                placeholder="Enter your email address">
               </ion-input>
-            </div>
-          </ion-card-content>
-        </ion-card>
-        
-        <ion-button expand="block" (click)="verifyOTP()" [disabled]="!isOTPComplete()">
-          Verify Code
-        </ion-button>
-        
-        <div style="text-align: center; margin-top: 16px;">
-          <p>Didn't receive the code? <a (click)="resendOTP()" style="color: var(--ion-color-primary); cursor: pointer;">Resend</a></p>
+            </ion-item>
+          </ion-list>
+          <ion-button expand="block" (click)="sendOTP()" [disabled]="!email">
+            Send Verification Code
+          </ion-button>
+        </div>
+
+        <!-- OTP Step -->
+        <div *ngIf="otpSent">
+          <p>We've sent a 6-digit verification code to <strong>{{ email }}</strong></p>
+          <p>Please enter the code below:</p>
+          
+          <ion-card>
+            <ion-card-content>
+              <div style="display: flex; gap: 8px; justify-content: center; margin: 20px 0;">
+                <ion-input 
+                  *ngFor="let digit of otpDigits; let i = index"
+                  [(ngModel)]="otpDigits[i]"
+                  maxlength="1"
+                  style="width: 40px; text-align: center; font-size: 18px; font-weight: bold;"
+                  (input)="onOTPInput(i, $event)"
+                  (keydown)="onOTPKeydown(i, $event)">
+                </ion-input>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          
+          <ion-button expand="block" (click)="verifyOTP()" [disabled]="!isOTPComplete()">
+            Verify Code
+          </ion-button>
+          
+          <div style="text-align: center; margin-top: 16px;">
+            <p>Didn't receive the code? <a (click)="resendOTP()" style="color: var(--ion-color-primary); cursor: pointer;">Resend</a></p>
+          </div>
+        </div>
+
+        <!-- Success Step -->
+        <div *ngIf="otpVerified">
+          <ion-card>
+            <ion-card-content style="text-align: center;">
+              <h3>✅ Verification Successful!</h3>
+              <p>You can now reset your password.</p>
+              <ion-button expand="block" fill="outline" routerLink="/login">
+                Back to Login
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
         </div>
       </div>
-
-      <!-- Success Step -->
-      <div *ngIf="otpVerified">
-        <ion-card>
-          <ion-card-content style="text-align: center;">
-            <h3>✅ Verification Successful!</h3>
-            <p>You can now reset your password.</p>
-            <ion-button expand="block" fill="outline" routerLink="/login">
-              Back to Login
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </div>
+    </ion-content>
   `,
 })
 export class ForgotPasswordPage {
