@@ -33,10 +33,10 @@ import { AuthService } from '../../core/auth.service';
       </ion-item>
     </ion-list>
     <ion-button expand="block" (click)="doLogin()">Login</ion-button>
-    <ion-button fill="clear" routerLink="/register">Create account</ion-button>
-    <ion-button fill="clear" routerLink="/forgot-password"
-      >Forgot password?</ion-button
-    >
+    <div style="text-align: center; margin-top: 16px;">
+      <p>Don't have an account? <a routerLink="/register" style="color: var(--ion-color-primary); text-decoration: none;">Create account</a></p>
+      <p><a routerLink="/forgot-password" style="color: var(--ion-color-medium); text-decoration: none;">Forgot password?</a></p>
+    </div>
   `,
 })
 export class LoginPage {

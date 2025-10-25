@@ -33,6 +33,9 @@ import { AuthService } from '../../core/auth.service';
       </ion-item>
     </ion-list>
     <ion-button expand="block" (click)="doRegister()">Register</ion-button>
+    <div style="text-align: center; margin-top: 16px;">
+      <p>Already have an account? <a routerLink="/login" style="color: var(--ion-color-primary); text-decoration: none;">Login</a></p>
+    </div>
   `,
 })
 export class RegisterPage {
