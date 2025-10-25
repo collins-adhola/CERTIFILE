@@ -52,7 +52,19 @@ import {
                   *ngFor="let digit of otpDigits; let i = index"
                   [(ngModel)]="otpDigits[i]"
                   maxlength="1"
-                  style="width: 40px; text-align: center; font-size: 18px; font-weight: bold;"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]"
+                  style="
+                    width: 45px; 
+                    height: 45px; 
+                    text-align: center; 
+                    font-size: 20px; 
+                    font-weight: bold;
+                    border: 2px solid var(--ion-color-primary);
+                    border-radius: 8px;
+                    background: var(--ion-color-light);
+                  "
                   (input)="onOTPInput(i, $event)"
                   (keydown)="onOTPKeydown(i, $event)">
                 </ion-input>
@@ -105,20 +117,36 @@ export class ForgotPasswordPage {
 
   onOTPInput(index: number, event: any) {
     const value = event.target.value;
-    this.otpDigits[index] = value;
+    
+    // Only allow single digits
+    if (value.length > 1) {
+      this.otpDigits[index] = value.slice(-1);
+      event.target.value = value.slice(-1);
+    } else {
+      this.otpDigits[index] = value;
+    }
     
     // Auto-focus next input
     if (value && index < 5) {
-      const nextInput = document.querySelector(`ion-input:nth-child(${index + 2})`) as HTMLInputElement;
-      if (nextInput) nextInput.focus();
+      setTimeout(() => {
+        const nextInput = document.querySelector(`ion-input:nth-child(${index + 2}) input`) as HTMLInputElement;
+        if (nextInput) nextInput.focus();
+      }, 10);
     }
   }
 
   onOTPKeydown(index: number, event: KeyboardEvent) {
     // Handle backspace
     if (event.key === 'Backspace' && !this.otpDigits[index] && index > 0) {
-      const prevInput = document.querySelector(`ion-input:nth-child(${index})`) as HTMLInputElement;
-      if (prevInput) prevInput.focus();
+      setTimeout(() => {
+        const prevInput = document.querySelector(`ion-input:nth-child(${index}) input`) as HTMLInputElement;
+        if (prevInput) prevInput.focus();
+      }, 10);
+    }
+    
+    // Only allow numbers
+    if (!/[0-9]/.test(event.key) && !['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+      event.preventDefault();
     }
   }
 
