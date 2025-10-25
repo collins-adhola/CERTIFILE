@@ -9,13 +9,14 @@ import {
   IonCard,
   IonCardContent,
   IonContent,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { AuthService } from '../../core/auth.service';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [FormsModule, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent, IonContent, RouterModule],
+  imports: [FormsModule, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent, IonContent, IonLabel, RouterModule],
   template: `
     <ion-content class="auth-content">
       <div class="auth-container">

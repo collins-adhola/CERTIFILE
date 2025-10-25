@@ -10,12 +10,13 @@ import {
   IonCard,
   IonCardContent,
   IonContent,
+  IonLabel,
 } from '@ionic/angular/standalone';
 
 @Component({
   standalone: true,
   selector: 'app-forgot-password',
-  imports: [CommonModule, FormsModule, RouterModule, IonContent, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent],
+  imports: [CommonModule, FormsModule, RouterModule, IonContent, IonList, IonItem, IonInput, IonButton, IonCard, IonCardContent, IonLabel],
   template: `
     <ion-content class="auth-content">
       <div class="auth-container">
