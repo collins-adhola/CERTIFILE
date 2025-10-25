@@ -31,11 +31,6 @@ import { arrowForwardOutline } from 'ionicons/icons';
 export class AppComponent {
   currentYear = new Date().getFullYear();
 
-  // ACSP Brand Variables
-  acspRef = 'ACSP123456';
-  icoNumber = 'ZA123456';
-  supervisoryBody = 'CGI UK & Ireland';
-
   constructor() {
     addIcons({ arrowForwardOutline });
   }
