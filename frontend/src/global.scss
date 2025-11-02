@@ -41,8 +41,8 @@
 /* Import theme variables */
 @import "./theme/variables.scss";
 
-/* Import Inter font */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* Import typography tokens */
+@import "./theme/typography.scss";
 
 /* Container and Layout */
 .container {
@@ -144,73 +144,8 @@
   box-shadow: var(--app-shadow-sm);
 }
 
-/* Typography Scale - Professional UK Corporate */
-.h1 {
-  font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.025em;
-}
-
-.h2 {
-  font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
-  font-weight: 600;
-  color: var(--color-text-primary);
-  line-height: 1.2;
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.025em;
-}
-
-.h3 {
-  font-size: var(--text-xl);
-  font-weight: 600;
-  color: var(--color-text-primary);
-  line-height: 1.3;
-  margin-bottom: var(--space-3);
-  letter-spacing: -0.025em;
-}
-
-.lead {
-  color: var(--color-text-secondary);
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  font-weight: 400;
-  margin-bottom: var(--space-6);
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.011em;
-}
-
-.text-body {
-  color: var(--color-text-secondary);
-  font-size: var(--text-base);
-  line-height: 1.7;
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.011em;
-}
-
-.text-fine {
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
-  line-height: 1.5;
-}
+/* Typography Scale - Now using Stripe-inspired tokens from typography.scss */
+/* Old typography styles removed - using new system below */
 
 /* Button Components - Professional Corporate */
 .btn {
@@ -303,26 +238,42 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Stripe-like typography defaults */
+html,
+body,
+ion-app {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--tracking-normal);
+  color: #0a2540; /* Stripe's neutral navy text */
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Ensure proper spacing and typography hierarchy */
 body {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
   line-height: var(--ion-line-height);
   color: var(--color-text-primary);
   background: var(--color-background);
+}
+
+/* Paragraphs and body text - Stripe-inspired */
+p,
+.text-base {
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-normal) !important;
+  line-height: var(--line-height-relaxed) !important;
+  color: #425466 !important; /* Stripe secondary text color */
+  letter-spacing: var(--tracking-normal) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Professional font for all paragraph text */
-p,
 .lead,
 .text-body,
 .text-fine,
@@ -330,45 +281,96 @@ ion-label,
 ion-input,
 ion-textarea,
 ion-select {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  font-weight: 400;
-  letter-spacing: -0.011em;
+  font-family: var(--font-family-base) !important;
+  font-weight: var(--font-weight-normal) !important;
+  letter-spacing: var(--tracking-normal) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Emphasized small text (like Stripe captions) */
+.small,
+small {
+  font-size: var(--font-size-sm);
+  color: #5f6b7a;
 }
 
 /* Improved readability for body text */
 .text-body,
 .lead {
-  font-weight: 400;
-  letter-spacing: -0.011em;
-  line-height: 1.7;
+  font-family: var(--font-family-base) !important;
+  font-weight: var(--font-weight-normal) !important;
+  letter-spacing: var(--tracking-normal) !important;
+  line-height: var(--line-height-relaxed) !important;
+  color: #425466 !important; /* Stripe secondary text color */
 }
 
-/* Headings use Inter with slightly tighter tracking */
-.h1,
-.h2,
-.h3,
-.h4,
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  h1,
+  .h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h2,
+  .h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  h3,
+  .h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Optional: Stripe-style gradient headline class */
+.stripe-gradient-text {
+  background: linear-gradient(90deg, #635bff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Headings (bold, minimal spacing) - Stripe-inspired - Applied with higher specificity */
+h1,
+.h1 {
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-3xl) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  line-height: var(--line-height-tight) !important;
+  letter-spacing: var(--tracking-tight) !important;
+  margin-bottom: 0.5em;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-2xl) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  line-height: var(--line-height-tight) !important;
+  letter-spacing: var(--tracking-tight) !important;
+  margin-bottom: 0.5em;
+}
+
+h3,
+.h3 {
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-medium) !important;
+  line-height: var(--line-height-snug) !important;
+  margin-bottom: 0.5em;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+}
+
 ion-title {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-family-base);
+  letter-spacing: var(--tracking-tight);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
