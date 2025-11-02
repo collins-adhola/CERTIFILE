@@ -2,23 +2,21 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { MobileMenuComponent } from './mobile-menu.component';
-import { ResponsiveHeaderComponent } from './responsive-header.component';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    IonicModule,
-    MobileMenuComponent,
-    ResponsiveHeaderComponent,
-  ],
+  imports: [CommonModule, RouterModule, IonicModule],
   template: `
     <ion-app>
-      <app-mobile-menu></app-mobile-menu>
-      <app-responsive-header></app-responsive-header>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>CertiFile</ion-title>
+          <ion-buttons slot="end">
+            <ion-button routerLink="/login">Login</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
 
       <ion-content id="main">
         <router-outlet></router-outlet>

@@ -1,0 +1,25 @@
+// Hero section responsive styles
+.hero-section {
+  .container {
+    > div {
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr !important;
+
+        > div:first-child {
+          order: 2 !important;
+        }
+
+        > div:last-child {
+          order: 1 !important;
+        }
+      }
+    }
+  }
+}
+
+// Reduce section padding on mobile
+.section {
+  @media (max-width: 768px) {
+    padding: 1.5rem 0 !important;
+  }
+}

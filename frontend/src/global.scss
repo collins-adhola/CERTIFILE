@@ -175,15 +175,35 @@
 .lead {
   color: var(--color-text-secondary);
   font-size: var(--text-lg);
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
   margin-bottom: var(--space-6);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.011em;
 }
 
 .text-body {
   color: var(--color-text-secondary);
   font-size: var(--text-base);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.011em;
 }
 
 .text-fine {
@@ -285,10 +305,70 @@ html {
 
 /* Ensure proper spacing and typography hierarchy */
 body {
-  font-family: var(--ion-font-family);
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
   line-height: var(--ion-line-height);
   color: var(--color-text-primary);
   background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional font for all paragraph text */
+p,
+.lead,
+.text-body,
+.text-fine,
+ion-label,
+ion-input,
+ion-textarea,
+ion-select {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved readability for body text */
+.text-body,
+.lead {
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  line-height: 1.7;
+}
+
+/* Headings use Inter with slightly tighter tracking */
+.h1,
+.h2,
+.h3,
+.h4,
+ion-title {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

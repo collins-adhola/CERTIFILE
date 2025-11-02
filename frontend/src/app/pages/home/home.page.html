@@ -1,92 +1,150 @@
 <ion-content>
-  <section class="section" style="background: var(--color-background)">
-    <div class="container">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto">
-        <h1
-          class="h1"
-          style="
-            color: #5c2d91;
-            font-size: clamp(2rem, 4.5vw, 2.8rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #5c2d91, #8a2be2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          "
-        >
-          Professional ID Verification for UK Companies
-        </h1>
-        <p
-          class="lead"
-          style="
-            color: #1e293b;
-            font-size: 1.2rem;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-          "
-        >
-          🚀 Streamline your compliance process with secure, remote identity
-          verification for directors and PSCs. Aligned with the Money Laundering
-          Regulations 2017 (as amended).
-        </p>
-
-        <div
-          style="
-            margin-top: 32px;
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-          "
-        >
-          <ion-button
-            size="large"
-            fill="outline"
-            color="primary"
-            routerLink="/contact"
-            aria-label="Book a call to discuss your compliance needs"
+  <!-- Hero Section with Image -->
+  <section
+    class="hero-section"
+    style="
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      padding: 2rem 0 1rem;
+      margin-top: 0;
+    "
+  >
+    <div
+      class="container"
+      style="max-width: 1200px; margin: 0 auto; padding: 0 16px"
+    >
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          align-items: center;
+        "
+      >
+        <!-- Hero Image -->
+        <div style="order: 2">
+          <div
             style="
-              border: 3px solid #007bff;
-              color: #007bff;
-              border-radius: 10px;
-              font-weight: 700;
-              padding: 16px 32px;
-              font-size: 16px;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
-              background: rgba(0, 123, 255, 0.05);
-              box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+              width: 100%;
+              aspect-ratio: 4/3;
+              background: linear-gradient(135deg, #5c2d91 0%, #8a2be2 100%);
+              border-radius: 12px;
+              box-shadow: 0 8px 24px rgba(92, 45, 145, 0.15);
+              position: relative;
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             "
           >
-            Book a call
-          </ion-button>
+            <img
+              src="assets/image/cover3.jpeg"
+              alt="Professional ID Verification"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                inset: 0;
+              "
+              onerror="this.style.display='none';"
+            />
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                z-index: 1;
+                text-align: center;
+                padding: 2rem;
+              "
+            >
+              <div
+                style="
+                  font-size: 1.5rem;
+                  font-weight: 700;
+                  margin-bottom: 0.5rem;
+                  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                "
+              >
+                Professional ID Verification
+              </div>
+              <div
+                style="
+                  font-size: 1rem;
+                  opacity: 0.9;
+                  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                "
+              >
+                Placeholder Image
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hero Content -->
+        <div style="order: 1">
+          <h1
+            class="h1"
+            style="
+              color: #5c2d91;
+              font-size: clamp(1.75rem, 4vw, 2.5rem);
+              font-weight: 700;
+              line-height: 1.2;
+              margin-bottom: 0.75rem;
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+          >
+            Professional ID Verification for UK Companies
+          </h1>
+          <p
+            class="lead"
+            style="
+              color: #1e293b;
+              font-size: 1.1rem;
+              font-weight: 500;
+              line-height: 1.6;
+              margin-bottom: 0;
+              max-width: 550px;
+            "
+          >
+            Fast, Secure ID Verification for UK Businesses Streamline compliance
+            with trusted, remote identity checks for company directors and PSCs.
+            Built to meet UK regulatory standards, CertiFile helps you verify
+            identities quickly, confidently, and securely — so you can focus on
+            growing your business.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="background: #f8fafc">
+  <section class="section" style="background: #f8fafc; padding: 2rem 0">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 48px">
+      <div style="text-align: center; margin-bottom: 1.5rem">
         <h2 class="h2">Why choose CertiFile Compliance?</h2>
         <p
           class="lead"
-          style="color: #1e293b; font-size: 1.2rem; font-weight: 500"
+          style="
+            color: #1e293b;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+          "
         >
-          🏆 Trusted by UK companies for professional compliance solutions.
+          Trusted by UK companies for professional compliance solutions.
         </p>
       </div>
 
       <div
         style="
           display: grid;
-          gap: 24px;
+          gap: 1rem;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         "
       >
@@ -116,13 +174,17 @@
           <ion-card-content>
             <h3
               class="h3"
-              style="color: white; font-weight: 700; margin-bottom: 12px"
+              style="color: white; font-weight: 700; margin-bottom: 0.5rem"
             >
-              ⚡ Fast & Secure
+              Fast & Secure
             </h3>
             <p
               class="text-body"
-              style="color: rgba(255, 255, 255, 0.9); line-height: 1.6"
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.5;
+                margin-bottom: 0;
+              "
             >
               Complete verifications in minutes with bank-grade security and
               real-time results. Data retention for minimum 5 years as required
@@ -157,13 +219,17 @@
           <ion-card-content>
             <h3
               class="h3"
-              style="color: white; font-weight: 700; margin-bottom: 12px"
+              style="color: white; font-weight: 700; margin-bottom: 0.5rem"
             >
-              🌐 Fully Remote
+              Fully Remote
             </h3>
             <p
               class="text-body"
-              style="color: rgba(255, 255, 255, 0.9); line-height: 1.6"
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.5;
+                margin-bottom: 0;
+              "
             >
               No physical meetings required. Your clients complete everything
               through our secure mobile portal with built-in liveness detection.
@@ -197,13 +263,17 @@
           <ion-card-content>
             <h3
               class="h3"
-              style="color: white; font-weight: 700; margin-bottom: 12px"
+              style="color: white; font-weight: 700; margin-bottom: 0.5rem"
             >
-              🛡️ Compliance Ready
+              Compliance Ready
             </h3>
             <p
               class="text-body"
-              style="color: rgba(255, 255, 255, 0.9); line-height: 1.6"
+              style="
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.5;
+                margin-bottom: 0;
+              "
             >
               Full audit trails, Companies House filings, and regulatory
               compliance built-in. SAR escalation procedures and no tipping-off
@@ -215,22 +285,27 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding: 2rem 0">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 48px">
+      <div style="text-align: center; margin-bottom: 1.5rem">
         <h2 class="h2">Trust & Compliance</h2>
         <p
           class="lead"
-          style="color: #1e293b; font-size: 1.2rem; font-weight: 500"
+          style="
+            color: #1e293b;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+          "
         >
-          🛡️ Your data security and regulatory compliance are our priority.
+          Your data security and regulatory compliance are our priority.
         </p>
       </div>
 
       <div
         style="
           display: grid;
-          gap: 24px;
+          gap: 1rem;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
           max-width: 800px;
           margin: 0 auto;
@@ -240,17 +315,21 @@
           <div
             class="badge"
             style="
-              margin-bottom: 12px;
+              margin-bottom: 0.5rem;
               background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
-              padding: 8px 16px;
+              padding: 6px 14px;
               border-radius: 20px;
               font-weight: 600;
+              font-size: 0.9rem;
             "
           >
             Data Protection
           </div>
-          <p class="text-fine" style="color: #475569">
+          <p
+            class="text-fine"
+            style="color: #475569; margin: 0; font-size: 0.9rem"
+          >
             Comprehensive data processing policies
           </p>
         </div>
@@ -259,17 +338,21 @@
           <div
             class="badge"
             style="
-              margin-bottom: 12px;
+              margin-bottom: 0.5rem;
               background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
-              padding: 8px 16px;
+              padding: 6px 14px;
               border-radius: 20px;
               font-weight: 600;
+              font-size: 0.9rem;
             "
           >
             AML Supervised
           </div>
-          <p class="text-fine" style="color: #475569">
+          <p
+            class="text-fine"
+            style="color: #475569; margin: 0; font-size: 0.9rem"
+          >
             AML supervised under MLR 2017
           </p>
         </div>
@@ -278,17 +361,21 @@
           <div
             class="badge"
             style="
-              margin-bottom: 12px;
+              margin-bottom: 0.5rem;
               background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
-              padding: 8px 16px;
+              padding: 6px 14px;
               border-radius: 20px;
               font-weight: 600;
+              font-size: 0.9rem;
             "
           >
             Secure Processing
           </div>
-          <p class="text-fine" style="color: #475569">
+          <p
+            class="text-fine"
+            style="color: #475569; margin: 0; font-size: 0.9rem"
+          >
             Bank-grade encryption and secure data handling
           </p>
         </div>
