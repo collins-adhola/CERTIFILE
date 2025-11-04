@@ -2,11 +2,7 @@
   <!-- Hero Section with Image -->
   <section
     class="hero-section"
-    style="
-      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-      padding: 2rem 0 1rem;
-      margin-top: 0;
-    "
+    style="background: #ffffff; padding: 3rem 0 2rem; margin-top: 0"
   >
     <div
       class="container"
@@ -52,49 +48,218 @@
         </div>
         <!-- Hero Content -->
         <div style="order: 1">
+          <!-- ACSP Badge -->
+          <div
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              background: #f1f5f9;
+              border-radius: 8px;
+              padding: 8px 16px;
+              margin-bottom: 1.5rem;
+              font-size: 0.875rem;
+              color: #475569;
+              font-weight: 500;
+            "
+          >
+            <ion-icon
+              name="shield-outline"
+              style="font-size: 18px; color: #64748b"
+            ></ion-icon>
+            <span
+              >Authorised Corporate Service Provider (ACSP) - AML
+              supervised</span
+            >
+          </div>
+
+          <!-- Main Heading -->
           <h1
             class="h1"
             style="
-              color: #5c2d91;
-              font-size: clamp(1.75rem, 4vw, 2.5rem);
-              font-weight: 700;
-              line-height: 1.2;
-              margin-bottom: 1rem;
+              color: #722bb9 !important;
+              font-family: var(--font-family-base) !important;
+              font-size: var(--font-size-3xl) !important;
+              font-weight: var(--font-weight-semibold) !important;
+              line-height: var(--line-height-tight) !important;
+              letter-spacing: var(--tracking-tight) !important;
+              margin-bottom: 1.5rem;
             "
           >
-            ACSP ID Verification
+            <span
+              style="
+                display: block;
+                margin-bottom: 0.25rem;
+                color: #722bb9 !important;
+              "
+              >Verify identities.</span
+            >
+            <span style="display: block; color: #1e293b !important"
+              >File with confidence.</span
+            >
           </h1>
+
+          <!-- Sub-text -->
           <p
             class="lead"
             style="
-              color: #1e293b;
-              font-size: 1.1rem;
+              color: #475569;
+              font-size: 1.125rem;
               font-weight: 400;
               line-height: 1.7;
-              margin-bottom: 1.5rem;
+              margin-bottom: 2rem;
               max-width: 550px;
             "
           >
-            Fast, Secure ID Verification for UK Businesses Streamline compliance
-            with trusted, remote identity checks for company directors and PSCs.
-            Built to meet UK regulatory standards, CertiFile helps you verify
-            identities quickly, confidently, and securely — so you can focus on
-            growing your business.
+            Remote identity verification for directors, PSCs and presenters –
+            fully aligned with Companies House requirements and the UK Money
+            Laundering Regulations.
           </p>
-          <ion-button
-            routerLink="/contact"
-            fill="solid"
-            color="primary"
+
+          <!-- CTA Buttons -->
+          <div
             style="
-              --background: #5c2d91;
-              --background-activated: #4a148c;
-              border-radius: 8px;
-              font-weight: 600;
-              padding: 14px 28px;
+              display: flex;
+              gap: 1rem;
+              margin-bottom: 2rem;
+              flex-wrap: wrap;
             "
           >
-            Get Started
-          </ion-button>
+            <ion-button
+              routerLink="/contact"
+              fill="solid"
+              style="
+                --background: #1e293b;
+                --background-activated: #0f172a;
+                --color: #ffffff;
+                border-radius: 8px;
+                font-weight: 600;
+                padding: 14px 28px;
+                margin: 0;
+              "
+            >
+              Start an ID check demo
+              <ion-icon
+                name="arrow-forward-outline"
+                slot="end"
+                style="margin-left: 8px"
+              ></ion-icon>
+            </ion-button>
+            <ion-button
+              routerLink="/contact"
+              fill="outline"
+              style="
+                --border-color: #cbd5e1;
+                --color: #1e293b;
+                border-radius: 8px;
+                font-weight: 600;
+                padding: 14px 28px;
+                margin: 0;
+                background: #ffffff;
+              "
+            >
+              Book a call
+            </ion-button>
+          </div>
+
+          <!-- Feature Badges -->
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 0.875rem;
+                color: #475569;
+                font-weight: 500;
+              "
+            >
+              <ion-icon
+                name="shield-outline"
+                style="font-size: 18px; color: #64748b"
+              ></ion-icon>
+              <span>CGI UK Member</span>
+            </div>
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 0.875rem;
+                color: #475569;
+                font-weight: 500;
+              "
+            >
+              <ion-icon
+                name="shield-outline"
+                style="font-size: 18px; color: #64748b"
+              ></ion-icon>
+              <span>AML Supervised</span>
+            </div>
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 0.875rem;
+                color: #475569;
+                font-weight: 500;
+              "
+            >
+              <ion-icon
+                name="lock-closed-outline"
+                style="font-size: 18px; color: #64748b"
+              ></ion-icon>
+              <span>PEP & Sanctions Screening</span>
+            </div>
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 0.875rem;
+                color: #475569;
+                font-weight: 500;
+              "
+            >
+              <ion-icon
+                name="globe-outline"
+                style="font-size: 18px; color: #64748b"
+              ></ion-icon>
+              <span>Global Passports Supported</span>
+            </div>
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #f1f5f9;
+                border-radius: 8px;
+                padding: 10px 16px;
+                font-size: 0.875rem;
+                color: #475569;
+                font-weight: 500;
+              "
+            >
+              <ion-icon
+                name="time-outline"
+                style="font-size: 18px; color: #64748b"
+              ></ion-icon>
+              <span>Fast turnaround</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -107,7 +272,7 @@
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 2rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 2rem">
           Why CertiFile
         </h2>
 
@@ -189,7 +354,7 @@
       style="max-width: 1000px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 3rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Our Services
         </h2>
         <p
@@ -326,8 +491,8 @@
       style="max-width: 1000px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 3rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
-          How it works
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
+          How Our Identity Verification Service Works
         </h2>
         <p
           class="lead"
@@ -515,7 +680,7 @@
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 2rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Built for compliance
         </h2>
         <p
@@ -573,7 +738,7 @@
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 2rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Example onboarding pack
         </h2>
       </div>
@@ -607,7 +772,7 @@
       style="max-width: 900px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 3rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Simple pricing
         </h2>
         <p
@@ -780,7 +945,7 @@
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 3rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Frequently asked questions
         </h2>
       </div>
@@ -896,7 +1061,7 @@
       style="max-width: 900px; margin: 0 auto; padding: 0 16px"
     >
       <div style="text-align: center; margin-bottom: 3rem">
-        <h2 class="h2" style="color: #1e293b; margin-bottom: 1rem">
+        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
           Get in touch
         </h2>
         <p

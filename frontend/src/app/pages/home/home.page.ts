@@ -9,6 +9,14 @@ import {
   IonCard,
   IonCardContent,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import {
+  shieldOutline,
+  lockClosedOutline,
+  globeOutline,
+  timeOutline,
+  arrowForwardOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +35,15 @@ import {
   ],
 })
 export class HomePage implements OnInit {
-  constructor() {}
+  constructor() {
+    addIcons({
+      shieldOutline,
+      lockClosedOutline,
+      globeOutline,
+      timeOutline,
+      arrowForwardOutline,
+    });
+  }
 
   ngOnInit() {}
 }
