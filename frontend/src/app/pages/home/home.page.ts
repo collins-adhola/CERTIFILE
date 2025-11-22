@@ -131,8 +131,18 @@ export class HomePage implements OnInit {
     this.openFaqIndex = this.openFaqIndex === index ? null : index;
   }
 
-  onSubmit() {
-    if (this.contactForm.invalid) return;
+  onSubmit(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    if (this.contactForm.invalid) {
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.contactForm.controls).forEach(key => {
+        this.contactForm.get(key)?.markAsTouched();
+      });
+      return;
+    }
 
     // Prepare form data for Netlify
     const formData = new FormData();
@@ -153,6 +163,7 @@ export class HomePage implements OnInit {
     formData.append('message', v.message ?? '');
 
     // Submit to Netlify Forms
+    // Note: Don't set Content-Type header - browser will set it with boundary for FormData
     fetch('/', {
       method: 'POST',
       body: formData,
@@ -161,14 +172,20 @@ export class HomePage implements OnInit {
         if (response.ok) {
           this.showToast = true;
           this.contactForm.reset();
+          // Reset form state
+          Object.keys(this.contactForm.controls).forEach(key => {
+            this.contactForm.get(key)?.setErrors(null);
+            this.contactForm.get(key)?.markAsUntouched();
+          });
         } else {
           // Handle error
-          console.error('Form submission failed');
+          console.error('Form submission failed:', response.status, response.statusText);
+          alert('There was an error submitting your form. Please try again.');
         }
       })
       .catch((error) => {
         console.error('Form submission error:', error);
-        // Optionally handle error UI
+        alert('There was an error submitting your form. Please try again.');
       });
   }
 
