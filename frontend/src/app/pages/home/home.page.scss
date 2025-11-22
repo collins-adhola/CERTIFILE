@@ -104,6 +104,52 @@
   }
 }
 
+// Premium Gradient Title Styles
+.cf-gradient-title {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+}
+
+.cf-gradient-title-purple {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cf-gradient-title-navy {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+// Dark mode support for gradient titles
+@media (prefers-color-scheme: dark) {
+  .cf-gradient-title-purple {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .cf-gradient-title-navy {
+    background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .cf-gradient-title {
+    letter-spacing: -0.3px;
+  }
+}
+
 // Responsive styles for Book a Demo section
 @media (max-width: 968px) {
   .section
