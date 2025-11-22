@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -6,6 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonContent,
   IonItem,
@@ -16,11 +17,14 @@ import {
   IonTextarea,
   IonButton,
   IonToast,
+  IonIcon,
   IonCard,
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { checkmarkCircle } from 'ionicons/icons';
 
 @Component({
   selector: 'app-contact',
@@ -37,6 +41,7 @@ import {
     IonTextarea,
     IonButton,
     IonToast,
+    IonIcon,
     IonCard,
     IonCardHeader,
     IonCardTitle,
@@ -48,6 +53,7 @@ import {
 export class ContactPage implements OnInit {
   contactForm: FormGroup;
   showToast = false;
+  private router = inject(Router);
 
   topics = [
     { value: 'id-verification', label: 'ID Verification Services' },
@@ -62,6 +68,9 @@ export class ContactPage implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder) {
+    // Register icons
+    addIcons({ 'checkmark-circle': checkmarkCircle });
+
     this.contactForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -75,13 +84,41 @@ export class ContactPage implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      console.log('Form payload:', this.contactForm.value);
-      this.showToast = true;
-      this.contactForm.reset();
-    } else {
-      this.contactForm.markAllAsTouched();
-    }
+    if (this.contactForm.invalid) return;
+
+    const formEl = document.createElement('form');
+    const formData = new FormData(formEl);
+
+    // Netlify requires this field:
+    formData.append('form-name', 'contact');
+
+    // Honeypot (leave empty)
+    formData.append('bot-field', '');
+
+    // Append your reactive form values:
+    const v = this.contactForm.value;
+    formData.append('name', v.name ?? '');
+    formData.append('email', v.email ?? '');
+    formData.append('phone', v.phone ?? '');
+    formData.append('company', v.company ?? '');
+    formData.append('topic', v.topic ?? '');
+    formData.append('message', v.message ?? '');
+
+    fetch('/', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(() => {
+        // Optional: show your existing toast flag if present
+        this.showToast = true;
+        // Reset if you want
+        this.contactForm.reset();
+        // Navigate to thank-you route if you have one
+        // this.router.navigate(['/thank-you']);
+      })
+      .catch(() => {
+        // Optionally handle error UI
+      });
   }
 
   getFieldError(fieldName: string): string {

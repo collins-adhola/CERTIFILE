@@ -266,7 +266,10 @@
   </section>
 
   <!-- Simple Trust Section -->
-  <section class="section" style="background: #f8fafc; padding: 3rem 0">
+  <section
+    class="section"
+    style="background: #f8fafc; padding: 3rem 0; display: none"
+  >
     <div
       class="container"
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
@@ -952,103 +955,24 @@
 
       <div style="display: flex; flex-direction: column; gap: 1rem">
         <div
-          style="
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #5c2d91;
-          "
+          *ngFor="let faq of faqs; let i = index"
+          class="home-faq-item"
+          [class.home-faq-open]="openFaqIndex === i"
         >
-          <h3
-            style="
-              color: #1e293b;
-              font-size: 1rem;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            "
+          <button
+            class="home-faq-button"
+            (click)="toggleFaq(i)"
+            [attr.aria-expanded]="openFaqIndex === i"
           >
-            Do you verify non‑UK passports?
-          </h3>
-        </div>
-
-        <div
-          style="
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #5c2d91;
-          "
-        >
-          <h3
-            style="
-              color: #1e293b;
-              font-size: 1rem;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            "
-          >
-            Is the process fully remote?
-          </h3>
-        </div>
-
-        <div
-          style="
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #5c2d91;
-          "
-        >
-          <h3
-            style="
-              color: #1e293b;
-              font-size: 1rem;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            "
-          >
-            How fast is the turnaround?
-          </h3>
-        </div>
-
-        <div
-          style="
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #5c2d91;
-          "
-        >
-          <h3
-            style="
-              color: #1e293b;
-              font-size: 1rem;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            "
-          >
-            What happens to my data?
-          </h3>
-        </div>
-
-        <div
-          style="
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #5c2d91;
-          "
-        >
-          <h3
-            style="
-              color: #1e293b;
-              font-size: 1rem;
-              font-weight: 600;
-              margin-bottom: 0.5rem;
-            "
-          >
-            Can you handle my Companies House filings?
-          </h3>
+            <h3 class="home-faq-question">{{ faq.question }}</h3>
+            <ion-icon
+              [name]="openFaqIndex === i ? 'chevron-up' : 'chevron-down'"
+              class="home-faq-icon"
+            ></ion-icon>
+          </button>
+          <div class="home-faq-answer" *ngIf="openFaqIndex === i">
+            {{ faq.answer }}
+          </div>
         </div>
       </div>
     </div>
@@ -1102,7 +1026,7 @@
             Email
           </div>
           <div style="color: #64748b; font-size: 0.95rem">
-            hello@yourfirm.co.uk
+            info@certifile.co.uk
           </div>
         </div>
 
