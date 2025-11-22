@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -6,7 +6,8 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import {
   IonContent,
   IonItem,
@@ -19,6 +20,7 @@ import {
   IonToast,
   IonIcon,
 } from '@ionic/angular/standalone';
+import { ViewChild } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { checkmarkCircle } from 'ionicons/icons';
 
@@ -42,10 +44,14 @@ import { checkmarkCircle } from 'ionicons/icons';
     ReactiveFormsModule,
   ],
 })
-export class ContactPage implements OnInit {
+export class ContactPage implements OnInit, AfterViewInit {
+  @ViewChild(IonContent) content!: IonContent;
+
   contactForm: FormGroup;
   showToast = false;
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private viewportScroller = inject(ViewportScroller);
 
   topics = [
     { value: 'id-verification', label: 'ID Verification Services' },
@@ -75,11 +81,81 @@ export class ContactPage implements OnInit {
 
   ngOnInit() {}
 
+  ngAfterViewInit() {
+    // Check for fragment and scroll to form section
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === 'book-demo') {
+        // Use multiple attempts to ensure scroll works
+        this.scrollToForm();
+      }
+    });
+
+    // Also check on initial load if fragment is in URL
+    if (this.route.snapshot.fragment === 'book-demo') {
+      this.scrollToForm();
+    }
+  }
+
+  private scrollToForm() {
+    // Use a single attempt with proper timing
+    setTimeout(() => {
+      const section = document.getElementById('book-demo');
+      
+      if (section) {
+        // Calculate scroll position to show the section from the top
+        // This ensures "Book a demo" heading is visible
+        const rect = section.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const elementTop = rect.top + scrollTop;
+        
+        // Calculate position to show section from top with header space
+        // This will show the "Book a demo" heading and the form
+        // Reduced offset to show more of the form including the button
+        const headerHeight = 60; // Reduced space to show more content
+        const targetPosition = Math.max(0, elementTop - headerHeight);
+
+        // Scroll using window.scrollTo
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth',
+        });
+
+        // Also try Ionic's scrollTo method
+        if (this.content) {
+          this.content.getScrollElement().then((scrollEl) => {
+            scrollEl.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth',
+            });
+          });
+        }
+
+        // Focus on first input after scroll
+        setTimeout(() => {
+          const formCard = section.querySelector('.contact-form-card');
+          if (formCard) {
+            const firstInput = formCard.querySelector('ion-input') as any;
+            if (firstInput) {
+              setTimeout(() => {
+                const nativeInput = firstInput.shadowRoot?.querySelector(
+                  'input',
+                ) as HTMLInputElement;
+                if (nativeInput) {
+                  nativeInput.focus();
+                }
+              }, 300);
+            }
+          }
+        }, 600);
+      }
+    }, 300);
+  }
+
   onSubmit() {
     if (this.contactForm.invalid) return;
 
-    const formEl = document.createElement('form');
-    const formData = new FormData(formEl);
+    // Prepare form data for Netlify
+    const formData = new FormData();
 
     // Netlify requires this field:
     formData.append('form-name', 'contact');
@@ -96,19 +172,22 @@ export class ContactPage implements OnInit {
     formData.append('topic', v.topic ?? '');
     formData.append('message', v.message ?? '');
 
+    // Submit to Netlify Forms
     fetch('/', {
       method: 'POST',
       body: formData,
     })
-      .then(() => {
-        // Optional: show your existing toast flag if present
-        this.showToast = true;
-        // Reset if you want
-        this.contactForm.reset();
-        // Navigate to thank-you route if you have one
-        // this.router.navigate(['/thank-you']);
+      .then((response) => {
+        if (response.ok) {
+          this.showToast = true;
+          this.contactForm.reset();
+        } else {
+          // Handle error
+          console.error('Form submission failed');
+        }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error('Form submission error:', error);
         // Optionally handle error UI
       });
   }

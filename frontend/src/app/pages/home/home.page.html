@@ -115,7 +115,8 @@
             "
           >
             <ion-button
-              routerLink="/contact"
+              [routerLink]="['/contact']"
+              fragment="book-demo"
               fill="solid"
               style="
                 --background: #1e293b;
@@ -127,7 +128,7 @@
                 margin: 0;
               "
             >
-              Start an ID check demo
+              Book a demo
               <ion-icon
                 name="arrow-forward-outline"
                 slot="end"
@@ -1186,6 +1187,116 @@
           >
             Send enquiry
           </ion-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book a Demo Section -->
+  <section class="section" style="background: #f8fafc; padding: 4rem 0">
+    <div class="container" style="max-width: 1200px">
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+        "
+      >
+        <!-- Left Side: Text and Image -->
+        <div>
+          <h2
+            class="h2"
+            style="
+              font-size: 2.5rem;
+              font-weight: 700;
+              color: #0f172a;
+              margin-bottom: 1.5rem;
+              line-height: 1.2;
+            "
+          >
+            Book a demo
+          </h2>
+          <p
+            style="
+              font-size: 1.125rem;
+              color: #475569;
+              line-height: 1.7;
+              margin-bottom: 1rem;
+            "
+          >
+            Get help from our team of experts, schedule a live demo, explore use
+            cases tailored to your team, and more.
+          </p>
+          <p
+            style="
+              font-size: 1.125rem;
+              color: #475569;
+              line-height: 1.7;
+              margin-bottom: 2rem;
+            "
+          >
+            Simply fill out this form to connect with our team, get started, and
+            begin verifying your customers today.
+          </p>
+          <div
+            style="
+              width: 100%;
+              aspect-ratio: 4/5;
+              border-radius: 12px;
+              overflow: hidden;
+              box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            "
+          >
+            <img
+              src="assets/image/cover3.jpeg"
+              alt="Professional identity verification"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+        </div>
+
+        <!-- Right Side: CTA Button -->
+        <div>
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 12px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+              text-align: center;
+            "
+          >
+            <p
+              style="
+                font-size: 1.125rem;
+                color: #475569;
+                line-height: 1.7;
+                margin-bottom: 2rem;
+              "
+            >
+              Ready to get started? Fill out our contact form to connect with
+              our team.
+            </p>
+            <ion-button
+              [routerLink]="['/contact']"
+              fragment="book-demo"
+              expand="block"
+              fill="solid"
+              color="primary"
+              style="
+                --background: #059669;
+                --background-activated: #047857;
+                --color: white;
+                font-weight: 600;
+                font-size: 1rem;
+                padding: 16px;
+                border-radius: 8px;
+              "
+            >
+              Talk to us
+            </ion-button>
+          </div>
         </div>
       </div>
     </div>

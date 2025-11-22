@@ -1,5 +1,24 @@
 /* Contact Page Styles */
 
+/* Responsive grid for contact form section */
+@media (max-width: 968px) {
+  .section > .container > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .section
+    > .container
+    > div[style*="grid-template-columns"]
+    > div:first-child {
+    order: 2;
+  }
+
+  .section > .container > div[style*="grid-template-columns"] > div:last-child {
+    order: 1;
+  }
+}
+
 /* Enhanced Success Toast Notification */
 .contact-success-toast {
   --width: 90%;
