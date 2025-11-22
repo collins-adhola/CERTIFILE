@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {
-  IonContent,
-  IonButton,
-  IonIcon,
-  IonCard,
-  IonCardContent,
-} from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
   shieldOutline,
@@ -34,8 +28,6 @@ interface FaqItem {
     IonContent,
     IonButton,
     IonIcon,
-    IonCard,
-    IonCardContent,
     CommonModule,
     FormsModule,
     RouterModule,

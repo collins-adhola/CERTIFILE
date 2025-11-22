@@ -18,10 +18,6 @@ import {
   IonButton,
   IonToast,
   IonIcon,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { checkmarkCircle } from 'ionicons/icons';
@@ -42,10 +38,6 @@ import { checkmarkCircle } from 'ionicons/icons';
     IonButton,
     IonToast,
     IonIcon,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
     CommonModule,
     ReactiveFormsModule,
   ],
