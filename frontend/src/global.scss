@@ -214,3 +214,28 @@ ion-textarea:focus {
 .lead {
   color: #374151; /* 4.5:1 contrast ratio with white background */
 }
+
+/* Soft Lavender Theme - Sitewide */
+/* Alternating section backgrounds for visual flow */
+.section {
+  /* Default to white, will be overridden by inline styles for alternating */
+  background-color: #ffffff;
+}
+
+/* Cards with minimal borders and light shadows */
+.card,
+ion-card {
+  border: 1px solid #e5e0fa !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 18px;
+}
+
+/* Containers with airy feel */
+.container {
+  border: none;
+}
+
+/* Section dividers - airy, not boxed */
+.section + .section {
+  border-top: none;
+}

@@ -18,6 +18,8 @@ import {
   IonSelectOption,
   IonTextarea,
   IonToast,
+  IonSegment,
+  IonSegmentButton,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -52,6 +54,8 @@ interface FaqItem {
     IonSelectOption,
     IonTextarea,
     IonToast,
+    IonSegment,
+    IonSegmentButton,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -62,6 +66,7 @@ export class HomePage implements OnInit {
   openFaqIndex: number | null = null;
   contactForm: FormGroup;
   showToast = false;
+  activeComplianceTab: 'compliance' | 'pack' = 'compliance';
 
   faqs: FaqItem[] = [
     {

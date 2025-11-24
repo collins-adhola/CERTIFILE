@@ -100,14 +100,15 @@ export class ContactPage implements OnInit, AfterViewInit {
     // Use a single attempt with proper timing
     setTimeout(() => {
       const section = document.getElementById('book-demo');
-      
+
       if (section) {
         // Calculate scroll position to show the section from the top
         // This ensures "Book a demo" heading is visible
         const rect = section.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop || 0;
         const elementTop = rect.top + scrollTop;
-        
+
         // Calculate position to show section from top with header space
         // This will show the "Book a demo" heading and the form
         // Reduced offset to show more of the form including the button
@@ -158,7 +159,7 @@ export class ContactPage implements OnInit, AfterViewInit {
 
     if (this.contactForm.invalid) {
       // Mark all fields as touched to show validation errors
-      Object.keys(this.contactForm.controls).forEach(key => {
+      Object.keys(this.contactForm.controls).forEach((key) => {
         this.contactForm.get(key)?.markAsTouched();
       });
       return;
@@ -183,7 +184,9 @@ export class ContactPage implements OnInit, AfterViewInit {
     formData.append('message', v.message ?? '');
 
     // Check if we're on localhost (for testing)
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const isLocalhost =
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1';
 
     // Submit to Netlify Forms
     // Note: Don't set Content-Type header - browser will set it with boundary for FormData
@@ -196,18 +199,22 @@ export class ContactPage implements OnInit, AfterViewInit {
           this.showToast = true;
           this.contactForm.reset();
           // Reset form state
-          Object.keys(this.contactForm.controls).forEach(key => {
+          Object.keys(this.contactForm.controls).forEach((key) => {
             this.contactForm.get(key)?.setErrors(null);
             this.contactForm.get(key)?.markAsUntouched();
           });
         } else {
           // Handle error
-          console.error('Form submission failed:', response.status, response.statusText);
+          console.error(
+            'Form submission failed:',
+            response.status,
+            response.statusText,
+          );
           // On localhost, show success for testing; on production, show error
           if (isLocalhost) {
             this.showToast = true;
             this.contactForm.reset();
-            Object.keys(this.contactForm.controls).forEach(key => {
+            Object.keys(this.contactForm.controls).forEach((key) => {
               this.contactForm.get(key)?.setErrors(null);
               this.contactForm.get(key)?.markAsUntouched();
             });
@@ -222,7 +229,7 @@ export class ContactPage implements OnInit, AfterViewInit {
         if (isLocalhost) {
           this.showToast = true;
           this.contactForm.reset();
-          Object.keys(this.contactForm.controls).forEach(key => {
+          Object.keys(this.contactForm.controls).forEach((key) => {
             this.contactForm.get(key)?.setErrors(null);
             this.contactForm.get(key)?.markAsUntouched();
           });

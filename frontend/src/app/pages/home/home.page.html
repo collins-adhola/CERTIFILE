@@ -24,7 +24,7 @@
               aspect-ratio: 4/3;
               background: linear-gradient(135deg, #5c2d91 0%, #8a2be2 100%);
               border-radius: 12px;
-              box-shadow: 0 8px 24px rgba(92, 45, 145, 0.15);
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
               position: relative;
               overflow: hidden;
               display: flex;
@@ -54,12 +54,13 @@
               display: none;
               align-items: center;
               gap: 8px;
-              background: #f1f5f9;
+              background: #e8ddff;
+              color: #5c2d91;
+              border: 1px solid #d8c9ff;
               border-radius: 8px;
               padding: 8px 16px;
               margin-bottom: 1.5rem;
               font-size: 0.875rem;
-              color: #475569;
               font-weight: 500;
             "
           >
@@ -116,11 +117,12 @@
             <ion-button
               [routerLink]="['/contact']"
               fragment="book-demo"
-              fill="solid"
+              fill="outline"
               style="
-                --background: #1e293b;
-                --background-activated: #0f172a;
-                --color: #ffffff;
+                border: 2px solid #5c2d91;
+                color: #5c2d91;
+                background: #f7f3ff;
+                box-shadow: none;
                 border-radius: 8px;
                 font-weight: 600;
                 padding: 14px 28px;
@@ -143,17 +145,18 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background: #f1f5f9;
+                background: #e8ddff;
+                color: #5c2d91;
+                border: 1px solid #d8c9ff;
                 border-radius: 8px;
                 padding: 10px 16px;
                 font-size: 0.875rem;
-                color: #475569;
                 font-weight: 500;
               "
             >
               <ion-icon
                 name="shield-outline"
-                style="font-size: 18px; color: #64748b"
+                style="font-size: 18px; color: #5c2d91"
               ></ion-icon>
               <span>CGI UK Member</span>
             </div>
@@ -162,17 +165,18 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background: #f1f5f9;
+                background: #e8ddff;
+                color: #5c2d91;
+                border: 1px solid #d8c9ff;
                 border-radius: 8px;
                 padding: 10px 16px;
                 font-size: 0.875rem;
-                color: #475569;
                 font-weight: 500;
               "
             >
               <ion-icon
                 name="shield-outline"
-                style="font-size: 18px; color: #64748b"
+                style="font-size: 18px; color: #5c2d91"
               ></ion-icon>
               <span>AML Supervised</span>
             </div>
@@ -181,17 +185,18 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background: #f1f5f9;
+                background: #e8ddff;
+                color: #5c2d91;
+                border: 1px solid #d8c9ff;
                 border-radius: 8px;
                 padding: 10px 16px;
                 font-size: 0.875rem;
-                color: #475569;
                 font-weight: 500;
               "
             >
               <ion-icon
                 name="lock-closed-outline"
-                style="font-size: 18px; color: #64748b"
+                style="font-size: 18px; color: #5c2d91"
               ></ion-icon>
               <span>PEP & Sanctions Screening</span>
             </div>
@@ -200,17 +205,18 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background: #f1f5f9;
+                background: #e8ddff;
+                color: #5c2d91;
+                border: 1px solid #d8c9ff;
                 border-radius: 8px;
                 padding: 10px 16px;
                 font-size: 0.875rem;
-                color: #475569;
                 font-weight: 500;
               "
             >
               <ion-icon
                 name="globe-outline"
-                style="font-size: 18px; color: #64748b"
+                style="font-size: 18px; color: #5c2d91"
               ></ion-icon>
               <span>Global Passports Supported</span>
             </div>
@@ -219,17 +225,18 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background: #f1f5f9;
+                background: #e8ddff;
+                color: #5c2d91;
+                border: 1px solid #d8c9ff;
                 border-radius: 8px;
                 padding: 10px 16px;
                 font-size: 0.875rem;
-                color: #475569;
                 font-weight: 500;
               "
             >
               <ion-icon
                 name="time-outline"
-                style="font-size: 18px; color: #64748b"
+                style="font-size: 18px; color: #5c2d91"
               ></ion-icon>
               <span>Fast turnaround</span>
             </div>
@@ -325,7 +332,7 @@
   </section>
 
   <!-- Simple Features Section -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0">
+  <section class="section" style="background: #f7f3ff; padding: 3rem 0">
     <div
       class="container"
       style="max-width: 1000px; margin: 0 auto; padding: 0 16px"
@@ -361,15 +368,15 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
         >
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -379,7 +386,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -395,15 +402,15 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
         >
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -413,7 +420,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -429,15 +436,15 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
         >
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -447,7 +454,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -462,7 +469,7 @@
   </section>
 
   <!-- How it Works Section -->
-  <section class="section" style="background: #f8fafc; padding: 3rem 0">
+  <section class="section" style="background: #ffffff; padding: 3rem 0">
     <div
       class="container"
       style="max-width: 1000px; margin: 0 auto; padding: 0 16px"
@@ -499,8 +506,8 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
@@ -524,7 +531,7 @@
           </div>
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -534,7 +541,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -550,8 +557,8 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
@@ -575,7 +582,7 @@
           </div>
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -585,7 +592,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -601,8 +608,8 @@
             text-align: center;
             padding: 2rem;
             background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e5e0fa;
+            border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
           "
@@ -626,7 +633,7 @@
           </div>
           <h3
             style="
-              color: #1e293b;
+              color: #5c2d91;
               font-size: 1.25rem;
               font-weight: 600;
               margin-bottom: 0.75rem;
@@ -636,7 +643,7 @@
           </h3>
           <p
             style="
-              color: #64748b;
+              color: #414a63;
               font-size: 0.95rem;
               line-height: 1.6;
               margin: 0;
@@ -650,100 +657,93 @@
     </div>
   </section>
 
-  <!-- Built for Compliance Section -->
-  <section class="section" style="background: #f8fafc; padding: 3rem 0">
-    <div
-      class="container"
-      style="max-width: 800px; margin: 0 auto; padding: 0 16px"
-    >
-      <div style="text-align: center; margin-bottom: 2rem">
-        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
-          Built for compliance
+  <!-- Compliance & Onboarding Tabs Section -->
+  <section class="section" style="background: #f7f3ff; padding: 3rem 0">
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 16px">
+      <div style="text-align: center; margin-bottom: 32px">
+        <h2 class="h2" style="color: #5c2d91; margin-bottom: 1rem">
+          Compliance & onboarding
         </h2>
-        <p
-          class="lead"
-          style="
-            color: #1e293b;
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.7;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-          "
-        >
-          Aligned with UK Money Laundering Regulations (MLR 2017, as amended).
+        <p class="lead" style="color: #475569; font-weight: 500">
+          🛡️ Built for UK ACSPs who need simple, reliable compliance.
         </p>
       </div>
 
+      <!-- Tabs -->
+      <div style="display: flex; justify-content: center; margin-bottom: 24px">
+        <ion-segment
+          [(ngModel)]="activeComplianceTab"
+          value="compliance"
+          mode="md"
+          style="max-width: 420px; background: #e5e7ff; border-radius: 999px; padding: 4px"
+        >
+          <ion-segment-button
+            value="compliance"
+            style="--color: #5c2d91; --color-checked: white; --indicator-color: #5c2d91; --background-checked: #5c2d91; border-radius: 999px"
+          >
+            <ion-label>Compliance</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="pack"
+            style="--color: #5c2d91; --color-checked: white; --indicator-color: #5c2d91; --background-checked: #5c2d91; border-radius: 999px"
+          >
+            <ion-label>Onboarding pack</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <!-- Content card -->
       <div
         style="
+          max-width: 900px;
+          margin: 0 auto;
           background: white;
-          padding: 2rem;
-          border-radius: 12px;
-          margin-bottom: 1.5rem;
+          border-radius: 24px;
+          padding: 24px 24px 28px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          border: 1px solid #e5e7eb;
         "
       >
-        <ul
-          style="
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin: 0;
-            padding-left: 1.25rem;
-            text-align: left;
-          "
-        >
-          <li>
-            PEP/sanctions screening and risk‑based CDD/EDD with audit trail.
-          </li>
-          <li>Secure storage and 5‑year record retention policy.</li>
-          <li>Clear SAR escalation route to the NCA; no tipping‑off.</li>
-          <li>
-            Supervisory body: Chartered Governance Institute UK & Ireland (CGI
-            UK).
-          </li>
-          <li>ACSP registration: [Your ACSP reference].</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+        <!-- Compliance tab -->
+        <div *ngIf="activeComplianceTab === 'compliance'">
+          <h3 class="h3" style="color: #5c2d91; margin-bottom: 8px">
+            Built for UK compliance
+          </h3>
+          <p style="color: #475569; margin-bottom: 16px">
+            Aligned with UK Money Laundering Regulations (MLR 2017, as amended) and Companies House ACSP rules.
+          </p>
+          <ul style="color: #1e293b; line-height: 1.6; padding-left: 1.25rem; margin: 0">
+            <li>PEP and sanctions checks with risk-based CDD/EDD and a full audit trail.</li>
+            <li>Secure storage with a 5-year record-keeping policy.</li>
+            <li>Clear SAR escalation route to the NCA (no tipping-off).</li>
+            <li>Supervised by the Chartered Governance Institute UK &amp; Ireland (CGI UK).</li>
+            <li>ACSP registration: [Your ACSP reference].</li>
+          </ul>
+        </div>
 
-  <!-- Example Onboarding Pack Section -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0">
-    <div
-      class="container"
-      style="max-width: 800px; margin: 0 auto; padding: 0 16px"
-    >
-      <div style="text-align: center; margin-bottom: 2rem">
-        <h2 class="h2" style="color: #722bb9 !important; margin-bottom: 1rem">
-          Example onboarding pack
-        </h2>
-      </div>
-
-      <div style="background: #f8fafc; padding: 2rem; border-radius: 12px">
-        <ul
-          style="
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin: 0;
-            padding-left: 1.25rem;
-            text-align: left;
-          "
-        >
-          <li>Engagement letter (e‑sign)</li>
-          <li>Client info form</li>
-          <li>IDV report & certificate</li>
-          <li>Risk assessment (KYC)</li>
-          <li>PEP/sanctions screen</li>
-          <li>Companies House filing log</li>
-        </ul>
+        <!-- Onboarding pack tab -->
+        <div *ngIf="activeComplianceTab === 'pack'">
+          <h3 class="h3" style="color: #5c2d91; margin-bottom: 8px">
+            What's in your onboarding pack
+          </h3>
+          <p style="color: #475569; margin-bottom: 16px">
+            Everything you need for clean, consistent onboarding and record keeping.
+          </p>
+          <ul style="color: #1e293b; line-height: 1.6; padding-left: 1.25rem; margin: 0">
+            <li>Engagement letter (e-sign).</li>
+            <li>Client information form.</li>
+            <li>IDV report and certificate.</li>
+            <li>KYC risk assessment.</li>
+            <li>PEP/sanctions screen.</li>
+            <li>Companies House filing log.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Simple Pricing Section -->
-  <section class="section" style="background: #f8fafc; padding: 3rem 0">
+  <section class="section" style="background: #ffffff; padding: 3rem 0">
     <div
       class="container"
       style="max-width: 900px; margin: 0 auto; padding: 0 16px"
@@ -778,8 +778,9 @@
           style="
             background: white;
             padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            border: 1px solid #e5e0fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
           "
         >
           <h3
@@ -832,8 +833,9 @@
           style="
             background: white;
             padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid #5c2d91;
+            border-radius: 18px;
+            border: 1px solid #5c2d91;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             position: relative;
           "
         >
@@ -916,7 +918,7 @@
   </section>
 
   <!-- FAQ Section -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0">
+  <section class="section" style="background: #f7f3ff; padding: 3rem 0">
     <div
       class="container"
       style="max-width: 800px; margin: 0 auto; padding: 0 16px"
@@ -956,7 +958,7 @@
   <section
     id="book-demo"
     class="section"
-    style="background: #f8fafc; padding: 4rem 0; scroll-margin-top: 80px"
+    style="background: #ffffff; padding: 4rem 0; scroll-margin-top: 80px"
   >
     <div class="container" style="max-width: 1200px">
       <div
@@ -1009,7 +1011,7 @@
               aspect-ratio: 4/5;
               border-radius: 12px;
               overflow: hidden;
-              box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             "
           >
             <img

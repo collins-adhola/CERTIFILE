@@ -1,11 +1,11 @@
 /* Reusable UI Components - Cards, Badges, Buttons, Form Messages, etc. */
 
-/* Card Components - Professional Corporate */
+/* Card Components - Professional Corporate - Soft Lavender Theme */
 .card {
-  background: var(--color-surface-elevated);
-  border: var(--app-card-border);
-  border-radius: var(--app-radius-lg);
-  box-shadow: var(--app-shadow);
+  background: white;
+  border: 1px solid #e5e0fa;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   padding: var(--space-6);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -32,9 +32,9 @@
 }
 
 .card:hover {
-  box-shadow: var(--app-shadow-lg);
-  transform: translateY(-4px);
-  border-color: var(--color-border-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  border-color: #d8c9ff;
 }
 
 .card:hover::before {
@@ -51,7 +51,7 @@
 
   .card:hover {
     transform: translateY(-2px);
-    box-shadow: var(--app-shadow-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   }
 }
 
