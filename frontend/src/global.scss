@@ -239,3 +239,42 @@ ion-card {
 .section + .section {
   border-top: none;
 }
+
+/* Navigation Link Styling - Logo Pill Effect with Smooth Animations */
+/* Override Ionic button styles for gradient background */
+ion-button.cf-nav-link::part(native) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Default state - transparent background */
+ion-button.cf-nav-link::part(native) {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #1e293b !important;
+}
+
+/* Hover state - apply gradient directly to native element */
+ion-button.cf-nav-link:hover::part(native) {
+  background: linear-gradient(135deg, #5c2d91, #8a2be2) !important;
+  background-image: linear-gradient(135deg, #5c2d91, #8a2be2) !important;
+  background-color: transparent !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3) !important;
+  border: 1px solid #4a148c !important;
+  font-weight: 700 !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Active state - apply gradient directly to native element */
+ion-button.cf-nav-link.cf-nav-active::part(native) {
+  background: linear-gradient(135deg, #5c2d91, #8a2be2) !important;
+  background-image: linear-gradient(135deg, #5c2d91, #8a2be2) !important;
+  background-color: transparent !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3) !important;
+  border: 1px solid #4a148c !important;
+  font-weight: 700 !important;
+  transform: scale(1.02) !important;
+}
