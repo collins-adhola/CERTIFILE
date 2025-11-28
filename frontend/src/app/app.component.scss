@@ -1,1 +1,223 @@
+/* Mobile Dropdown Navigation */
 
+.cf-logo-wrapper {
+  position: relative;
+  z-index: 1001;
+}
+
+.cf-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cf-logo-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
+  border: 1px solid #4a148c;
+}
+
+/* Hamburger Menu Button */
+.cf-mobile-menu-trigger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #1e293b;
+  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+}
+
+.cf-mobile-menu-trigger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.cf-mobile-menu-trigger:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.cf-mobile-menu-trigger:focus {
+  outline: 2px solid #5c2d91;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.cf-hamburger-icon {
+  font-size: 28px;
+  color: #1e293b;
+}
+
+/* Mobile Dropdown Backdrop */
+.cf-mobile-dropdown-backdrop {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile Dropdown Menu */
+.cf-mobile-dropdown {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 280px;
+  bottom: 0;
+  background: #ffffff;
+  z-index: 1000;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.cf-mobile-dropdown-open {
+  transform: translateX(0);
+}
+
+.cf-mobile-nav-link {
+  display: block;
+  padding: 16px 20px;
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cf-mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.cf-mobile-nav-link:hover,
+.cf-mobile-nav-link:active {
+  background-color: #f7f3ff;
+  color: #5c2d91;
+}
+
+.cf-mobile-nav-link-signin {
+  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.cf-mobile-nav-link-signin:hover,
+.cf-mobile-nav-link-signin:active {
+  background: linear-gradient(135deg, #4b2380, #722bb9) !important;
+  color: #ffffff !important;
+}
+
+/* Login Button Wrapper */
+.cf-login-button-wrapper {
+  display: flex;
+}
+
+/* Mobile Layout */
+@media (max-width: 767px) {
+  /* Show hamburger menu on left */
+  .cf-mobile-menu-trigger {
+    display: flex !important;
+    order: 1;
+  }
+
+  /* Logo next to menu */
+  .cf-logo-wrapper {
+    order: 2;
+  }
+
+  /* Hide logo text on mobile, show only pill */
+  .cf-logo-link strong {
+    display: none;
+  }
+
+  /* Login button on far right */
+  .cf-login-button-wrapper {
+    display: flex !important;
+    order: 3;
+    margin-left: auto;
+  }
+
+  /* Show dropdown */
+  .cf-mobile-dropdown {
+    display: block !important;
+  }
+
+  /* Hide desktop nav */
+  nav.ion-hide-md-down {
+    display: none !important;
+  }
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  /* Hide hamburger menu */
+  .cf-mobile-menu-trigger {
+    display: none !important;
+  }
+
+  /* Logo on left (next to nav) */
+  .cf-logo-wrapper {
+    order: 1;
+  }
+
+  .cf-logo-link {
+    gap: 12px;
+  }
+
+  .cf-logo-link strong {
+    display: inline;
+    font-size: 18px;
+    color: #5c2d91;
+    font-weight: 700;
+  }
+
+  /* Navigation in center */
+  nav.ion-hide-md-down {
+    order: 2;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Login button on far right */
+  .cf-login-button-wrapper {
+    display: flex !important;
+    order: 3;
+    margin-left: auto;
+  }
+
+  /* Hide mobile dropdown */
+  .cf-mobile-dropdown {
+    display: none !important;
+  }
+}

@@ -21,39 +21,113 @@
           height: 56px;
         "
       >
-        <a
-          routerLink="/home"
-          aria-label="Go to CertiFile Compliance home page"
-          style="
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: inherit;
-          "
-        >
-          <div
-            style="
-              width: 36px;
-              height: 36px;
-              border-radius: 12px;
-              background: linear-gradient(135deg, #5c2d91, #8a2be2);
-              color: white;
-              display: grid;
-              place-items: center;
-              font-weight: 700;
-              font-size: 16px;
-              box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
-              border: 1px solid #4a148c;
-            "
-            aria-hidden="true"
-          >
-            CF
+        <div class="cf-logo-wrapper">
+          <div class="cf-logo-container">
+            <a
+              routerLink="/home"
+              class="cf-logo-link cf-logo-desktop"
+              aria-label="Go to CertiFile Compliance home page"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+                color: inherit;
+              "
+            >
+              <div
+                style="
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 12px;
+                  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+                  color: white;
+                  display: grid;
+                  place-items: center;
+                  font-weight: 700;
+                  font-size: 16px;
+                  box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
+                  border: 1px solid #4a148c;
+                "
+                aria-hidden="true"
+              >
+                CF
+              </div>
+              <strong style="font-size: 18px; color: #5c2d91; font-weight: 700"
+                >CertiFile Compliance</strong
+              >
+            </a>
+            <button
+              type="button"
+              class="cf-mobile-menu-trigger"
+              (click)="toggleMobileMenu($event)"
+              aria-label="Toggle mobile navigation menu"
+              aria-expanded="{{ mobileMenuOpen }}"
+            >
+              <ion-icon
+                name="chevron-down-outline"
+                class="cf-chevron-mobile"
+                style="color: #5c2d91; transition: transform 0.2s;"
+                [style.transform]="mobileMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)'"
+              ></ion-icon>
+            </button>
           </div>
-          <strong style="font-size: 18px; color: #5c2d91; font-weight: 700"
-            >CertiFile Compliance</strong
+          <!-- Mobile Dropdown Menu -->
+          <div
+            class="cf-mobile-dropdown"
+            [class.cf-mobile-dropdown-open]="mobileMenuOpen"
           >
-        </a>
+            <a
+              routerLink="/home"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              Home
+            </a>
+            <a
+              routerLink="/how"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              How it works
+            </a>
+            <a
+              routerLink="/services"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              Services
+            </a>
+            <a
+              routerLink="/pricing"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              Pricing
+            </a>
+            <a
+              routerLink="/faq"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              FAQ
+            </a>
+            <a
+              routerLink="/contact"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link"
+            >
+              Contact
+            </a>
+            <a
+              routerLink="/login"
+              (click)="closeMobileMenu()"
+              class="cf-mobile-nav-link cf-mobile-nav-link-signin"
+            >
+              Sign in
+            </a>
+          </div>
+        </div>
         <nav class="ion-hide-md-down" aria-label="Main navigation">
           <ion-buttons>
             <ion-button

@@ -21,39 +21,35 @@
           height: 56px;
         "
       >
-        <a
-          routerLink="/"
-          aria-label="Go to CertiFile Compliance home page"
-          style="
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: inherit;
-          "
+        <!-- Mobile Hamburger Menu Button (Left) -->
+        <button
+          type="button"
+          class="cf-mobile-menu-trigger"
+          (click)="toggleMobileMenu($event)"
+          aria-label="Toggle mobile navigation menu"
+          aria-expanded="{{ mobileMenuOpen }}"
         >
-          <div
-            style="
-              width: 36px;
-              height: 36px;
-              border-radius: 12px;
-              background: linear-gradient(135deg, #5c2d91, #8a2be2);
-              color: white;
-              display: grid;
-              place-items: center;
-              font-weight: 700;
-              font-size: 16px;
-              box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
-              border: 1px solid #4a148c;
-            "
-            aria-hidden="true"
+          <ion-icon
+            name="menu-outline"
+            class="cf-hamburger-icon"
+          ></ion-icon>
+        </button>
+
+        <!-- Logo (Next to Menu) -->
+        <div class="cf-logo-wrapper">
+          <a
+            routerLink="/"
+            class="cf-logo-link"
+            aria-label="Go to CertiFile Compliance home page"
           >
-            CF
-          </div>
-          <strong style="font-size: 18px; color: #5c2d91; font-weight: 700"
-            >CertiFile Compliance</strong
-          >
-        </a>
+            <div class="cf-logo-pill">
+              CF
+            </div>
+            <strong>CertiFile Compliance</strong>
+          </a>
+        </div>
+
+        <!-- Navigation (Center) -->
         <nav class="ion-hide-md-down" aria-label="Main navigation">
           <ion-buttons>
             <ion-button
@@ -88,7 +84,9 @@
             >
           </ion-buttons>
         </nav>
-        <ion-buttons>
+
+        <!-- Login Button (Far Right) -->
+        <ion-buttons class="cf-login-button-wrapper">
           <ion-button routerLink="/login" fill="solid" color="primary"
             >Login</ion-button
           >
@@ -96,6 +94,67 @@
       </div>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Mobile Dropdown Menu (Outside header for proper positioning) -->
+  <div
+    class="cf-mobile-dropdown-backdrop"
+    *ngIf="mobileMenuOpen"
+    (click)="closeMobileMenu()"
+  ></div>
+  <div
+    class="cf-mobile-dropdown"
+    [class.cf-mobile-dropdown-open]="mobileMenuOpen"
+  >
+    <a
+      routerLink="/"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      Home
+    </a>
+    <a
+      routerLink="/how"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      How it works
+    </a>
+    <a
+      routerLink="/services"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      Services
+    </a>
+    <a
+      routerLink="/pricing"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      Pricing
+    </a>
+    <a
+      routerLink="/faq"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      FAQ
+    </a>
+    <a
+      routerLink="/contact"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link"
+    >
+      Contact
+    </a>
+    <a
+      routerLink="/login"
+      (click)="closeMobileMenu()"
+      class="cf-mobile-nav-link cf-mobile-nav-link-signin"
+    >
+      Sign in
+    </a>
+  </div>
 
   <main id="main-content">
     <ion-router-outlet></ion-router-outlet>

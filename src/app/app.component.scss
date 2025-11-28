@@ -1,0 +1,177 @@
+/* Mobile Dropdown Navigation */
+
+.cf-logo-wrapper {
+  position: relative;
+  z-index: 1001;
+}
+
+.cf-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cf-logo-link {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.cf-mobile-menu-trigger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #5c2d91;
+  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.cf-mobile-menu-trigger:hover {
+  background: rgba(92, 45, 145, 0.1);
+}
+
+.cf-mobile-menu-trigger:active {
+  background: rgba(92, 45, 145, 0.15);
+}
+
+.cf-mobile-menu-trigger:focus {
+  outline: 2px solid #5c2d91;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Hide chevron on desktop */
+.cf-chevron-mobile {
+  display: none;
+}
+
+/* Mobile Dropdown Menu */
+.cf-mobile-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  min-width: 200px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(92, 45, 145, 0.1);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 1002;
+}
+
+.cf-mobile-dropdown-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.cf-mobile-nav-link {
+  display: block;
+  padding: 14px 20px;
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(92, 45, 145, 0.08);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cf-mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.cf-mobile-nav-link:hover,
+.cf-mobile-nav-link:active {
+  background-color: #f7f3ff;
+  color: #5c2d91;
+}
+
+.cf-mobile-nav-link-signin {
+  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.cf-mobile-nav-link-signin:hover,
+.cf-mobile-nav-link-signin:active {
+  background: linear-gradient(135deg, #4b2380, #722bb9) !important;
+  color: #ffffff !important;
+}
+
+/* Show mobile dropdown only on mobile */
+@media (max-width: 767px) {
+  /* Hide logo on mobile - override inline styles */
+  a.cf-logo-desktop.cf-logo-link,
+  a.cf-logo-desktop.cf-logo-link[style*="display: flex"],
+  .cf-logo-desktop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Show toggle button on mobile */
+  button.cf-mobile-menu-trigger,
+  .cf-mobile-menu-trigger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 10px 14px !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  .cf-mobile-menu-trigger ion-icon {
+    font-size: 24px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .cf-mobile-dropdown {
+    display: block !important;
+  }
+
+  .cf-logo-container {
+    gap: 0 !important;
+    justify-content: flex-start;
+  }
+}
+
+/* Desktop: hide dropdown and chevron, allow normal navigation */
+@media (min-width: 768px) {
+  .cf-logo-desktop {
+    display: flex !important;
+  }
+
+  .cf-mobile-menu-trigger {
+    display: none !important;
+  }
+
+  .cf-mobile-dropdown {
+    display: none !important;
+  }
+}
+
