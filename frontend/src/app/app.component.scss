@@ -140,6 +140,36 @@
 /* Login Button Wrapper */
 .cf-login-button-wrapper {
   display: flex;
+  align-items: center;
+}
+
+.cf-login-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
+  border: 1px solid #4a148c;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.cf-login-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(92, 45, 145, 0.3);
+}
+
+.cf-login-pill:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(92, 45, 145, 0.2);
 }
 
 /* Mobile Layout */
