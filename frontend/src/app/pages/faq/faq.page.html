@@ -24,7 +24,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('non-uk-passports')"
             (click)="toggleItem('non-uk-passports')"
+            (touchstart)="setHovered('non-uk-passports')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('non-uk-passports')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('non-uk-passports')"
           >
             <span class="faq-question"
@@ -47,7 +52,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('fully-remote')"
             (click)="toggleItem('fully-remote')"
+            (touchstart)="setHovered('fully-remote')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('fully-remote')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('fully-remote')"
           >
             <span class="faq-question"
@@ -73,7 +83,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('turnaround-time')"
             (click)="toggleItem('turnaround-time')"
+            (touchstart)="setHovered('turnaround-time')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('turnaround-time')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('turnaround-time')"
           >
             <span class="faq-question"
@@ -99,7 +114,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('data-retention')"
             (click)="toggleItem('data-retention')"
+            (touchstart)="setHovered('data-retention')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('data-retention')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('data-retention')"
           >
             <span class="faq-question"
@@ -126,7 +146,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('companies-house-filings')"
             (click)="toggleItem('companies-house-filings')"
+            (touchstart)="setHovered('companies-house-filings')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('companies-house-filings')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('companies-house-filings')"
           >
             <span class="faq-question"
@@ -152,7 +177,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('pep-sanctions')"
             (click)="toggleItem('pep-sanctions')"
+            (touchstart)="setHovered('pep-sanctions')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('pep-sanctions')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('pep-sanctions')"
           >
             <span class="faq-question"
@@ -178,7 +208,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('sar-procedures')"
             (click)="toggleItem('sar-procedures')"
+            (touchstart)="setHovered('sar-procedures')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('sar-procedures')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('sar-procedures')"
           >
             <span class="faq-question"
@@ -205,7 +240,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('data-protection')"
             (click)="toggleItem('data-protection')"
+            (touchstart)="setHovered('data-protection')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('data-protection')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('data-protection')"
           >
             <span class="faq-question"
@@ -232,7 +272,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('acsp-supervision')"
             (click)="toggleItem('acsp-supervision')"
+            (touchstart)="setHovered('acsp-supervision')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('acsp-supervision')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('acsp-supervision')"
           >
             <span class="faq-question"
@@ -259,7 +304,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('integration')"
             (click)="toggleItem('integration')"
+            (touchstart)="setHovered('integration')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('integration')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('integration')"
           >
             <span class="faq-question"
@@ -285,7 +335,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('professional-advisors')"
             (click)="toggleItem('professional-advisors')"
+            (touchstart)="setHovered('professional-advisors')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('professional-advisors')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('professional-advisors')"
           >
             <span class="faq-question"
@@ -313,7 +368,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('bulk-verification')"
             (click)="toggleItem('bulk-verification')"
+            (touchstart)="setHovered('bulk-verification')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('bulk-verification')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('bulk-verification')"
           >
             <span class="faq-question"
@@ -340,7 +400,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('non-uk-nationals')"
             (click)="toggleItem('non-uk-nationals')"
+            (touchstart)="setHovered('non-uk-nationals')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('non-uk-nationals')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('non-uk-nationals')"
           >
             <span class="faq-question"
@@ -370,7 +435,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('payment-options')"
             (click)="toggleItem('payment-options')"
+            (touchstart)="setHovered('payment-options')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('payment-options')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('payment-options')"
           >
             <span class="faq-question">How does payment work?</span>
@@ -396,7 +466,12 @@
         <div class="faq-item">
           <button
             class="faq-header-button"
+            [class.faq-hovered]="isHovered('original-documents')"
             (click)="toggleItem('original-documents')"
+            (touchstart)="setHovered('original-documents')"
+            (touchend)="setHovered(null)"
+            (mouseenter)="setHovered('original-documents')"
+            (mouseleave)="setHovered(null)"
             [attr.aria-expanded]="isExpanded('original-documents')"
           >
             <span class="faq-question"
@@ -423,93 +498,55 @@
     </div>
   </section>
 
-  <section class="section" style="background: var(--color-surface)">
+  <section class="section faq-contact-section">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 48px">
-        <h2 class="h2">Still have questions?</h2>
-        <p class="lead">
+      <div class="faq-contact-header">
+        <h2 class="h2 faq-contact-title">Still have questions?</h2>
+        <p class="lead faq-contact-subtitle">
           Our compliance team is here to help with any specific requirements.
         </p>
       </div>
 
-      <div
-        style="
-          display: grid;
-          gap: 24px;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          max-width: 800px;
-          margin: 0 auto;
-        "
-      >
-        <div style="text-align: center">
-          <div
-            style="
-              width: 64px;
-              height: 64px;
-              border-radius: 50%;
-              background: var(--color-primary);
-              color: white;
-              display: grid;
-              place-items: center;
-              margin: 0 auto 16px;
-              font-size: 24px;
-            "
-          ></div>
+      <div class="faq-contact-grid">
+        <div class="faq-contact-card">
+          <div class="faq-contact-icon">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
           <h3 class="h3">Phone Support</h3>
           <p class="text-body">
             Call us for immediate assistance with your verification needs
           </p>
-          <p class="text-fine" style="margin-top: 8px">+44 20 1234 5678</p>
+          <p class="faq-contact-info">+44 20 1234 5678</p>
         </div>
 
-        <div style="text-align: center">
-          <div
-            style="
-              width: 64px;
-              height: 64px;
-              border-radius: 50%;
-              background: var(--color-primary);
-              color: white;
-              display: grid;
-              place-items: center;
-              margin: 0 auto 16px;
-              font-size: 24px;
-            "
-          ></div>
+        <a href="mailto:info@certifile.co.uk" class="faq-contact-card faq-contact-card-link">
+          <div class="faq-contact-icon">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
           <h3 class="h3">Email Support</h3>
           <p class="text-body">
             Send us detailed questions and we'll respond within 24 hours
           </p>
-          <p class="text-fine" style="margin-top: 8px">info@certifile.co.uk</p>
-        </div>
+          <p class="faq-contact-info">info@certifile.co.uk</p>
+        </a>
 
-        <div style="text-align: center">
-          <div
-            style="
-              width: 64px;
-              height: 64px;
-              border-radius: 50%;
-              background: var(--color-primary);
-              color: white;
-              display: grid;
-              place-items: center;
-              margin: 0 auto 16px;
-              font-size: 24px;
-            "
-          ></div>
+        <div class="faq-contact-card">
+          <div class="faq-contact-icon">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </div>
           <h3 class="h3">Live Chat</h3>
           <p class="text-body">
             Get instant answers to common questions during business hours
           </p>
-          <p class="text-fine" style="margin-top: 8px">Mon-Fri 9am-5pm GMT</p>
+          <p class="faq-contact-info">Mon-Fri 9am-5pm GMT</p>
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 32px">
+      <div class="faq-contact-cta">
         <ion-button
           size="large"
           fill="solid"
-          color="primary"
+          class="faq-contact-button"
           routerLink="/contact"
         >
           Contact our team

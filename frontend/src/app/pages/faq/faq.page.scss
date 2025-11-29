@@ -6,16 +6,17 @@
 
 .faq-item {
   margin-bottom: 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--app-radius-sm);
+  border: 1px solid #e5e0fa;
+  border-radius: 12px;
   overflow: hidden;
   background: white;
-  box-shadow: var(--app-shadow-sm);
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    box-shadow: var(--app-shadow-md);
-    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(92, 45, 145, 0.2);
+    border-color: #5c2d91;
+    transform: translateY(-2px);
   }
 }
 
@@ -29,7 +30,7 @@
   cursor: pointer;
   font-weight: 600;
   color: var(--color-text-primary);
-  transition: background-color 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 56px;
   display: flex;
   align-items: center;
@@ -38,17 +39,23 @@
   font-size: 1rem;
   line-height: 1.5;
   gap: 16px;
+  border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
-  &:hover {
-    background: var(--color-surface);
+  &:hover,
+  &.faq-hovered {
+    background: linear-gradient(135deg, #6a43c0, #8b5cf6);
+    color: white;
+    font-weight: 700;
   }
 
-  &:active {
-    background: var(--color-surface);
-  }
-
+  &:active,
   &:focus {
-    outline: 2px solid var(--color-accent);
+    background: linear-gradient(135deg, #5c2d91, #8a2be2);
+    color: white;
+    font-weight: 700;
+    outline: 2px solid #5c2d91;
     outline-offset: -2px;
   }
 }
@@ -60,34 +67,193 @@
   line-height: 1.5;
   flex: 1;
   text-align: left;
+  transition: color 0.3s ease;
+}
+
+.faq-header-button:hover .faq-question,
+.faq-header-button.faq-hovered .faq-question {
+  color: white;
 }
 
 .faq-icon {
   font-size: 20px;
   color: var(--color-text-secondary);
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.faq-header-button:hover .faq-icon,
+.faq-header-button.faq-hovered .faq-icon {
+  color: white;
 }
 
 /* FAQ Content Styling */
 .faq-content {
-  padding: 16px 20px;
-  color: var(--color-text-primary);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  padding: 24px 28px !important;
+  color: #1e293b !important;
+  font-size: 1rem;
+  line-height: 1.8;
+  background: linear-gradient(135deg, #f3e8ff 0%, #f7f3ff 50%, #ffffff 100%) !important;
+  border-top: 3px solid #8b5cf6 !important;
+  border-left: 4px solid #8b5cf6 !important;
+  border-right: 1px solid #e5e0fa !important;
+  border-bottom: 1px solid #e5e0fa !important;
+  border-radius: 0;
   overflow: hidden;
-  animation: fadeIn 0.3s ease-out;
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 
+    inset 0 4px 12px rgba(92, 45, 145, 0.08),
+    0 2px 8px rgba(92, 45, 145, 0.1) !important;
+  margin: 0;
+  font-weight: 400;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #8b5cf6, transparent);
+    opacity: 0.6;
+    z-index: 1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #5c2d91, #8b5cf6, #a78bfa);
+    z-index: 0;
+  }
 }
 
-@keyframes fadeIn {
+@keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* FAQ Contact Section Styling */
+.faq-contact-section {
+  background: #ffffff !important;
+  padding: 4rem 0;
+}
+
+.faq-contact-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.faq-contact-title {
+  color: #5c2d91;
+  background: linear-gradient(135deg, #5c2d91, #8a2be2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.faq-contact-subtitle {
+  color: #475569;
+  font-weight: 500;
+}
+
+.faq-contact-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-contact-card {
+  text-align: center;
+  padding: 32px 24px;
+  background: #f7f3ff;
+  border: 1px solid #e5e0fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(92, 45, 145, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(92, 45, 145, 0.15);
+    border-color: #8b5cf6;
+  }
+}
+
+.faq-contact-card-link {
+  cursor: pointer;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.faq-contact-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5c2d91, #8b5cf6);
+  color: white;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.2);
+}
+
+.faq-contact-card h3 {
+  color: #5c2d91;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.faq-contact-card .text-body {
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.faq-contact-info {
+  color: #5c2d91;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-top: 8px;
+}
+
+.faq-contact-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.faq-contact-button {
+  --background: linear-gradient(135deg, #5c2d91, #8b5cf6);
+  --background-hover: linear-gradient(135deg, #4b2380, #7a2bd2);
+  --color: white;
+  --border-radius: 12px;
+  --padding-start: 32px;
+  --padding-end: 32px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(92, 45, 145, 0.4);
   }
 }
