@@ -9,6 +9,16 @@ import { IonContent, IonButton } from '@ionic/angular/standalone';
   templateUrl: './payg-plan.page.html',
   styleUrls: ['./payg-plan.page.scss'],
 })
-export class PaygPlanPage {}
+export class PaygPlanPage {
+  hoveredItem: string | null = null;
+
+  setHovered(value: string | null) {
+    this.hoveredItem = value;
+  }
+
+  isHovered(value: string): boolean {
+    return this.hoveredItem === value;
+  }
+}
 
 

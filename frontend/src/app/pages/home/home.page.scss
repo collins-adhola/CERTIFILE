@@ -32,18 +32,43 @@
   border: 1px solid #e5e0fa;
   border-left: 3px solid #5c2d91;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #5c2d91, #8a2be2);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 18px;
+    z-index: 0;
+  }
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    border-color: #d8c9ff;
+    box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3);
+    border-color: #4a148c;
+    transform: translateY(-2px);
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 
   &.home-faq-open {
     border-left-color: #5c2d91;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     border-color: #d8c9ff;
+    background: linear-gradient(135deg, #f3e8ff 0%, #f7f3ff 50%, #ffffff 100%);
+  }
+
+  &.home-faq-open::before {
+    opacity: 0;
   }
 }
 
@@ -58,10 +83,12 @@
   padding: 0;
   cursor: pointer;
   text-align: left;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
 
   &:focus {
@@ -78,13 +105,36 @@
   margin: 0;
   flex: 1;
   line-height: 1.5;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.home-faq-item:hover .home-faq-question {
+  color: white;
+  font-weight: 700;
+}
+
+.home-faq-item.home-faq-open .home-faq-question {
+  color: #1e293b;
+  font-weight: 600;
 }
 
 .home-faq-icon {
   font-size: 20px;
   color: #5c2d91;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.home-faq-item:hover .home-faq-icon {
+  color: white;
+}
+
+.home-faq-item.home-faq-open .home-faq-icon {
+  color: #5c2d91;
 }
 
 .home-faq-answer {
@@ -95,6 +145,8 @@
   font-size: 0.95rem;
   line-height: 1.7;
   animation: fadeInDown 0.3s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes fadeInDown {

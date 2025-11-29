@@ -1,98 +1,26 @@
 <ion-content>
   <!-- Hero / Intro -->
-  <section class="section" style="background: #f8fafc; padding: 3rem 0">
-    <div
-      class="container"
-      style="max-width: 1000px; margin: 0 auto; padding: 0 16px"
-    >
-      <div
-        style="
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 2rem;
-          align-items: center;
-        "
-      >
+  <section class="section payg-hero">
+    <div class="container">
+      <div class="payg-hero-grid">
         <div>
-          <h1
-            class="h1"
-            style="
-              font-size: 2.5rem;
-              font-weight: 700;
-              color: #5c2d91;
-              margin-bottom: 1rem;
-            "
-          >
-            Pay-as-you-go ID Checks
-          </h1>
-          <p
-            class="lead"
-            style="
-              color: #1e293b;
-              font-size: 1.1rem;
-              line-height: 1.7;
-              margin-bottom: 1.5rem;
-            "
-          >
+          <div class="payg-eyebrow">Plan: Pay-as-you-go ID checks</div>
+          <h1 class="h1">Pay-as-you-go ID Checks</h1>
+          <p class="lead">
             Flexible, per-check identity verification for directors, PSCs and
             individuals who need compliant UK filings.
           </p>
-          <p
-            style="
-              color: #475569;
-              font-size: 0.95rem;
-              line-height: 1.7;
-            "
-          >
-            Ideal when you only need a handful of checks each month and want
-            predictable, transparent pricing with no long-term lock-in.
-          </p>
+          <ul class="payg-hero-bullets">
+            <li>Ideal for ad hoc checks</li>
+            <li>No long-term contract</li>
+            <li>Designed for UK filings</li>
+          </ul>
         </div>
 
         <div>
-          <div
-            style="
-              background: white;
-              border-radius: 16px;
-              padding: 1.75rem;
-              box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-              border: 1px solid #e2e8f0;
-            "
-          >
-            <h2
-              class="h2"
-              style="
-                font-size: 1.4rem;
-                color: #1e293b;
-                margin: 0 0 0.75rem 0;
-              "
-            >
-              From £25 / check
-            </h2>
-            <p
-              style="
-                color: #64748b;
-                font-size: 0.95rem;
-                margin: 0 0 1rem 0;
-              "
-            >
-              No monthly minimums. Pay for each completed identity verification.
-            </p>
-            <p
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 0.35rem;
-                padding: 0.4rem 0.75rem;
-                border-radius: 999px;
-                background: #eef2ff;
-                color: #4338ca;
-                font-size: 0.8rem;
-                font-weight: 600;
-              "
-            >
-              • No long-term contract
-            </p>
+          <div class="payg-price-card">
+            <h2 class="h2">From £25 / check</h2>
+            <p class="payg-price-subline">No monthly minimums</p>
           </div>
         </div>
       </div>
@@ -100,11 +28,8 @@
   </section>
 
   <!-- Who this is for -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0">
-    <div
-      class="container"
-      style="max-width: 900px; margin: 0 auto; padding: 0 16px"
-    >
+  <section class="section">
+    <div class="container">
       <div style="text-align: center; margin-bottom: 2rem">
         <h2 class="h2" style="color: #722bb9; margin-bottom: 0.75rem">
           Who this is for
@@ -124,59 +49,26 @@
         </p>
       </div>
 
-      <div
-        style="
-          display: grid;
-          gap: 1.5rem;
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        "
-      >
-        <div
-          style="
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
-        >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.5rem">
-            Small practices
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+      <div class="payg-targets">
+        <div class="payg-target-card">
+          <h3 class="h3">Small practices</h3>
+          <p>
             Boutique law, accountancy and company secretarial firms who only
             need ad hoc checks.
           </p>
         </div>
 
-        <div
-          style="
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
-        >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.5rem">
-            Startups & SPVs
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+        <div class="payg-target-card">
+          <h3 class="h3">Startups & SPVs</h3>
+          <p>
             New SPVs and early-stage companies that need occasional director or
             PSC verification.
           </p>
         </div>
 
-        <div
-          style="
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
-        >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.5rem">
-            Foreign directors
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+        <div class="payg-target-card">
+          <h3 class="h3">Foreign directors</h3>
+          <p>
             Overseas officers who need a simple, guided UK-compliant
             verification process.
           </p>
@@ -186,11 +78,8 @@
   </section>
 
   <!-- What's included -->
-  <section class="section" style="background: #f7f3ff; padding: 3rem 0">
-    <div
-      class="container"
-      style="max-width: 900px; margin: 0 auto; padding: 0 16px"
-    >
+  <section class="section" style="background: #f7f3ff">
+    <div class="container">
       <div style="text-align: center; margin-bottom: 2rem">
         <h2 class="h2" style="color: #722bb9; margin-bottom: 0.75rem">
           What you get with each check
@@ -209,23 +98,8 @@
         </p>
       </div>
 
-      <div
-        style="
-          background: #ffffff;
-          border-radius: 18px;
-          padding: 2rem;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-          border: 1px solid #e5e0fa;
-        "
-      >
-        <ul
-          style="
-            color: #1e293b;
-            line-height: 1.8;
-            margin: 0;
-            padding-left: 1.25rem;
-          "
-        >
+      <div class="payg-included-card">
+        <ul>
           <li>Secure passport/ID document capture and selfie liveness.</li>
           <li>PEP and sanctions screening with basic risk assessment.</li>
           <li>Audit-ready record of checks performed.</li>
@@ -243,36 +117,25 @@
   </section>
 
   <!-- Mini FAQ -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0 2.5rem">
-    <div
-      class="container"
-      style="max-width: 800px; margin: 0 auto; padding: 0 16px"
-    >
+  <section class="section">
+    <div class="container">
       <div style="text-align: center; margin-bottom: 2rem">
         <h2 class="h2" style="color: #722bb9; margin-bottom: 0.75rem">
           Quick questions
         </h2>
       </div>
 
-      <div
-        style="
-          display: grid;
-          gap: 1.25rem;
-          grid-template-columns: 1fr;
-        "
-      >
+      <div class="payg-mini-faq">
         <div
-          style="
-            background: #f8fafc;
-            border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
+          class="payg-mini-faq-item"
+          [class.payg-faq-hovered]="isHovered('turnaround')"
+          (touchstart)="setHovered('turnaround')"
+          (touchend)="setHovered(null)"
+          (mouseenter)="setHovered('turnaround')"
+          (mouseleave)="setHovered(null)"
         >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.35rem">
-            How quickly can you complete a check?
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+          <h3 class="h3">How quickly can you complete a check?</h3>
+          <p>
             Most straightforward checks are completed within hours of your
             client submitting their documents, subject to time of day and
             complexity.
@@ -280,35 +143,31 @@
         </div>
 
         <div
-          style="
-            background: #f8fafc;
-            border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
+          class="payg-mini-faq-item"
+          [class.payg-faq-hovered]="isHovered('passports')"
+          (touchstart)="setHovered('passports')"
+          (touchend)="setHovered(null)"
+          (mouseenter)="setHovered('passports')"
+          (mouseleave)="setHovered(null)"
         >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.35rem">
-            Do you support overseas passports?
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+          <h3 class="h3">Do you support overseas passports?</h3>
+          <p>
             Yes. We support a wide range of international passports and ID
-            documents, provided they meet the underlying provider’s supported
+            documents, provided they meet the underlying provider's supported
             document list.
           </p>
         </div>
 
         <div
-          style="
-            background: #f8fafc;
-            border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            border: 1px solid #e2e8f0;
-          "
+          class="payg-mini-faq-item"
+          [class.payg-faq-hovered]="isHovered('upgrade')"
+          (touchstart)="setHovered('upgrade')"
+          (touchend)="setHovered(null)"
+          (mouseenter)="setHovered('upgrade')"
+          (mouseleave)="setHovered(null)"
         >
-          <h3 class="h3" style="color: #1e293b; margin-bottom: 0.35rem">
-            Can I upgrade to a Company pack later?
-          </h3>
-          <p style="color: #64748b; font-size: 0.95rem; margin: 0">
+          <h3 class="h3">Can I upgrade to a Company pack later?</h3>
+          <p>
             Absolutely. If your needs grow, we can move you onto a Company pack
             for bundled checks and filing support.
           </p>
@@ -318,11 +177,8 @@
   </section>
 
   <!-- Enquiry form (Netlify) -->
-  <section class="section" style="background: #ffffff; padding: 3rem 0 4rem">
-    <div
-      class="container"
-      style="max-width: 700px; margin: 0 auto; padding: 0 16px"
-    >
+  <section class="section">
+    <div class="container">
       <div style="text-align: center; margin-bottom: 2rem">
         <h2 class="h2" style="color: #722bb9; margin-bottom: 0.75rem">
           Enquire about Pay-as-you-go ID Checks
@@ -331,163 +187,161 @@
           class="lead"
           style="color: #475569; font-size: 1rem; max-width: 520px; margin: 0 auto"
         >
-          Tell us a bit about your needs and we’ll come back with next steps and
+          Tell us a bit about your needs and we'll come back with next steps and
           a clear proposal.
         </p>
       </div>
 
-      <form
-        name="payg-enquiry"
-        method="POST"
-        action="/thank-you"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        style="
-          background: #f8fafc;
-          padding: 2rem;
-          border-radius: 12px;
-          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-        "
-      >
-        <!-- Netlify form name -->
-        <input type="hidden" name="form-name" value="payg-enquiry" />
+      <div class="payg-form-wrapper">
+        <form
+          name="payg-enquiry"
+          method="POST"
+          action="/thank-you"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <!-- Netlify form name -->
+          <input type="hidden" name="form-name" value="payg-enquiry" />
 
-        <!-- Hidden plan field -->
-        <input type="hidden" name="plan" value="Pay-as-you-go ID Check" />
+          <!-- Hidden plan field -->
+          <input type="hidden" name="plan" value="Pay-as-you-go ID Check" />
 
-        <!-- Honeypot -->
-        <p style="display: none">
-          <label>
-            Don’t fill this out if you’re human:
-            <input name="bot-field" />
-          </label>
-        </p>
-
-        <div style="display: grid; gap: 1rem">
-          <div>
-            <label
-              style="
-                display: block;
-                font-weight: 600;
-                font-size: 0.9rem;
-                color: #1e293b;
-                margin-bottom: 0.25rem;
-              "
-            >
-              Your name
+          <!-- Honeypot -->
+          <p style="display: none">
+            <label>
+              Don't fill this out if you're human:
+              <input name="bot-field" />
             </label>
-            <input
-              type="text"
-              name="name"
-              required
-              style="
-                width: 100%;
-                padding: 0.75rem;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 0.95rem;
-              "
-            />
+          </p>
+
+          <div style="display: grid; gap: 1rem">
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  font-size: 0.9rem;
+                  color: #1e293b;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Your name
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: 8px;
+                  font-size: 0.95rem;
+                "
+              />
+            </div>
+
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  font-size: 0.9rem;
+                  color: #1e293b;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                required
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: 8px;
+                  font-size: 0.95rem;
+                "
+              />
+            </div>
+
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  font-size: 0.9rem;
+                  color: #1e293b;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Company (optional)
+              </label>
+              <input
+                type="text"
+                name="company"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: 8px;
+                  font-size: 0.95rem;
+                "
+              />
+            </div>
+
+            <div>
+              <label
+                style="
+                  display: block;
+                  font-weight: 600;
+                  font-size: 0.9rem;
+                  color: #1e293b;
+                  margin-bottom: 0.25rem;
+                "
+              >
+                Rough volume or context
+              </label>
+              <textarea
+                name="message"
+                rows="4"
+                required
+                placeholder="Tell us how many checks you expect per month and any specific requirements."
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: 8px;
+                  font-size: 0.95rem;
+                  resize: vertical;
+                "
+              ></textarea>
+            </div>
+
+            <div style="margin-top: 0.5rem">
+              <ion-button
+                type="submit"
+                expand="block"
+                color="primary"
+                style="
+                  --background: #5c2d91;
+                  --background-activated: #4a148c;
+                  border-radius: 8px;
+                  font-weight: 600;
+                "
+              >
+                Send enquiry
+              </ion-button>
+            </div>
           </div>
 
-          <div>
-            <label
-              style="
-                display: block;
-                font-weight: 600;
-                font-size: 0.9rem;
-                color: #1e293b;
-                margin-bottom: 0.25rem;
-              "
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              required
-              style="
-                width: 100%;
-                padding: 0.75rem;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 0.95rem;
-              "
-            />
-          </div>
-
-          <div>
-            <label
-              style="
-                display: block;
-                font-weight: 600;
-                font-size: 0.9rem;
-                color: #1e293b;
-                margin-bottom: 0.25rem;
-              "
-            >
-              Company (optional)
-            </label>
-            <input
-              type="text"
-              name="company"
-              style="
-                width: 100%;
-                padding: 0.75rem;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 0.95rem;
-              "
-            />
-          </div>
-
-          <div>
-            <label
-              style="
-                display: block;
-                font-weight: 600;
-                font-size: 0.9rem;
-                color: #1e293b;
-                margin-bottom: 0.25rem;
-              "
-            >
-              Rough volume or context
-            </label>
-            <textarea
-              name="message"
-              rows="4"
-              required
-              placeholder="Tell us how many checks you expect per month and any specific requirements."
-              style="
-                width: 100%;
-                padding: 0.75rem;
-                border: 2px solid #e2e8f0;
-                border-radius: 8px;
-                font-size: 0.95rem;
-                resize: vertical;
-              "
-            ></textarea>
-          </div>
-
-          <div style="margin-top: 0.5rem">
-            <ion-button
-              type="submit"
-              expand="block"
-              color="primary"
-              style="
-                --background: #5c2d91;
-                --background-activated: #4a148c;
-                border-radius: 8px;
-                font-weight: 600;
-              "
-            >
-              Send enquiry
-            </ion-button>
-          </div>
-        </div>
-      </form>
+          <p class="payg-form-note">
+            No payment is taken at this stage. We'll review your enquiry and reply with clear next steps.
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 </ion-content>
-
-

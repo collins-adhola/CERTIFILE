@@ -4,4 +4,281 @@ ion-content {
   --background: #ffffff;
 }
 
+/* Hero section */
+.payg-hero {
+  background: var(--color-surface);
+  padding: var(--space-12) 0;
+}
 
+.payg-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.payg-eyebrow {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  background: #eef2ff;
+  color: #4338ca;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.payg-hero .h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5c2d91;
+  margin-bottom: var(--space-4);
+}
+
+.payg-hero .lead {
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+}
+
+.payg-hero-bullets {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 0 0;
+
+  li {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    margin-bottom: var(--space-2);
+    padding-left: var(--space-6);
+    position: relative;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #5c2d91;
+      font-weight: 700;
+    }
+  }
+}
+
+.payg-price-card {
+  background: var(--color-background);
+  border-radius: var(--app-radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--app-shadow-lg);
+  border: var(--app-card-border);
+
+  .h2 {
+    font-size: 1.4rem;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3) 0;
+    font-weight: 700;
+  }
+}
+
+.payg-price-subline {
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  margin: 0;
+}
+
+/* Who this is for section */
+.payg-targets {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.payg-target-card {
+  background: var(--color-surface);
+  border-radius: var(--app-radius-lg);
+  padding: var(--space-6);
+  border: var(--app-card-border);
+
+  .h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+/* What's included section */
+.payg-included-card {
+  background: var(--color-background);
+  border-radius: 18px;
+  padding: var(--space-8);
+  box-shadow: var(--app-shadow-md);
+  border: 1px solid #e5e0fa;
+  max-width: 900px;
+  margin: 0 auto;
+
+  ul {
+    color: var(--color-text-primary);
+    line-height: 2;
+    margin: 0;
+    padding-left: 1.25rem;
+
+    li {
+      margin-bottom: var(--space-2);
+    }
+  }
+}
+
+/* Mini FAQ section */
+.payg-mini-faq {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.payg-mini-faq-item {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid #e5e0fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #5c2d91, #8a2be2);
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    z-index: 0;
+  }
+
+  .h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-xl);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+
+  p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    margin: 0;
+    line-height: 1.7;
+    max-width: 90%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover,
+  &.payg-faq-hovered {
+    border-color: #4a148c;
+    box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:hover::before,
+  &.payg-faq-hovered::before {
+    opacity: 1;
+  }
+
+  &:hover .h3,
+  &.payg-faq-hovered .h3 {
+    color: white;
+    font-weight: 700;
+  }
+
+  &:hover p,
+  &.payg-faq-hovered p {
+    color: white;
+  }
+}
+
+/* Form section */
+.payg-form-wrapper {
+  background: var(--color-surface);
+  padding: var(--space-8);
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow-md);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.payg-form-note {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: var(--space-4) 0 0 0;
+  line-height: 1.6;
+}
+
+/* Responsive rules */
+@media (max-width: 768px) {
+  .payg-hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .payg-hero-grid > div:first-child {
+    order: 1;
+  }
+
+  .payg-hero-grid > div:last-child {
+    order: 2;
+  }
+
+  .payg-hero .h1 {
+    font-size: 2rem;
+  }
+
+  .payg-targets {
+    grid-template-columns: 1fr;
+  }
+
+  .payg-mini-faq-item p {
+    max-width: 100%;
+  }
+
+  .payg-form-wrapper {
+    padding: var(--space-6);
+  }
+}
+
+@media (max-width: 480px) {
+  .payg-hero {
+    padding: var(--space-8) 0;
+  }
+
+  .payg-hero .h1 {
+    font-size: 1.75rem;
+  }
+
+  .payg-price-card {
+    padding: var(--space-6);
+  }
+}

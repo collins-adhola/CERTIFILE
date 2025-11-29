@@ -86,7 +86,9 @@
               expand="block"
               fill="outline"
               color="primary"
-              routerLink="/contact"
+              [routerLink]="['/contact']"
+              [queryParams]="{ plan: 'payg' }"
+              fragment="book-demo"
             >
               Choose Pay-as-you-go
             </ion-button>
@@ -168,7 +170,9 @@
               expand="block"
               fill="solid"
               color="light"
-              routerLink="/contact"
+              [routerLink]="['/contact']"
+              [queryParams]="{ plan: 'company-pack' }"
+              fragment="book-demo"
             >
               Choose Company pack
             </ion-button>
