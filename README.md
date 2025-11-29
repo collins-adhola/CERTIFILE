@@ -64,6 +64,91 @@ Clear navigation sections:
 - It will add **online payments** for Pay-as-you-go and bundle options.
 - The current, simple lead flow is designed so this backend can be introduced later **without changing the public-facing UX**.
 
+## User Journey & Lead Capture Flow
+
+### Pricing → Plan Selection → Plan Detail → Enquiry Submission Flow
+
+CertiFile uses a simple, conversion-focused flow for collecting enquiries related to identity verification plans.
+
+- **1. Visitor views pricing**
+  - On the pricing section, users can choose between:
+    - **Pay-as-you-go ID Checks**
+    - **Company Pack (multi-director/PSC)**
+  - Each **“Choose”** button navigates to a dedicated plan page:
+
+    | Pricing option | Route            |
+    | -------------- | ---------------- |
+    | Pay-as-you-go  | `/plans/payg`    |
+    | Company Pack   | `/plans/company` |
+
+- **2. Visitor lands on a dedicated plan detail page**
+  - Each plan page contains:
+    - Plan-specific value proposition
+    - A short **“How it works”** explanation
+    - **What’s included** and pricing clarity
+    - A small, relevant FAQ
+    - A focused enquiry form at the bottom
+  - This structure is designed to build trust and give potential clients enough context before submitting their details.
+
+- **3. Visitor submits a plan-specific enquiry form**
+  - Each plan page ends with a form that posts to **Netlify Forms**.
+  - The form:
+    - Uses Netlify’s built-in form handling (no backend required)
+    - Sends submissions to the **Netlify Dashboard → Forms**
+    - Sends an email notification to the team
+    - Includes a hidden field that logs which plan the user selected, for example:
+
+      ```html
+      <input type="hidden" name="plan" value="Pay-as-you-go ID Check" />
+      ```
+
+  - This ensures every notification email includes:
+    - The user’s details
+    - Their message
+    - Which plan they were enquiring about
+
+- **4. Internal workflow**
+  - Once the form is submitted:
+    - Netlify logs it under **Forms**
+    - Email notifications are sent
+    - The team replies via **Zoho Mail**
+  - No backend is required until:
+    - Payment processing
+    - Secure client onboarding
+    - Dashboard login
+    - IDV integrations
+    - Companies House filing workflow
+  - These will be implemented later using a simple backend stack.
+
+- **5. Future backend integration (planned)**
+  - After the frontend user journey is complete, backend upgrades will support:
+    - Account creation and login
+    - Client dashboards
+    - ID verification initiation
+    - Payment and invoicing
+    - Document uploads
+    - Companies House filing automation
+    - Admin-only review workflow
+  - The current frontend pages are structured so they can adopt this backend capability without a disruptive UX change.
+
+- **Summary of the current flow**
+
+  Pricing Page  
+  ↓  
+  User selects a plan  
+  ↓  
+  Dedicated Plan Detail Page (`/plans/payg` or `/plans/company`)  
+  ↓  
+  Plan-specific Netlify form  
+  ↓  
+  Submission goes to:
+  - Netlify Dashboard → Forms
+  - Email notification  
+    ↓  
+    Team follows up manually via Zoho Mail
+
+This structure is designed to maximise trust and conversion while keeping operational complexity low.
+
 ## Technology Stack
 
 - **Frontend Framework**: Angular with Ionic

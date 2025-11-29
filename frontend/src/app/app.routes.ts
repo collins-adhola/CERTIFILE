@@ -18,6 +18,25 @@ export const routes: Routes = [
           import('./pages/pricing/pricing.page').then((m) => m.PricingPage),
       },
       {
+        path: 'plans',
+        children: [
+          {
+            path: 'payg',
+            loadComponent: () =>
+              import('./plans/payg-plan/payg-plan.page').then(
+                (m) => m.PaygPlanPage,
+              ),
+          },
+          {
+            path: 'company',
+            loadComponent: () =>
+              import('./plans/company-plan/company-plan.page').then(
+                (m) => m.CompanyPlanPage,
+              ),
+          },
+        ],
+      },
+      {
         path: 'how',
         loadComponent: () =>
           import('./pages/how/how.page').then((m) => m.HowPage),
