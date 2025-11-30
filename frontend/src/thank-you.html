@@ -6,17 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <script>
-      // Redirect to Angular route immediately
-      // This will be handled by the SPA fallback in netlify.toml
-      window.location.replace('/thank-you');
+      // Wait a moment for any existing Angular app to initialize, then redirect
+      setTimeout(function() {
+        // Try to use Angular router if available, otherwise use location
+        if (window.location.pathname !== '/thank-you') {
+          window.location.href = '/thank-you';
+        }
+      }, 100);
+      
+      // Fallback: redirect immediately if Angular isn't detected
+      if (!document.querySelector('app-root')) {
+        window.location.replace('/thank-you');
+      }
     </script>
-    <meta http-equiv="refresh" content="0; url=/thank-you" />
+    <meta http-equiv="refresh" content="1; url=/thank-you" />
   </head>
   <body>
     <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center; max-width: 600px; margin: 4rem auto;">
       <h1 style="color: #5c2d91;">Thank you!</h1>
       <p>Your enquiry has been received.</p>
-      <p><a href="/thank-you" style="color: #5c2d91; text-decoration: underline;">Click here if you are not redirected automatically</a></p>
+      <p>Redirecting to confirmation page...</p>
+      <p><a href="/thank-you" style="color: #5c2d91; text-decoration: underline;">Click here if you are not redirected</a></p>
     </div>
   </body>
 </html>
