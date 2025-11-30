@@ -4,14 +4,25 @@
     <meta charset="utf-8" />
     <title>Thank You - CertiFile Compliance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0; url=/thank-you" />
+    <base href="/" />
     <script>
-      // Immediate redirect to Angular route
-      window.location.href = '/thank-you';
+      // Wait for page to load, then redirect to Angular route
+      (function() {
+        // Use replaceState to avoid adding to history
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '/thank-you');
+        }
+        // Reload to trigger Angular router
+        window.location.href = '/thank-you';
+      })();
     </script>
   </head>
   <body>
-    <p>If you are not redirected automatically, <a href="/thank-you">click here</a>.</p>
+    <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center;">
+      <h1>Thank you!</h1>
+      <p>Redirecting...</p>
+      <p><a href="/thank-you">Click here if you are not redirected</a></p>
+    </div>
   </body>
 </html>
 
