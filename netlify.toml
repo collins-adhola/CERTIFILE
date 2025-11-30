@@ -1,13 +1,12 @@
 [build]
   base = "frontend"
+  publish = "frontend/www"
   command = "ng build --configuration production"
-  publish = "www"
 
 [build.environment]
   NODE_VERSION = "20"
 
 # SPA fallback (Angular routes) - must be last
-# Note: Static files like thank-you.html are served automatically before this rule
 [[redirects]]
   from = "/*"
   to = "/index.html"

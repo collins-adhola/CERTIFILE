@@ -278,3 +278,76 @@ ion-button.cf-nav-link.cf-nav-active::part(native) {
   font-weight: 700 !important;
   transform: scale(1.02) !important;
 }
+
+/* Global subtitle section styling - used across all pages */
+.subtitle-section {
+  margin-bottom: 20px;
+
+  .subtitle-heading {
+    color: rgba(30, 41, 59, 0.95);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+  }
+
+  .subtitle-list {
+    margin: 0;
+    padding-left: 0;
+    color: #1e293b;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    list-style: none;
+
+    li {
+      margin-bottom: 10px;
+      padding-left: 24px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.4em;
+        width: 6px;
+        height: 6px;
+        background: #5c2d91;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px rgba(92, 45, 145, 0.2);
+      }
+
+      strong {
+        font-weight: 600;
+        color: #1e293b;
+      }
+    }
+  }
+}
+
+/* Dark background variant for subtitle sections (e.g., pricing cards) */
+.subtitle-section-dark {
+  .subtitle-heading {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .subtitle-list {
+    color: #ffffff;
+
+    li {
+      &::before {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      }
+
+      strong {
+        color: #ffffff;
+      }
+
+      span {
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+}
