@@ -1,5 +1,5 @@
 <ion-content>
-  <section class="section" style="background: #f7f3ff;">
+  <section class="section" style="background: #f7f3ff">
     <div class="container">
       <div style="text-align: center; margin-bottom: 48px">
         <h2
@@ -52,43 +52,161 @@
               background: rgba(255, 255, 255, 0.1);
               border-radius: 50%;
               opacity: 0.3;
+              z-index: 1;
             "
           ></div>
-          <ion-card-header>
-            <ion-card-title style="color: white; font-weight: 700"
+          <ion-card-header
+            style="padding: 24px 24px 16px 24px; position: relative; z-index: 2"
+          >
+            <ion-card-title
+              style="
+                color: #ffffff !important;
+                font-weight: 700;
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              "
               >Pay-as-you-go</ion-card-title
             >
             <div style="margin-top: 8px">
-              <span style="font-size: 32px; font-weight: 700; color: white"
+              <span
+                style="
+                  font-size: 36px;
+                  font-weight: 700;
+                  color: #ffffff !important;
+                  line-height: 1.2;
+                  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                "
                 >From £25</span
               >
-              <span style="color: rgba(255, 255, 255, 0.8); margin-left: 4px"
+              <span
+                style="
+                  color: #ffffff !important;
+                  margin-left: 4px;
+                  opacity: 1;
+                  font-size: 1rem;
+                  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+                "
                 >/ verification</span
               >
             </div>
-          </ion-card-header>
-          <ion-card-content>
-            <ul
+            <p
+              class="text-fine"
               style="
-                margin: 0 0 24px 0;
-                padding-left: 20px;
-                color: rgba(255, 255, 255, 0.9);
-                line-height: 1.6;
+                color: #ffffff !important;
+                font-size: 0.8rem;
+                margin: 10px 0 0 0;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                font-weight: 500;
+                opacity: 1 !important;
               "
             >
-              <li>Per-verification pricing</li>
-              <li>No monthly commitments</li>
-              <li>Instant processing</li>
-              <li>Full compliance reporting</li>
-              <li>Standard support</li>
-            </ul>
+              No minimums • No setup fees
+            </p>
+          </ion-card-header>
+          <ion-card-content style="padding: 0 24px 24px 24px">
+            <p
+              style="
+                color: #ffffff;
+                font-size: 1rem;
+                line-height: 1.7;
+                margin: 0 0 20px 0;
+                font-weight: 400;
+              "
+            >
+              Flexible, per-check identity verification for directors, PSCs and
+              individuals who need compliant UK filings. Ideal when you only
+              need a handful of checks per month with no long-term lock-in.
+            </p>
+
+            <div style="margin-bottom: 20px">
+              <h4
+                style="
+                  color: #ffffff;
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin: 0 0 10px 0;
+                "
+              >
+                Best for
+              </h4>
+              <ul
+                style="
+                  margin: 0 0 0 0;
+                  padding-left: 20px;
+                  color: #ffffff;
+                  line-height: 1.8;
+                  font-size: 0.95rem;
+                "
+              >
+                <li style="margin-bottom: 6px">
+                  Small practices (boutique law, accountancy, company
+                  secretarial firms)
+                </li>
+                <li style="margin-bottom: 6px">Startups & SPVs</li>
+                <li style="margin-bottom: 6px">
+                  Foreign / overseas directors needing a simple UK-compliant
+                  check
+                </li>
+              </ul>
+            </div>
+
+            <div style="margin-bottom: 24px">
+              <h4
+                style="
+                  color: #ffffff;
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin: 0 0 10px 0;
+                "
+              >
+                What's included
+              </h4>
+              <ul
+                style="
+                  margin: 0 0 0 0;
+                  padding-left: 20px;
+                  color: #ffffff;
+                  line-height: 1.8;
+                  font-size: 0.95rem;
+                "
+              >
+                <li style="margin-bottom: 6px">
+                  Secure passport/ID capture and selfie liveness
+                </li>
+                <li style="margin-bottom: 6px">
+                  PEP & sanctions screening with basic risk assessment
+                </li>
+                <li style="margin-bottom: 6px">
+                  Audit-ready record / report of checks performed
+                </li>
+                <li style="margin-bottom: 6px">
+                  Result within hours for straightforward cases
+                </li>
+                <li style="margin-bottom: 6px">
+                  Support from a UK-based ACSP familiar with Companies House
+                  requirements
+                </li>
+              </ul>
+            </div>
+
             <ion-button
               expand="block"
-              fill="outline"
-              color="primary"
+              fill="solid"
+              style="
+                --background: #ffffff;
+                --color: #1e40af;
+                --border-radius: 12px;
+                font-weight: 600;
+                margin-top: 8px;
+              "
               routerLink="/plans/payg"
             >
-              Choose Pay-as-you-go
+              Get Pay-as-you-go ID checks
             </ion-button>
           </ion-card-content>
         </ion-card>
@@ -134,43 +252,160 @@
               background: rgba(255, 255, 255, 0.1);
               border-radius: 50%;
               opacity: 0.3;
+              z-index: 1;
             "
           ></div>
-          <ion-card-header>
-            <ion-card-title style="color: #fff; font-weight: 700"
+          <ion-card-header
+            style="padding: 24px 24px 16px 24px; position: relative; z-index: 2"
+          >
+            <ion-card-title
+              style="
+                color: #ffffff !important;
+                font-weight: 700;
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              "
               >Company pack</ion-card-title
             >
             <div style="margin-top: 8px">
-              <span style="font-size: 32px; font-weight: 700; color: #fff"
+              <span
+                style="
+                  font-size: 36px;
+                  font-weight: 700;
+                  color: #ffffff !important;
+                  line-height: 1.2;
+                  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                "
                 >From £149</span
               >
-              <span style="color: rgba(255, 255, 255, 0.8); margin-left: 4px"
+              <span
+                style="
+                  color: #ffffff !important;
+                  margin-left: 4px;
+                  opacity: 1;
+                  font-size: 1rem;
+                  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+                "
                 >/ entity</span
               >
             </div>
-          </ion-card-header>
-          <ion-card-content>
-            <ul
+            <p
+              class="text-fine"
               style="
-                margin: 0 0 24px 0;
-                padding-left: 20px;
-                color: rgba(255, 255, 255, 0.9);
-                line-height: 1.6;
+                color: #ffffff !important;
+                font-size: 0.8rem;
+                margin: 10px 0 0 0;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                font-weight: 500;
+                opacity: 1 !important;
               "
             >
-              <li>Bulk verification discounts</li>
-              <li>Priority support</li>
-              <li>Advanced reporting</li>
-              <li>Dedicated account manager</li>
-              <li>Companies House filings included</li>
-            </ul>
+              Up to 4 checks • Filing support included
+            </p>
+          </ion-card-header>
+          <ion-card-content style="padding: 0 24px 24px 24px">
+            <p
+              style="
+                color: #ffffff;
+                font-size: 1rem;
+                line-height: 1.7;
+                margin: 0 0 20px 0;
+                font-weight: 400;
+              "
+            >
+              Bundled pricing for multiple director/PSC checks plus simple
+              filing support. Keeps costs predictable when onboarding several
+              individuals at once or preparing for Companies House updates.
+            </p>
+
+            <div style="margin-bottom: 20px">
+              <h4
+                style="
+                  color: #ffffff;
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin: 0 0 10px 0;
+                "
+              >
+                Best for
+              </h4>
+              <ul
+                style="
+                  margin: 0 0 0 0;
+                  padding-left: 20px;
+                  color: #ffffff;
+                  line-height: 1.8;
+                  font-size: 0.95rem;
+                "
+              >
+                <li style="margin-bottom: 6px">New incorporations</li>
+                <li style="margin-bottom: 6px">
+                  Reorganisations / changes of ownership or control
+                </li>
+                <li style="margin-bottom: 6px">
+                  Higher-risk or more complex entities where an end-to-end
+                  record is important
+                </li>
+              </ul>
+            </div>
+
+            <div style="margin-bottom: 24px">
+              <h4
+                style="
+                  color: #ffffff;
+                  font-size: 0.8rem;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  margin: 0 0 10px 0;
+                "
+              >
+                What's included
+              </h4>
+              <ul
+                style="
+                  margin: 0 0 0 0;
+                  padding-left: 20px;
+                  color: #ffffff;
+                  line-height: 1.8;
+                  font-size: 0.95rem;
+                "
+              >
+                <li style="margin-bottom: 6px">
+                  Up to 4 ID checks for directors and/or PSCs
+                </li>
+                <li style="margin-bottom: 6px">
+                  PSC/director register updates in line with the new rules
+                </li>
+                <li style="margin-bottom: 6px">
+                  Preparation support for the confirmation statement
+                </li>
+                <li style="margin-bottom: 6px">
+                  Simple compliance dossier / summary for your records
+                </li>
+                <li style="margin-bottom: 6px">
+                  Guidance from an ACSP on sequencing filings and handling edge
+                  cases
+                </li>
+              </ul>
+            </div>
+
             <ion-button
               expand="block"
               fill="solid"
-              color="light"
+              style="
+                --background: #ffffff;
+                --color: #7c3aed;
+                --border-radius: 12px;
+                font-weight: 600;
+                margin-top: 8px;
+              "
               routerLink="/plans/company"
             >
-              Choose Company pack
+              Talk to us about a Company pack
             </ion-button>
           </ion-card-content>
         </ion-card>
@@ -178,7 +413,7 @@
 
       <div style="text-align: center; margin-top: 48px">
         <div style="max-width: 600px; margin: 0 auto">
-          <h3 class="h3">What's included in Company pack?</h3>
+          <h3 class="h3">What's included in our plans</h3>
           <div
             style="
               display: grid;
@@ -203,7 +438,7 @@
               >
                 ✓
               </div>
-              <p class="text-fine">ID verification</p>
+              <p class="text-fine">ID verification bundle</p>
             </div>
             <div style="text-align: center">
               <div
@@ -221,7 +456,7 @@
               >
                 ✓
               </div>
-              <p class="text-fine">Companies House filings</p>
+              <p class="text-fine">Companies House filings support</p>
             </div>
             <div style="text-align: center">
               <div
@@ -265,6 +500,18 @@
 
       <div style="text-align: center; margin-top: 48px">
         <div style="max-width: 800px; margin: 0 auto">
+          <p
+            class="text-fine"
+            style="
+              color: var(--color-text-muted);
+              margin-bottom: 16px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              font-size: 0.75rem;
+            "
+          >
+            The small print (applies to all plans)
+          </p>
           <h3 class="h3">What's included in our service</h3>
           <div
             style="
@@ -279,7 +526,7 @@
               class="text-body"
               style="color: #1e293b; line-height: 1.6; margin-bottom: 24px"
             >
-              Our fixed fee includes:
+              All our plans include:
             </p>
             <ul
               style="
@@ -295,10 +542,7 @@
               <li>
                 Advice on completing verification for you and your stakeholders
               </li>
-              <li>
-                Registering with Companies House and obtaining the Verification
-                ID
-              </li>
+              <li>Companies House registration and Verification ID support</li>
               <li>Liaising with Companies House to resolve any issues</li>
             </ul>
           </div>
@@ -322,7 +566,7 @@
               class="text-body"
               style="color: #1e293b; line-height: 1.6; margin-bottom: 16px"
             >
-              For our fees, we assume:
+              These assumptions apply to all our fixed-fee work:
             </p>
             <ul style="color: #1e293b; line-height: 1.6; text-align: left">
               <li>
@@ -371,11 +615,25 @@
     </div>
   </section>
 
-  <section class="section" style="background: var(--color-surface)">
+  <section class="section" style="background: #f7f3ff">
     <div class="container">
       <div style="text-align: center; margin-bottom: 48px">
-        <h2 class="h2">Need a custom solution?</h2>
-        <p class="lead">
+        <h2
+          class="h2"
+          style="
+            color: #5c2d91;
+            background: linear-gradient(135deg, #5c2d91, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          "
+        >
+          Need a custom solution?
+        </h2>
+        <p
+          class="lead"
+          style="color: #1e293b; font-size: 1.2rem; font-weight: 500"
+        >
           We work with professional services firms and large organisations.
         </p>
       </div>
@@ -384,82 +642,159 @@
         style="
           display: grid;
           gap: 24px;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          max-width: 800px;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          max-width: 1000px;
           margin: 0 auto;
         "
       >
-        <div style="text-align: center">
+        <div
+          style="
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e0fa;
+            text-align: center;
+          "
+        >
           <div
             style="
-              width: 64px;
-              height: 64px;
+              width: 56px;
+              height: 56px;
               border-radius: 50%;
-              background: var(--color-primary);
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
               display: grid;
               place-items: center;
-              margin: 0 auto 16px;
+              margin: 0 auto 20px;
               font-size: 24px;
+              font-weight: 700;
             "
-          ></div>
-          <h3 class="h3">Enterprise Solutions</h3>
-          <p class="text-body">
+          >
+            🏢
+          </div>
+          <h3 class="h3" style="color: #1e293b; margin-bottom: 12px">
+            Enterprise Solutions
+          </h3>
+          <p class="text-body" style="color: #64748b; line-height: 1.6">
             Custom pricing for large organisations with high-volume requirements
           </p>
         </div>
 
-        <div style="text-align: center">
+        <div
+          style="
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e0fa;
+            text-align: center;
+          "
+        >
           <div
             style="
-              width: 64px;
-              height: 64px;
+              width: 56px;
+              height: 56px;
               border-radius: 50%;
-              background: var(--color-primary);
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
               display: grid;
               place-items: center;
-              margin: 0 auto 16px;
+              margin: 0 auto 20px;
               font-size: 24px;
+              font-weight: 700;
             "
-          ></div>
-          <h3 class="h3">Professional Services</h3>
-          <p class="text-body">
+          >
+            ⚖️
+          </div>
+          <h3 class="h3" style="color: #1e293b; margin-bottom: 12px">
+            Professional Services
+          </h3>
+          <p class="text-body" style="color: #64748b; line-height: 1.6">
             Specialised solutions for law firms, accountants, and corporate
             service providers
           </p>
         </div>
 
-        <div style="text-align: center">
+        <div
+          style="
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e0fa;
+            text-align: center;
+          "
+        >
           <div
             style="
-              width: 64px;
-              height: 64px;
+              width: 56px;
+              height: 56px;
               border-radius: 50%;
-              background: var(--color-primary);
+              background: linear-gradient(135deg, #5c2d91, #8a2be2);
               color: white;
               display: grid;
               place-items: center;
-              margin: 0 auto 16px;
+              margin: 0 auto 20px;
               font-size: 24px;
+              font-weight: 700;
             "
-          ></div>
-          <h3 class="h3">API Integration</h3>
-          <p class="text-body">
+          >
+            🔌
+          </div>
+          <h3 class="h3" style="color: #1e293b; margin-bottom: 12px">
+            API Integration
+          </h3>
+          <p class="text-body" style="color: #64748b; line-height: 1.6">
             Seamless integration with your existing systems and workflows
           </p>
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 32px">
+      <div style="text-align: center; margin-top: 48px">
         <ion-button
           size="large"
           fill="solid"
-          color="primary"
+          style="
+            --border-radius: 12px;
+            font-weight: 600;
+            padding: 16px 32px;
+            height: auto;
+            min-height: 48px;
+          "
           routerLink="/contact"
         >
           Request a proposal
         </ion-button>
+        <div
+          style="
+            margin-top: 24px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e0fa;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+          "
+        >
+          <p
+            class="text-body"
+            style="
+              color: #64748b;
+              margin: 0;
+              line-height: 1.6;
+              font-size: 0.95rem;
+            "
+          >
+            <strong style="color: #5c2d91"
+              >We'll review your requirements</strong
+            >
+            and come back with a tailored proposal, usually within
+            <strong style="color: #5c2d91">one business day</strong>.
+          </p>
+        </div>
       </div>
     </div>
   </section>

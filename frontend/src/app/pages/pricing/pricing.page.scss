@@ -1,0 +1,117 @@
+// Pricing page styles
+ion-content {
+  --background: #ffffff;
+}
+
+// Pricing cards - ensure text visibility
+ion-card {
+  // Ensure card headers are visible
+  ion-card-header {
+    position: relative;
+    z-index: 2;
+    
+    ion-card-title {
+      color: #ffffff !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+      font-weight: 700 !important;
+    }
+  }
+
+  // Ensure price text is visible
+  ion-card-header span {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  // Ensure all content text is visible
+  ion-card-content {
+    position: relative;
+    z-index: 2;
+    
+    p,
+    li,
+    h4 {
+      color: #ffffff !important;
+    }
+  }
+
+  // Button styling for better visibility
+  ion-button {
+    --border-radius: 12px;
+    font-weight: 600;
+    margin-top: 8px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// Target Ionic shadow DOM parts for card headers
+ion-card-header::part(native) {
+  color: #ffffff !important;
+}
+
+ion-card-title::part(native) {
+  color: #ffffff !important;
+}
+
+// Ensure decorative elements stay behind text
+ion-card > div[style*="position: absolute"] {
+  z-index: 1 !important;
+}
+
+// Additional specificity for card titles
+ion-card ion-card-header ion-card-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+// Ensure price spans are visible
+ion-card ion-card-header div span {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
+}
+
+// Ensure caption text under prices is visible
+ion-card ion-card-header p.text-fine {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+// Request proposal button styling
+ion-button[routerLink="/contact"] {
+  &::part(native) {
+    background: linear-gradient(135deg, #5c2d91, #8a2be2) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  &:hover::part(native) {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(92, 45, 145, 0.4) !important;
+  }
+
+  &:active::part(native) {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(92, 45, 145, 0.3) !important;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  ion-card {
+    ion-card-header {
+      padding: 20px 20px 12px 20px !important;
+    }
+
+    ion-card-content {
+      padding: 0 20px 20px 20px !important;
+    }
+  }
+}
+
