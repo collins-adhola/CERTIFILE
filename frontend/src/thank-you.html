@@ -6,22 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <script>
-      // Wait for page to load, then redirect to Angular route
-      (function() {
-        // Use replaceState to avoid adding to history
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState(null, '', '/thank-you');
-        }
-        // Reload to trigger Angular router
-        window.location.href = '/thank-you';
-      })();
+      // Redirect to Angular route immediately
+      // This will be handled by the SPA fallback in netlify.toml
+      window.location.replace('/thank-you');
     </script>
+    <meta http-equiv="refresh" content="0; url=/thank-you" />
   </head>
   <body>
-    <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center;">
-      <h1>Thank you!</h1>
-      <p>Redirecting...</p>
-      <p><a href="/thank-you">Click here if you are not redirected</a></p>
+    <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center; max-width: 600px; margin: 4rem auto;">
+      <h1 style="color: #5c2d91;">Thank you!</h1>
+      <p>Your enquiry has been received.</p>
+      <p><a href="/thank-you" style="color: #5c2d91; text-decoration: underline;">Click here if you are not redirected automatically</a></p>
     </div>
   </body>
 </html>
