@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  publish = "www"
+  publish = "frontend/www"
   command = "ng build --configuration production"
 
 [build.environment]
