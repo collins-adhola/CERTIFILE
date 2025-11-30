@@ -57,6 +57,13 @@ export const routes: Routes = [
           import('./pages/contact/contact.page').then((m) => m.ContactPage),
       },
       {
+        path: 'thank-you',
+        loadComponent: () =>
+          import('./pages/thank-you/thank-you.page').then(
+            (m) => m.ThankYouPage,
+          ),
+      },
+      {
         path: 'login',
         loadComponent: () =>
           import('./pages/auth/login.page').then((m) => m.LoginPage),

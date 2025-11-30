@@ -1,0 +1,32 @@
+// Thank you page styles
+ion-content {
+  --background: #f8fafc;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .section {
+    padding: 32px 0 !important;
+  }
+
+  .container {
+    padding: 0 16px !important;
+  }
+
+  // Stack buttons on mobile
+  .thank-you-cta-buttons {
+    flex-direction: column !important;
+    
+    ion-button {
+      width: 100% !important;
+      min-width: 100% !important;
+      flex: 1 1 100% !important;
+    }
+  }
+
+  // Adjust card padding on mobile
+  .section .container > div {
+    padding: 32px 24px !important;
+  }
+}
+
