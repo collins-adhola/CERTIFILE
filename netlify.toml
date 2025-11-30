@@ -6,7 +6,14 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# SPA fallback (Angular routes)
+# Serve static thank-you.html for Netlify Forms
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
+  force = false
+
+# SPA fallback (Angular routes) - must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"
