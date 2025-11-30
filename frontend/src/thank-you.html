@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <script>
-      // Wait a moment for any existing Angular app to initialize, then redirect
-      setTimeout(function() {
-        // Try to use Angular router if available, otherwise use location
-        if (window.location.pathname !== '/thank-you') {
-          window.location.href = '/thank-you';
+      // Simple, reliable redirect to Angular route
+      // The SPA fallback in netlify.toml will serve index.html for /thank-you
+      // which will then load Angular and route to the ThankYouPage component
+      (function() {
+        var targetUrl = '/thank-you';
+        // Use replace to avoid adding to browser history
+        if (window.location.pathname !== targetUrl) {
+          window.location.replace(targetUrl);
         }
-      }, 100);
-      
-      // Fallback: redirect immediately if Angular isn't detected
-      if (!document.querySelector('app-root')) {
-        window.location.replace('/thank-you');
-      }
+      })();
     </script>
-    <meta http-equiv="refresh" content="1; url=/thank-you" />
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/thank-you" />
+    </noscript>
   </head>
   <body>
     <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center; max-width: 600px; margin: 4rem auto;">
-      <h1 style="color: #5c2d91;">Thank you!</h1>
-      <p>Your enquiry has been received.</p>
-      <p>Redirecting to confirmation page...</p>
-      <p><a href="/thank-you" style="color: #5c2d91; text-decoration: underline;">Click here if you are not redirected</a></p>
+      <h1 style="color: #5c2d91; margin-bottom: 1rem;">Thank you!</h1>
+      <p style="margin-bottom: 1rem;">Your enquiry has been received.</p>
+      <p style="margin-bottom: 1rem;">Redirecting to confirmation page...</p>
+      <p><a href="/thank-you" style="color: #5c2d91; text-decoration: underline; font-weight: 500;">Click here if you are not redirected automatically</a></p>
     </div>
   </body>
 </html>
