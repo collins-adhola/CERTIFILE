@@ -6,6 +6,12 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Redirect /thank-you.html to /thank-you
+[[redirects]]
+  from = "/thank-you.html"
+  to = "/thank-you"
+  status = 301
+
 # SPA fallback (Angular routes) - must be last
 [[redirects]]
   from = "/*"
