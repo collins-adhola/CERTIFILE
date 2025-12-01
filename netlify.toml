@@ -6,14 +6,8 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Ensure thank-you.html is served as static file (before SPA fallback)
-[[redirects]]
-  from = "/thank-you.html"
-  to = "/thank-you.html"
-  status = 200
-  force = true
-
 # SPA fallback (Angular routes) - must be last
+# Note: Static files like thank-you.html are served automatically before this rule
 [[redirects]]
   from = "/*"
   to = "/index.html"
