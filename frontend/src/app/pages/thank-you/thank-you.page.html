@@ -1,139 +1,42 @@
-<ion-content>
-  <section class="section" style="background: #f8fafc; min-height: 100vh; display: flex; align-items: center; padding: 48px 0">
-    <div class="container" style="max-width: 720px; margin: 0 auto; padding: 0 24px">
-      <div
-        style="
-          background: white;
-          border-radius: 16px;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-          padding: 48px 40px;
-          border-top: 4px solid #5c2d91;
-          position: relative;
-        "
-      >
-        <!-- Purple accent icon/badge at top -->
-        <div
-          style="
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #5c2d91, #8a2be2);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(92, 45, 145, 0.3);
-          "
-        >
-          Enquiry received
+<ion-content class="thank-you-page" fullscreen>
+  <section class="thank-you-section">
+    <div class="thank-you-container">
+      <div class="thank-you-card">
+        <div class="thank-you-icon">✓</div>
+
+        <h1 class="thank-you-title">Thank you for your enquiry</h1>
+
+        <p class="thank-you-lead">
+          We've received your details and a member of the CertiFile Compliance
+          team will review them shortly.
+        </p>
+
+        <p class="thank-you-body">
+          We normally respond within one working day with next steps, any
+          clarification questions, and a clear outline of how we can support
+          your identity verification and Companies House compliance needs.
+        </p>
+
+        <ul class="thank-you-list">
+          <li>We'll review the information you've provided</li>
+          <li>We'll follow up by email if we need anything else</li>
+          <li>You'll receive a structured proposal or call invite</li>
+        </ul>
+
+        <div class="thank-you-meta">
+          <p>
+            If your request is urgent, please reply to our confirmation email
+            and mark it as time-sensitive.
+          </p>
         </div>
 
-        <!-- Main content -->
-        <div style="text-align: center; margin-top: 16px">
-          <h1
-            class="h1"
-            style="
-              color: #1e293b;
-              margin-bottom: 24px;
-              font-size: 2rem;
-              line-height: 1.2;
-            "
-          >
-            Thank you. We've received your enquiry.
-          </h1>
-
-          <p
-            class="lead"
-            style="
-              color: #64748b;
-              font-size: 1.1rem;
-              line-height: 1.6;
-              margin-bottom: 24px;
-              max-width: 600px;
-              margin-left: auto;
-              margin-right: auto;
-            "
-          >
-            We'll review your details and respond with next steps and a proposed timeline.
-          </p>
-
-          <p
-            class="text-body"
-            style="
-              color: #64748b;
-              font-size: 1rem;
-              line-height: 1.6;
-              margin-bottom: 32px;
-              max-width: 600px;
-              margin-left: auto;
-              margin-right: auto;
-            "
-          >
-            If your request is urgent, please email
-            <a
-              href="mailto:info@certifile.co.uk?subject=Urgent compliance enquiry"
-              style="color: #5c2d91; text-decoration: underline; font-weight: 500"
-              >info@certifile.co.uk</a
-            >
-            with the subject 'Urgent compliance enquiry'.
-          </p>
-
-          <!-- Call-to-action buttons -->
-          <div
-            class="thank-you-cta-buttons"
-            style="
-              display: flex;
-              gap: 16px;
-              justify-content: center;
-              flex-wrap: wrap;
-              margin-top: 32px;
-            "
-          >
-            <ion-button
-              size="large"
-              fill="solid"
-              color="primary"
-              style="
-                --border-radius: 12px;
-                font-weight: 600;
-                min-width: 180px;
-                flex: 0 0 auto;
-              "
-              routerLink="/"
-            >
-              Back to homepage
-            </ion-button>
-            <div style="margin-top: 16px">
-              <a
-                routerLink="/pricing"
-                style="
-                  color: #5c2d91;
-                  text-decoration: underline;
-                  font-weight: 500;
-                  font-size: 0.95rem;
-                "
-                >View Pricing</a
-              >
-              <span style="color: #cbd5e1; margin: 0 12px">|</span>
-              <a
-                routerLink="/services"
-                style="
-                  color: #5c2d91;
-                  text-decoration: underline;
-                  font-weight: 500;
-                  font-size: 0.95rem;
-                "
-                >Our Services</a
-              >
-            </div>
-          </div>
+        <div class="thank-you-actions">
+          <a routerLink="/" class="thank-you-primary"> Back to home </a>
+          <a routerLink="/services" class="thank-you-secondary">
+            View our services
+          </a>
         </div>
       </div>
     </div>
   </section>
 </ion-content>
-
