@@ -67,7 +67,7 @@ export class ContactPage implements OnInit, AfterViewInit {
 
   constructor(private formBuilder: FormBuilder) {
     // Register icons
-    addIcons({ 'checkmark-circle': checkmarkCircle });
+    addIcons({checkmarkCircle,'checkmarkCircle':checkmarkCircle});
 
     this.contactForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],

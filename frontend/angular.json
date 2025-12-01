@@ -51,6 +51,11 @@
                 "glob": "offline.html",
                 "input": "src",
                 "output": ""
+              },
+              {
+                "glob": "thank-you.html",
+                "input": "src",
+                "output": ""
               }
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
@@ -143,6 +148,11 @@
               },
               {
                 "glob": "offline.html",
+                "input": "src",
+                "output": ""
+              },
+              {
+                "glob": "thank-you.html",
                 "input": "src",
                 "output": ""
               }
