@@ -227,15 +227,15 @@ export class ContactPage implements OnInit, AfterViewInit {
         console.error('Form submission error:', error);
         // On localhost, show success for testing; on production, show error
         if (isLocalhost) {
-          this.showToast = true;
-          this.contactForm.reset();
+      this.showToast = true;
+      this.contactForm.reset();
           Object.keys(this.contactForm.controls).forEach((key) => {
             this.contactForm.get(key)?.setErrors(null);
             this.contactForm.get(key)?.markAsUntouched();
           });
-        } else {
+    } else {
           alert('There was an error submitting your form. Please try again.');
-        }
+    }
       });
   }
 

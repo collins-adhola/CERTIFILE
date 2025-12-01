@@ -6,9 +6,9 @@
     style="background: #f7f3ff; padding: 4rem 0; scroll-margin-top: 80px"
   >
     <div class="container" style="max-width: 1200px">
-      <div
+        <div
         class="contact-grid-container"
-        style="
+          style="
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 4rem;
@@ -20,35 +20,35 @@
           <div>
             <h2
               class="h2"
-              style="
+          style="
                 font-size: 2.5rem;
-                font-weight: 700;
+            font-weight: 700;
                 color: #722bb9;
                 margin-bottom: 1.5rem;
-                line-height: 1.2;
-              "
-            >
+            line-height: 1.2;
+          "
+        >
               Get in touch
             </h2>
-            <p
-              style="
+        <p
+          style="
                 font-size: 1.125rem;
                 color: #475569;
                 line-height: 1.7;
                 margin-bottom: 1rem;
-              "
-            >
+          "
+        >
               Get help from our team of experts, schedule a live demo, explore use
               cases tailored to your team, and more.
-            </p>
+        </p>
             <p
-              style="
+          style="
                 font-size: 1.125rem;
                 color: #475569;
                 line-height: 1.7;
                 margin-bottom: 2rem;
-              "
-            >
+            "
+          >
               Simply fill out this form to connect with our team, get started, and
               begin verifying your customers today.
             </p>
@@ -79,18 +79,18 @@
               padding: 2.5rem;
               border-radius: 12px;
               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            "
-          >
-            <form
+          "
+        >
+          <form
               name="contact"
               method="POST"
               action="/thank-you"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              [formGroup]="contactForm"
-              (ngSubmit)="onSubmit()"
-              aria-label="Contact form"
-            >
+            [formGroup]="contactForm"
+            (ngSubmit)="onSubmit()"
+            aria-label="Contact form"
+          >
               <!-- Required by Netlify -->
               <input type="hidden" name="form-name" value="contact" />
               <!-- Honeypot -->
@@ -101,162 +101,162 @@
                 tabindex="-1"
                 autocomplete="off"
               />
-              <ion-item>
-                <ion-label position="stacked" for="name-input"
-                  >Full Name *</ion-label
-                >
-                <ion-input
-                  id="name-input"
+            <ion-item>
+              <ion-label position="stacked" for="name-input"
+                >Full Name *</ion-label
+              >
+              <ion-input
+                id="name-input"
                   name="name"
-                  formControlName="name"
-                  placeholder="Your full name"
-                  aria-describedby="name-error"
-                  [class.ion-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
-                >
-                </ion-input>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('name')"
-                id="name-error"
-                role="alert"
-                class="error-message"
+                formControlName="name"
+                placeholder="Your full name"
+                aria-describedby="name-error"
+                [class.ion-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
               >
-                {{ getFieldError('name') }}
-              </div>
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('name')"
+              id="name-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('name') }}
+            </div>
 
-              <ion-item>
-                <ion-label position="stacked" for="email-input"
-                  >Email Address *</ion-label
-                >
-                <ion-input
-                  id="email-input"
+            <ion-item>
+              <ion-label position="stacked" for="email-input"
+                >Email Address *</ion-label
+              >
+              <ion-input
+                id="email-input"
                   name="email"
-                  formControlName="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  aria-describedby="email-error"
-                  [class.ion-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
-                >
-                </ion-input>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('email')"
-                id="email-error"
-                role="alert"
-                class="error-message"
+                formControlName="email"
+                type="email"
+                placeholder="your@email.com"
+                aria-describedby="email-error"
+                [class.ion-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
               >
-                {{ getFieldError('email') }}
-              </div>
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('email')"
+              id="email-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('email') }}
+            </div>
 
-              <ion-item>
-                <ion-label position="stacked" for="phone-input"
-                  >Phone Number</ion-label
-                >
-                <ion-input
-                  id="phone-input"
+            <ion-item>
+              <ion-label position="stacked" for="phone-input"
+                >Phone Number</ion-label
+              >
+              <ion-input
+                id="phone-input"
                   name="phone"
-                  formControlName="phone"
-                  type="tel"
-                  placeholder="+44 20 1234 5678"
-                  aria-describedby="phone-error"
-                  [class.ion-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
-                >
-                </ion-input>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('phone')"
-                id="phone-error"
-                role="alert"
-                class="error-message"
+                formControlName="phone"
+                type="tel"
+                placeholder="+44 20 1234 5678"
+                aria-describedby="phone-error"
+                [class.ion-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
               >
-                {{ getFieldError('phone') }}
-              </div>
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('phone')"
+              id="phone-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('phone') }}
+            </div>
 
-              <ion-item>
-                <ion-label position="stacked" for="company-input"
-                  >Company Name *</ion-label
-                >
-                <ion-input
-                  id="company-input"
+            <ion-item>
+              <ion-label position="stacked" for="company-input"
+                >Company Name *</ion-label
+              >
+              <ion-input
+                id="company-input"
                   name="company"
-                  formControlName="company"
-                  placeholder="Your company name"
-                  aria-describedby="company-error"
-                  [class.ion-invalid]="contactForm.get('company')?.invalid && contactForm.get('company')?.touched"
-                >
-                </ion-input>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('company')"
-                id="company-error"
-                role="alert"
-                class="error-message"
+                formControlName="company"
+                placeholder="Your company name"
+                aria-describedby="company-error"
+                [class.ion-invalid]="contactForm.get('company')?.invalid && contactForm.get('company')?.touched"
               >
-                {{ getFieldError('company') }}
-              </div>
+              </ion-input>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('company')"
+              id="company-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('company') }}
+            </div>
 
-              <ion-item>
-                <ion-label position="stacked" for="topic-select"
-                  >Service Required *</ion-label
-                >
-                <ion-select
-                  id="topic-select"
+            <ion-item>
+              <ion-label position="stacked" for="topic-select"
+                >Service Required *</ion-label
+              >
+              <ion-select
+                id="topic-select"
                   name="topic"
-                  formControlName="topic"
-                  placeholder="Select a service"
-                  aria-describedby="topic-error"
-                  [class.ion-invalid]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
-                >
-                  <ion-select-option
-                    *ngFor="let topic of topics"
-                    [value]="topic.value"
-                  >
-                    {{ topic.label }}
-                  </ion-select-option>
-                </ion-select>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('topic')"
-                id="topic-error"
-                role="alert"
-                class="error-message"
+                formControlName="topic"
+                placeholder="Select a service"
+                aria-describedby="topic-error"
+                [class.ion-invalid]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
               >
-                {{ getFieldError('topic') }}
-              </div>
-
-              <ion-item>
-                <ion-label position="stacked" for="message-textarea"
-                  >Message *</ion-label
+                <ion-select-option
+                  *ngFor="let topic of topics"
+                  [value]="topic.value"
                 >
-                <ion-textarea
-                  id="message-textarea"
+                  {{ topic.label }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('topic')"
+              id="topic-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('topic') }}
+            </div>
+
+            <ion-item>
+              <ion-label position="stacked" for="message-textarea"
+                >Message *</ion-label
+              >
+              <ion-textarea
+                id="message-textarea"
                   name="message"
-                  formControlName="message"
-                  placeholder="Tell us about your compliance requirements..."
-                  rows="4"
-                  aria-describedby="message-error"
-                  [class.ion-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
-                >
-                </ion-textarea>
-              </ion-item>
-              <div
-                *ngIf="getFieldError('message')"
-                id="message-error"
-                role="alert"
-                class="error-message"
+                formControlName="message"
+                placeholder="Tell us about your compliance requirements..."
+                rows="4"
+                aria-describedby="message-error"
+                [class.ion-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
               >
-                {{ getFieldError('message') }}
-              </div>
+              </ion-textarea>
+            </ion-item>
+            <div
+              *ngIf="getFieldError('message')"
+              id="message-error"
+              role="alert"
+              class="error-message"
+            >
+              {{ getFieldError('message') }}
+            </div>
 
-              <ion-button
-                expand="block"
-                type="submit"
-                fill="solid"
-                color="primary"
+            <ion-button
+              expand="block"
+              type="submit"
+              fill="solid"
+              color="primary"
                 class="contact-form-submit-btn"
                 aria-label="Submit form"
                 [disabled]="contactForm.invalid"
-                style="
+              style="
                   --background: #059669;
                   --background-activated: #047857;
                   --color: white;
@@ -265,11 +265,11 @@
                   padding: 16px;
                   border-radius: 8px;
                   margin-top: 1.5rem;
-                "
+              "
               >
                 Talk to us
-              </ion-button>
-            </form>
+            </ion-button>
+          </form>
           </div>
         </div>
       </div>

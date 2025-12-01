@@ -315,7 +315,7 @@ ion-button.cf-nav-link.cf-nav-active::part(native) {
         background: #5c2d91;
         border-radius: 50%;
         box-shadow: 0 0 0 2px rgba(92, 45, 145, 0.2);
-      }
+}
 
       strong {
         font-weight: 600;
@@ -339,11 +339,11 @@ ion-button.cf-nav-link.cf-nav-active::part(native) {
       &::before {
         background: rgba(255, 255, 255, 0.8);
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-      }
+  }
 
       strong {
         color: #ffffff;
-      }
+  }
 
       span {
         color: rgba(255, 255, 255, 0.9);

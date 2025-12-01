@@ -717,9 +717,9 @@
             <li>Secure storage with a 5-year record-keeping policy.</li>
             <li>Clear SAR escalation route to the NCA (no tipping-off).</li>
             <li>Supervised by the Chartered Governance Institute UK &amp; Ireland (CGI UK).</li>
-            <li>ACSP registration: [Your ACSP reference].</li>
-          </ul>
-        </div>
+          <li>ACSP registration: [Your ACSP reference].</li>
+        </ul>
+      </div>
 
         <!-- Onboarding pack tab -->
         <div *ngIf="activeComplianceTab === 'pack'">
@@ -736,7 +736,7 @@
             <li>KYC risk assessment.</li>
             <li>PEP/sanctions screen.</li>
             <li>Companies House filing log.</li>
-          </ul>
+        </ul>
         </div>
       </div>
     </div>
@@ -939,7 +939,7 @@
             class="home-faq-button"
             (click)="toggleFaq(i)"
             [attr.aria-expanded]="openFaqIndex === i"
-          >
+        >
             <h3 class="home-faq-question">{{ faq.question }}</h3>
             <ion-icon
               [name]="openFaqIndex === i ? 'chevron-up' : 'chevron-down'"
@@ -948,10 +948,10 @@
           </button>
           <div class="home-faq-answer" *ngIf="openFaqIndex === i">
             {{ faq.answer }}
-          </div>
         </div>
-      </div>
-    </div>
+        </div>
+        </div>
+        </div>
   </section>
 
   <!-- Get in Touch Section -->
@@ -961,14 +961,14 @@
     style="background: #ffffff; padding: 4rem 0; scroll-margin-top: 80px"
   >
     <div class="container" style="max-width: 1200px">
-      <div
-        style="
+        <div
+          style="
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 4rem;
           align-items: center;
-        "
-      >
+          "
+        >
         <!-- Left Side: Text and Image -->
         <div>
           <h2
@@ -981,21 +981,21 @@
               line-height: 1.2;
             "
           >
-            Get in touch
-          </h2>
-          <p
-            style="
+          Get in touch
+        </h2>
+        <p
+          style="
               font-size: 1.125rem;
               color: #475569;
-              line-height: 1.7;
+            line-height: 1.7;
               margin-bottom: 1rem;
-            "
-          >
+          "
+        >
             Get help from our team of experts, schedule a live demo, explore use
             cases tailored to your team, and more.
-          </p>
+        </p>
           <p
-            style="
+        style="
               font-size: 1.125rem;
               color: #475569;
               line-height: 1.7;
@@ -1005,15 +1005,15 @@
             Simply fill out this form to connect with our team, get started, and
             begin verifying your customers today.
           </p>
-          <div
-            style="
+      <div
+        style="
               width: 100%;
               aspect-ratio: 4/5;
-              border-radius: 12px;
+          border-radius: 12px;
               overflow: hidden;
               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            "
-          >
+        "
+      >
             <img
               src="assets/image/cover3.jpeg"
               alt="Professional identity verification"
@@ -1023,10 +1023,10 @@
         </div>
 
         <!-- Right Side: Form -->
-        <div>
+          <div>
           <div
             class="contact-form-card"
-            style="
+              style="
               background: white;
               padding: 2.5rem;
               border-radius: 12px;
@@ -1046,8 +1046,8 @@
               <!-- Required by Netlify -->
               <input type="hidden" name="form-name" value="contact" />
               <!-- Honeypot -->
-              <input
-                type="text"
+            <input
+              type="text"
                 name="bot-field"
                 class="contact-hidden"
                 tabindex="-1"
@@ -1077,7 +1077,7 @@
                 class="error-message"
               >
                 {{ getFieldError('name') }}
-              </div>
+          </div>
 
               <ion-item>
                 <ion-label position="stacked" for="email-input"
@@ -1087,7 +1087,7 @@
                   id="email-input"
                   name="email"
                   formControlName="email"
-                  type="email"
+              type="email"
                   placeholder="your@email.com"
                   aria-describedby="email-error"
                   [class.ion-invalid]="
@@ -1104,7 +1104,7 @@
                 class="error-message"
               >
                 {{ getFieldError('email') }}
-              </div>
+          </div>
 
               <ion-item>
                 <ion-label position="stacked" for="phone-input"
@@ -1114,7 +1114,7 @@
                   id="phone-input"
                   name="phone"
                   formControlName="phone"
-                  type="tel"
+              type="tel"
                   placeholder="+44 20 1234 5678"
                   aria-describedby="phone-error"
                   [class.ion-invalid]="
@@ -1131,7 +1131,7 @@
                 class="error-message"
               >
                 {{ getFieldError('phone') }}
-              </div>
+          </div>
 
               <ion-item>
                 <ion-label position="stacked" for="company-input"
@@ -1146,8 +1146,8 @@
                   [class.ion-invalid]="
                     contactForm.get('company')?.invalid &&
                     contactForm.get('company')?.touched
-                  "
-                >
+              "
+            >
                 </ion-input>
               </ion-item>
               <div
@@ -1157,7 +1157,7 @@
                 class="error-message"
               >
                 {{ getFieldError('company') }}
-              </div>
+          </div>
 
               <ion-item>
                 <ion-label position="stacked" for="topic-select"
@@ -1200,12 +1200,12 @@
                   name="message"
                   formControlName="message"
                   placeholder="Tell us about your compliance requirements..."
-                  rows="4"
+              rows="4"
                   aria-describedby="message-error"
                   [class.ion-invalid]="
                     contactForm.get('message')?.invalid &&
                     contactForm.get('message')?.touched
-                  "
+              "
                 >
                 </ion-textarea>
               </ion-item>
@@ -1216,29 +1216,29 @@
                 class="error-message"
               >
                 {{ getFieldError('message') }}
-              </div>
+          </div>
 
-              <ion-button
+          <ion-button
                 expand="block"
                 type="submit"
-                fill="solid"
-                color="primary"
+            fill="solid"
+            color="primary"
                 class="contact-form-submit-btn"
                 aria-label="Submit form"
                 [disabled]="contactForm.invalid"
-                style="
+            style="
                   --background: #059669;
                   --background-activated: #047857;
                   --color: white;
-                  font-weight: 600;
+              font-weight: 600;
                   font-size: 1rem;
                   padding: 16px;
                   border-radius: 8px;
                   margin-top: 1.5rem;
-                "
-              >
+            "
+          >
                 Talk to us
-              </ion-button>
+          </ion-button>
             </form>
           </div>
         </div>
