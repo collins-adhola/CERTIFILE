@@ -1034,19 +1034,18 @@
             "
           >
             <form
-              name="contact"
+              name="home-contact"
               method="POST"
-              action="/form-thank-you.html"
+              action="/"
               data-netlify="true"
               netlify-honeypot="bot-field"
               [formGroup]="contactForm"
+              (ngSubmit)="onSubmit($event)"
               aria-label="Contact form"
             >
-              <!-- Required by Netlify -->
-              <input type="hidden" name="form-name" value="contact" />
-              <!-- Honeypot -->
-            <input
-              type="text"
+              <input type="hidden" name="form-name" value="home-contact" />
+              <input
+                type="text"
                 name="bot-field"
                 class="contact-hidden"
                 tabindex="-1"

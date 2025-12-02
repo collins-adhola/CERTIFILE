@@ -185,17 +185,13 @@
         <form
           name="company-pack-enquiry"
           method="POST"
-          action="/form-thank-you.html"
+          action="/"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          (ngSubmit)="onSubmit($event)"
           class="company-form"
         >
-          <!-- Netlify form name -->
-          <input
-            type="hidden"
-            name="form-name"
-            value="company-pack-enquiry"
-          />
+          <input type="hidden" name="form-name" value="company-pack-enquiry" />
 
           <!-- Hidden plan field -->
           <input type="hidden" name="plan" value="Company Pack" />

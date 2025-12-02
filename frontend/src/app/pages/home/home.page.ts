@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -108,7 +108,7 @@ export class HomePage implements OnInit {
     { value: 'other', label: 'Other' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     addIcons({
       shieldOutline,
       lockClosedOutline,
@@ -134,6 +134,31 @@ export class HomePage implements OnInit {
 
   toggleFaq(index: number): void {
     this.openFaqIndex = this.openFaqIndex === index ? null : index;
+  }
+
+  onSubmit(event: Event): void {
+    if (this.contactForm.invalid) {
+      event.preventDefault();
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+
+    event.preventDefault();
+
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Network error');
+        this.router.navigate(['/thank-you']);
+      })
+      .catch((error) => {
+        console.error('Form submission error', error);
+      });
   }
 
   getFieldError(fieldName: string): string {

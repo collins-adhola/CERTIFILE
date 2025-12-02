@@ -202,14 +202,14 @@
 
       <div class="payg-form-wrapper">
         <form
-          name="payg-enquiry"
+          name="payg-plan-enquiry"
           method="POST"
-          action="/form-thank-you.html"
+          action="/"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          (ngSubmit)="onSubmit($event)"
         >
-          <!-- Netlify form name -->
-          <input type="hidden" name="form-name" value="payg-enquiry" />
+          <input type="hidden" name="form-name" value="payg-plan-enquiry" />
 
           <!-- Hidden plan field -->
           <input type="hidden" name="plan" value="Pay-as-you-go ID Check" />
