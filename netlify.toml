@@ -1,7 +1,7 @@
 [build]
   base = "frontend"
   publish = "www"
-  command = "ng build --configuration production"
+  command = "ng build --configuration production && cp src/form-thank-you.html www/form-thank-you.html"
 
 [build.environment]
   NODE_VERSION = "20"
