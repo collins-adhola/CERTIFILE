@@ -5,19 +5,115 @@
     <title>Thank You - CertiFile Compliance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <meta http-equiv="refresh" content="0; url=/thank-you" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: #f8fafc;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        color: #1e293b;
+      }
+
+      .container {
+        max-width: 640px;
+        width: 100%;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      }
+
+      .btn-primary {
+        background: #5c2d91;
+        color: #ffffff;
+        box-shadow: 0 8px 18px rgba(76, 29, 149, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(76, 29, 149, 0.35);
+      }
+
+      .btn-secondary {
+        background: #f3e8ff;
+        color: #5c2d91;
+      }
+
+      .btn-secondary:hover {
+        background: #e9d5ff;
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          padding: 2rem 1.5rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div style="font-family: system-ui, -apple-system, sans-serif; padding: 2rem; text-align: center; max-width: 600px; margin: 4rem auto;">
-      <h1 style="color: #5c2d91; margin-bottom: 1rem;">Thank you!</h1>
-      <p style="margin-bottom: 1rem;">Your enquiry has been received.</p>
-      <p style="margin-bottom: 1rem;">Redirecting to confirmation page...</p>
-      <p>
-        <a href="/thank-you" style="color: #5c2d91; text-decoration: underline; font-weight: 500;">
-          Click here if you are not redirected automatically
-        </a>
-      </p>
+    <div class="container">
+      <div class="card">
+        <h1>Thank you for your enquiry</h1>
+        <p>
+          We've received your details and a member of the CertiFile Compliance
+          team will review them shortly. We'll be in touch soon.
+        </p>
+        <div class="actions">
+          <a href="/" class="btn btn-primary">Back to home</a>
+          <a href="/services" class="btn btn-secondary">View our services</a>
+        </div>
+      </div>
     </div>
   </body>
 </html>
-
