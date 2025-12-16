@@ -330,9 +330,10 @@
                 letter-spacing: 0.5px;
               "
               aria-label="Send your enquiry"
-              [disabled]="contactForm.invalid"
+              [disabled]="contactForm.invalid || isSubmitting"
             >
-              Send Enquiry
+              <span *ngIf="!isSubmitting">Send Enquiry</span>
+              <span *ngIf="isSubmitting">Sending...</span>
             </ion-button>
           </form>
         </div>
@@ -859,7 +860,17 @@
     [isOpen]="showToast"
     message="Enquiry sent successfully. We'll reply within 24 hours."
     duration="4000"
+    color="success"
     (didDismiss)="showToast = false"
+  >
+  </ion-toast>
+
+  <ion-toast
+    [isOpen]="showErrorToast"
+    [message]="errorMessage"
+    duration="5000"
+    color="danger"
+    (didDismiss)="showErrorToast = false"
   >
   </ion-toast>
 </ion-content>
