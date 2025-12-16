@@ -4,7 +4,15 @@ const cors = require("cors");
 function createApp() {
   const app = express();
 
-  app.use(cors());
+  // Enhanced CORS configuration
+  app.use(
+    cors({
+      origin: true, // Allow all origins (for development)
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    }),
+  );
   app.use(express.json());
 
   // TEMP: in-memory storage for submissions (for MVP testing)
@@ -12,7 +20,7 @@ function createApp() {
 
   // Health check route
   app.get("/health", (req, res) => {
-    res.json({ status: "okey" });
+    res.json({ status: "okey Collins - it works" });
   });
 
   // ✅ Public endpoint – create a submission (used by your Certifile form)

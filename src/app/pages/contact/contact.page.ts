@@ -108,19 +108,26 @@ export class ContactPage implements OnInit {
             this.contactForm.reset();
           },
           error: (err) => {
-            console.error('Submission failed:', err);
+            console.error('Submission failed - Full error object:', err);
+            console.error('Error status:', err.status);
+            console.error('Error message:', err.message);
+            console.error('Error name:', err.name);
             this.isSubmitting = false;
 
             // Determine error message based on error type
-            if (err.status === 0 || err.name === 'HttpErrorResponse') {
-              // Network error - backend not reachable
+            if (!err.status || err.status === 0) {
+              // Network error - backend not reachable or CORS issue
               this.errorMessage =
-                'Unable to connect to server. Please ensure the backend server is running on port 5050.';
+                'Unable to connect to server. Please check: 1) Backend is running on port 5050, 2) No CORS blocking, 3) Network connectivity.';
             } else if (err.status === 400) {
               // Validation error from backend
               this.errorMessage =
                 err?.error?.error?.message ||
                 'Invalid form data. Please check your inputs.';
+            } else if (err.status === 404) {
+              // Endpoint not found
+              this.errorMessage =
+                'API endpoint not found. Please check the backend routes.';
             } else if (err.status >= 500) {
               // Server error
               this.errorMessage = 'Server error. Please try again later.';
@@ -128,7 +135,7 @@ export class ContactPage implements OnInit {
               // Other errors
               this.errorMessage =
                 err?.error?.error?.message ||
-                'Failed to submit form. Please try again.';
+                `Failed to submit form (Status: ${err.status}). Please try again.`;
             }
 
             this.showErrorToast = true;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import {
   FormBuilder,
   FormGroup,
@@ -66,6 +67,9 @@ export class HomePage implements OnInit {
   openFaqIndex: number | null = null;
   contactForm: FormGroup;
   showToast = false;
+  showErrorToast = false;
+  errorMessage = '';
+  isSubmitting = false;
   activeComplianceTab: 'compliance' | 'pack' = 'compliance';
 
   faqs: FaqItem[] = [
@@ -108,7 +112,11 @@ export class HomePage implements OnInit {
     { value: 'other', label: 'Other' },
   ];
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+  ) {
     addIcons({
       shieldOutline,
       lockClosedOutline,
@@ -137,27 +145,73 @@ export class HomePage implements OnInit {
   }
 
   onSubmit(event: Event): void {
-    if (this.contactForm.invalid) {
-      event.preventDefault();
+    event.preventDefault();
+
+    if (this.contactForm.invalid || this.isSubmitting) {
       this.contactForm.markAllAsTouched();
       return;
     }
 
-    event.preventDefault();
+    this.isSubmitting = true;
+    const payload = this.contactForm.value;
 
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
+    // Map contact form fields to your backend "submission" fields (MVP)
+    const submissionPayload = {
+      fullName: payload.name,
+      email: payload.email,
+      phone: payload.phone || undefined,
+      documentType: 'contact-enquiry', // required by backend right now
+      documentNumber: payload.company || undefined,
+      issuedBy: payload.topic || undefined,
+      fileUrl: undefined,
+    };
 
-    fetch('/', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('Network error');
-        this.router.navigate(['/thank-you']);
-      })
-      .catch((error) => {
-        console.error('Form submission error', error);
+    this.http
+      .post('http://localhost:5050/api/v1/submissions', submissionPayload)
+      .subscribe({
+        next: (res: any) => {
+          console.log('Submission success:', res);
+          this.isSubmitting = false;
+          this.showToast = true;
+          this.contactForm.reset();
+          // Navigate to thank you page after a short delay
+          setTimeout(() => {
+            this.router.navigate(['/thank-you']);
+          }, 1500);
+        },
+        error: (err) => {
+          console.error('Submission failed - Full error object:', err);
+          console.error('Error status:', err.status);
+          console.error('Error message:', err.message);
+          console.error('Error name:', err.name);
+          this.isSubmitting = false;
+
+          // Determine error message based on error type
+          if (!err.status || err.status === 0) {
+            // Network error - backend not reachable or CORS issue
+            this.errorMessage =
+              'Unable to connect to server. Please check: 1) Backend is running on port 5050, 2) No CORS blocking, 3) Network connectivity.';
+          } else if (err.status === 400) {
+            // Validation error from backend
+            this.errorMessage =
+              err?.error?.error?.message ||
+              'Invalid form data. Please check your inputs.';
+          } else if (err.status === 404) {
+            // Endpoint not found
+            this.errorMessage =
+              'API endpoint not found. Please check the backend routes.';
+          } else if (err.status >= 500) {
+            // Server error
+            this.errorMessage = 'Server error. Please try again later.';
+          } else {
+            // Other errors
+            this.errorMessage =
+              err?.error?.error?.message ||
+              `Failed to submit form (Status: ${err.status}). Please try again.`;
+          }
+
+          this.showErrorToast = true;
+        },
       });
   }
 

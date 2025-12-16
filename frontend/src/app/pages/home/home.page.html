@@ -1223,7 +1223,7 @@
             color="primary"
                 class="contact-form-submit-btn"
                 aria-label="Submit form"
-                [disabled]="contactForm.invalid"
+                [disabled]="contactForm.invalid || isSubmitting"
             style="
                   --background: #059669;
                   --background-activated: #047857;
@@ -1235,7 +1235,8 @@
                   margin-top: 1.5rem;
             "
           >
-                Talk to us
+                <span *ngIf="!isSubmitting">Talk to us</span>
+                <span *ngIf="isSubmitting">Sending...</span>
           </ion-button>
             </form>
           </div>
@@ -1298,5 +1299,15 @@
     class="contact-success-toast"
   >
     <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+  </ion-toast>
+
+  <ion-toast
+    [isOpen]="showErrorToast"
+    [message]="errorMessage"
+    duration="5000"
+    position="top"
+    color="danger"
+    (didDismiss)="showErrorToast = false"
+  >
   </ion-toast>
 </ion-content>
