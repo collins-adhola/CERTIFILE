@@ -170,3 +170,173 @@ ionic serve
 - Run `ng serve` for development server
 - Run `ng build` for production build
 - Run `ng test` for unit tests
+
+
+
+## Certifile Backend – MVP Specification
+
+### 1. Purpose
+
+Certifile is a secure backend service for **collecting, storing and verifying identity and document data** (e.g. IDs, certificates, licences) submitted via web forms or future frontends.
+
+The MVP focuses on:
+
+- Accepting submissions from public forms (Certifile website).
+- Storing personal & document data securely in a structured database.
+- Allowing internal users (admins) to review and change the status of submissions.
+- Recording a basic audit trail for key actions.
+
+---
+
+### 2. MVP Objectives
+
+1. **Single source of truth**  
+   All submitted IDs/documents and related personal data are stored in a single PostgreSQL database.
+
+2. **Simple verification workflow**  
+   Each submission can move through clear statuses:  
+   `received → in_review → approved / rejected`.
+
+3. **Basic access control**  
+   - Public, unauthenticated endpoint to create a submission.  
+   - Authenticated admin endpoints to list, review and update statuses.
+
+4. **Auditability**  
+   Record who did what and when (at least for admin actions on submissions).
+
+---
+
+### 3. In-Scope Features (MVP)
+
+#### 3.1 Public Form Submission API
+
+- `POST /api/v1/submissions`
+  - Used by the frontend form(s).
+  - Accepts applicant details and document metadata.
+  - Optionally includes a `fileUrl` (actual file storage can be handled by another service at first).
+  - Automatically sets status to `received`.
+  - Returns a reference ID for tracking.
+
+**Example fields (can be adjusted):**
+- Applicant:
+  - `fullName`
+  - `email`
+  - `phone` (optional)
+- Document:
+  - `documentType` (passport, ID card, certificate, etc.)
+  - `documentNumber` (optional)
+  - `issuedBy` / `issuedCountry`
+  - `issuedOn` (optional)
+  - `expiresOn` (optional)
+  - `fileUrl` (optional – link/path to stored file)
+
+#### 3.2 Admin Authentication
+
+- `POST /api/v1/auth/register` (can be admin-seeded only in production)
+- `POST /api/v1/auth/login`
+- `POST /api/v1/auth/refresh`
+- `GET /api/v1/auth/me`
+
+Basics:
+- JWT-based authentication (access + refresh tokens).
+- Roles: `admin` (for now you can keep just admins; later add `reviewer`, `client`, etc.).
+
+#### 3.3 Admin Submission Management
+
+All endpoints below require a valid admin JWT.
+
+- `GET /api/v1/submissions`
+  - List submissions.
+  - Filters: `status`, `email`, date range.
+
+- `GET /api/v1/submissions/:id`
+  - Fetch full details of a single submission.
+
+- `PATCH /api/v1/submissions/:id`
+  - Update fields such as internal notes or corrected metadata (not personal data rules).
+
+- `POST /api/v1/submissions/:id/status`
+  - Change status along the workflow:
+    - From `received` → `in_review`
+    - From `in_review` → `approved` or `rejected`
+  - Body includes:
+    ```json
+    {
+      "status": "in_review | approved | rejected",
+      "reason": "Optional reason, especially on rejection"
+    }
+    ```
+
+#### 3.4 Audit Log
+
+- Automatically create an audit record when:
+  - A submission is created.
+  - An admin updates a submission status.
+  - An admin edits key fields on a submission.
+
+- Admin endpoint:
+  - `GET /api/v1/audit-logs`
+    - Filters: `submissionId`, `performedBy`, `action`, date range.
+
+---
+
+### 4. Data Model (Conceptual)
+
+MVP Prisma-style models (names can be adjusted):
+
+**User**
+- `id`
+- `email`
+- `passwordHash`
+- `name`
+- `role` (`admin`)
+- `createdAt`
+- `updatedAt`
+
+**Submission**
+- `id`
+- `fullName`
+- `email`
+- `phone` (optional)
+- `documentType`
+- `documentNumber` (optional)
+- `issuedBy` (optional)
+- `issuedOn` (optional)
+- `expiresOn` (optional)
+- `fileUrl` (optional)
+- `status` (`received`, `in_review`, `approved`, `rejected`)
+- `rejectionReason` (nullable)
+- `internalNotes` (nullable)
+- `createdAt`
+- `updatedAt`
+
+**AuditLog**
+- `id`
+- `submissionId` (FK to Submission, nullable if action is global)
+- `performedBy` (FK to User)
+- `action` (string, e.g. `"SUBMISSION_CREATED"`, `"STATUS_CHANGED"`)
+- `metadata` (JSON)
+- `createdAt`
+
+---
+
+### 5. Tech Stack (Implementation Target)
+
+- **Runtime:** Node.js (LTS)
+- **Language:** TypeScript
+- **Framework:** Express.js
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **Auth:** JWT (access + refresh)
+- **Validation:** Zod (or similar)
+- **Testing:** Jest
+
+---
+
+### 6. Out of Scope for MVP (Future Phases)
+
+- File upload and storage (S3/GCS) – for now, MVP just stores a `fileUrl`.
+- Complex roles/permissions (reviewer vs auditor vs client).
+- Customer-facing dashboard to track their submission.
+- Integrations with third-party verification providers.
+- Full compliance features (DSAR flows, retention policies, etc.) – only basic privacy/security in MVP.
