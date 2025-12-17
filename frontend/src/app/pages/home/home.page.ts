@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 import {
   FormBuilder,
   FormGroup,
@@ -167,7 +168,7 @@ export class HomePage implements OnInit {
     };
 
     this.http
-      .post('http://localhost:5050/api/v1/submissions', submissionPayload)
+      .post(`${environment.apiUrl}/api/v1/submissions`, submissionPayload)
       .subscribe({
         next: (res: any) => {
           console.log('Submission success:', res);
