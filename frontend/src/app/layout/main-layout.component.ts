@@ -13,6 +13,9 @@ import { IonicModule } from '@ionic/angular';
         <ion-toolbar color="primary">
           <ion-title>CertiFile</ion-title>
           <ion-buttons slot="end">
+            <ion-button routerLink="/admin/submissions" fill="clear" size="small">
+              Admin
+            </ion-button>
             <ion-button routerLink="/login">Login</ion-button>
           </ion-buttons>
         </ion-toolbar>

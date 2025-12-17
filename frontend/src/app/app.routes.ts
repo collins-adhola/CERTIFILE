@@ -100,6 +100,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/settings/settings.page').then((m) => m.SettingsPage),
       },
+      {
+        path: 'admin/submissions',
+        loadComponent: () =>
+          import('./pages/admin-submissions/admin-submissions.page').then(
+            (m) => m.AdminSubmissionsPage,
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: '' },
