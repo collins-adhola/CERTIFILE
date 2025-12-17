@@ -1,8 +1,22 @@
 const express = require("express");
 const cors = require("cors");
+const { createClient } = require("@supabase/supabase-js");
 
 function createApp() {
   const app = express();
+
+  // Initialize Supabase client
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseServiceKey) {
+    console.error(
+      "ERROR: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set in .env",
+    );
+    process.exit(1);
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   // Enhanced CORS configuration
   app.use(
@@ -15,66 +29,120 @@ function createApp() {
   );
   app.use(express.json());
 
-  // TEMP: in-memory storage for submissions (for MVP testing)
-  const submissions = [];
-
   // Health check route
   app.get("/health", (req, res) => {
     res.json({ status: "okey Collins - it works" });
   });
 
   // ✅ Public endpoint – create a submission (used by your Certifile form)
-  app.post("/api/v1/submissions", (req, res) => {
-    const {
-      fullName,
-      email,
-      phone,
-      documentType,
-      documentNumber,
-      issuedBy,
-      issuedOn,
-      expiresOn,
-      fileUrl,
-    } = req.body;
+  app.post("/api/v1/submissions", async (req, res) => {
+    try {
+      const {
+        fullName,
+        email,
+        phone,
+        documentType,
+        documentNumber,
+        issuedBy,
+        issuedOn,
+        expiresOn,
+        fileUrl,
+      } = req.body;
 
-    // Very basic validation (MVP)
-    if (!fullName || !email || !documentType) {
-      return res.status(400).json({
+      // Very basic validation (MVP)
+      if (!fullName || !email || !documentType) {
+        return res.status(400).json({
+          error: {
+            message: "fullName, email and documentType are required",
+          },
+        });
+      }
+
+      // Insert submission into Supabase
+      // Map frontend camelCase to database snake_case columns
+      const insertData = {
+        full_name: fullName,
+        email: email,
+        phone: phone || null,
+        document_type: documentType,
+        document_number: documentNumber || null,
+        issued_by: issuedBy || null,
+        issued_on: issuedOn || null,
+        expires_on: expiresOn || null,
+        file_url: fileUrl || null,
+        status: "received", // MVP workflow: received → in_review → approved/rejected
+      };
+
+      console.log("Attempting to insert:", insertData);
+
+      const { data, error } = await supabase
+        .from("submissions")
+        .insert(insertData)
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Database error:", error);
+        console.error("Error code:", error.code);
+        console.error("Error details:", error.details);
+        console.error("Error hint:", error.hint);
+        return res.status(500).json({
+          error: {
+            message: "Failed to save submission to database",
+            details: error.message,
+            code: error.code,
+            hint: error.hint,
+          },
+        });
+      }
+
+      console.log("New submission received:", data);
+
+      return res.status(201).json({
+        message: "Submission received",
+        submissionId: data.id,
+      });
+    } catch (err) {
+      console.error("Unexpected error in POST /api/v1/submissions:", err);
+      console.error("Error stack:", err.stack);
+      return res.status(500).json({
         error: {
-          message: "fullName, email and documentType are required",
+          message: "Internal server error",
+          details: err.message,
+          stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
         },
       });
     }
-
-    const submission = {
-      id: String(Date.now()), // simple ID for now
-      fullName,
-      email,
-      phone: phone || null,
-      documentType,
-      documentNumber: documentNumber || null,
-      issuedBy: issuedBy || null,
-      issuedOn: issuedOn || null,
-      expiresOn: expiresOn || null,
-      fileUrl: fileUrl || null,
-      status: "received", // MVP workflow: received → in_review → approved/rejected
-      createdAt: new Date().toISOString(),
-    };
-
-    submissions.push(submission);
-
-    // In real app, we’d write to DB and log audit here
-    console.log("New submission received:", submission);
-
-    return res.status(201).json({
-      message: "Submission received",
-      submissionId: submission.id,
-    });
   });
 
   // ✅ TEMP: simple admin-style list (no auth yet – just for you to see data)
-  app.get("/api/v1/submissions", (req, res) => {
-    res.json({ submissions });
+  app.get("/api/v1/submissions", async (req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from("submissions")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Database error:", error);
+        return res.status(500).json({
+          error: {
+            message: "Failed to fetch submissions from database",
+            details: error.message,
+          },
+        });
+      }
+
+      return res.json({ submissions: data || [] });
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      return res.status(500).json({
+        error: {
+          message: "Internal server error",
+          details: err.message,
+        },
+      });
+    }
   });
 
   return app;
