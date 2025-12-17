@@ -118,6 +118,23 @@ function createApp() {
   // ✅ TEMP: simple admin-style list (no auth yet – just for you to see data)
   app.get("/api/v1/submissions", async (req, res) => {
     try {
+      // Admin key protection
+      const expectedKey = process.env.ADMIN_KEY;
+      const providedKey = req.header("x-admin-key");
+
+      if (!expectedKey) {
+        return res.status(500).json({
+          message: "Server misconfigured",
+        });
+      }
+
+      if (!providedKey || providedKey !== expectedKey) {
+        console.warn("Unauthorized attempt to access submissions list");
+        return res.status(401).json({
+          message: "Unauthorized",
+        });
+      }
+
       const { data, error } = await supabase
         .from("submissions")
         .select("*")

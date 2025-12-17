@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   IonContent,
   IonCard,
@@ -13,6 +13,8 @@ import {
   IonToast,
 } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
+
+const ADMIN_KEY = '<TEMP_ADMIN_KEY_PLACEHOLDER>';
 
 interface Submission {
   id: string;
@@ -71,9 +73,14 @@ export class AdminSubmissionsPage implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
+    const headers = new HttpHeaders({
+      'x-admin-key': ADMIN_KEY,
+    });
+
     this.http
       .get<{ submissions: Submission[] }>(
-        `${environment.apiUrl}/api/v1/submissions`
+        `${environment.apiUrl}/api/v1/submissions`,
+        { headers }
       )
       .subscribe({
         next: (response) => {
@@ -84,9 +91,16 @@ export class AdminSubmissionsPage implements OnInit {
         },
         error: (err) => {
           console.error('Failed to load submissions:', err);
-          this.errorMessage =
-            err?.error?.error?.message ||
-            'Failed to load submissions. Please try again.';
+          
+          if (err.status === 401) {
+            this.errorMessage = 'Access denied (admin only).';
+          } else {
+            this.errorMessage =
+              err?.error?.error?.message ||
+              err?.error?.message ||
+              'Failed to load submissions. Please try again.';
+          }
+          
           this.showErrorToast = true;
           this.isLoading = false;
         },
