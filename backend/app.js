@@ -19,12 +19,17 @@ function createApp() {
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   // Enhanced CORS configuration
+  const corsOrigin = process.env.CORS_ORIGIN;
+  const allowedOrigins = corsOrigin
+    ? corsOrigin.split(",").map((origin) => origin.trim())
+    : true; // Allow all origins if CORS_ORIGIN not set (for development)
+
   app.use(
     cors({
-      origin: true, // Allow all origins (for development)
+      origin: allowedOrigins,
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
+      allowedHeaders: ["Content-Type", "Authorization", "x-admin-key"],
     }),
   );
   app.use(express.json());
