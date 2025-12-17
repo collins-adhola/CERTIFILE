@@ -14,7 +14,9 @@ import {
 } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
 
-const ADMIN_KEY = '<TEMP_ADMIN_KEY_PLACEHOLDER>';
+const headers = new HttpHeaders({
+  'x-admin-key': environment.adminKey,
+});
 
 interface Submission {
   id: string;
@@ -78,20 +80,19 @@ export class AdminSubmissionsPage implements OnInit {
     });
 
     this.http
-      .get<{ submissions: Submission[] }>(
-        `${environment.apiUrl}/api/v1/submissions`,
-        { headers }
-      )
+      .get<{
+        submissions: Submission[];
+      }>(`${environment.apiUrl}/api/v1/submissions`, { headers })
       .subscribe({
         next: (response) => {
           this.submissions = (response.submissions || []).map((sub) =>
-            this.mapSubmission(sub)
+            this.mapSubmission(sub),
           );
           this.isLoading = false;
         },
         error: (err) => {
           console.error('Failed to load submissions:', err);
-          
+
           if (err.status === 401) {
             this.errorMessage = 'Access denied (admin only).';
           } else {
@@ -100,7 +101,7 @@ export class AdminSubmissionsPage implements OnInit {
               err?.error?.message ||
               'Failed to load submissions. Please try again.';
           }
-          
+
           this.showErrorToast = true;
           this.isLoading = false;
         },
@@ -136,4 +137,3 @@ export class AdminSubmissionsPage implements OnInit {
     }
   }
 }
-
