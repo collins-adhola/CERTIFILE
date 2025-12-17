@@ -14,10 +14,6 @@ import {
 } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
 
-const headers = new HttpHeaders({
-  'x-admin-key': environment.adminKey,
-});
-
 interface Submission {
   id: string;
   fullName?: string;
@@ -76,7 +72,7 @@ export class AdminSubmissionsPage implements OnInit {
     this.errorMessage = '';
 
     const headers = new HttpHeaders({
-      'x-admin-key': ADMIN_KEY,
+      'x-admin-key': environment.adminKey,
     });
 
     this.http
