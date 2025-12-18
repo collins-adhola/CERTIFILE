@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title>Admin Login</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="admin@certifile.co.uk"
+              required
+              [disabled]="isLoading"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              [disabled]="isLoading"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button
+            type="submit"
+            expand="block"
+            [disabled]="isLoading"
+            class="login-button"
+          >
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <span *ngIf="!isLoading">Sign in</span>
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-toast
+    [isOpen]="showErrorToast"
+    [message]="errorMessage"
+    duration="5000"
+    color="danger"
+    (didDismiss)="showErrorToast = false"
+  >
+  </ion-toast>
+</ion-content>
+

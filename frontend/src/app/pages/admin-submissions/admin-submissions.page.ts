@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import {
   IonContent,
   IonCard,
@@ -16,10 +17,24 @@ import {
   IonSearchbar,
   IonBadge,
   IonIcon,
+  IonChip,
 } from '@ionic/angular/standalone';
-import { copyOutline, refreshOutline } from 'ionicons/icons';
+import {
+  copyOutline,
+  refreshOutline,
+  mailOutline,
+  timeOutline,
+  checkmarkOutline,
+  closeOutline,
+  callOutline,
+  documentTextOutline,
+  chevronDownOutline,
+  chevronUpOutline,
+  documentOutline,
+} from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 
 interface Submission {
   id: string;
@@ -42,6 +57,13 @@ interface SubmissionDisplay {
   issuedBy: string;
   status: string;
   createdAt: string;
+  createdAtRaw?: string; // For sorting
+}
+
+interface StatusMeta {
+  color: string;
+  icon: string;
+  label: string;
 }
 
 @Component({
@@ -55,14 +77,13 @@ interface SubmissionDisplay {
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonItem,
-    IonLabel,
     IonSpinner,
     IonToast,
     IonButton,
     IonSearchbar,
     IonBadge,
     IonIcon,
+    IonChip,
     CommonModule,
     FormsModule,
   ],
@@ -71,18 +92,48 @@ export class AdminSubmissionsPage implements OnInit {
   submissions: SubmissionDisplay[] = [];
   filteredSubmissions: SubmissionDisplay[] = [];
   searchQuery = '';
+  selectedStatusFilter: string = 'all';
+  availableStatuses: string[] = [];
   isLoading = false;
   errorMessage = '';
   showErrorToast = false;
   showCopyToast = false;
   copyToastMessage = '';
+  lastRefreshed: Date | null = null;
+  showIdMap: { [key: string]: boolean } = {}; // Track which IDs are expanded
 
-  constructor(private http: HttpClient) {
-    addIcons({ copyOutline, refreshOutline });
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    addIcons({
+      refreshOutline,
+      documentOutline,
+      mailOutline,
+      callOutline,
+      documentTextOutline,
+      timeOutline,
+      copyOutline,
+      checkmarkOutline,
+      closeOutline,
+      chevronDownOutline,
+      chevronUpOutline,
+    });
   }
 
   ngOnInit() {
     this.filteredSubmissions = [];
+    
+    // Check if user is logged in
+    const token = this.authService.getToken();
+    if (!token) {
+      // No token, redirect to login
+      this.router.navigate(['/admin/login']);
+      return;
+    }
+
+    // Load submissions
     this.loadSubmissions();
   }
 
@@ -90,18 +141,15 @@ export class AdminSubmissionsPage implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-    if (!environment.adminKey) {
-      this.errorMessage = 'Admin key not configured.';
-      this.showErrorToast = true;
-      this.isLoading = false;
+    const token = this.authService.getToken();
+    if (!token) {
+      // No token, redirect to login
+      this.router.navigate(['/admin/login']);
       return;
     }
 
-    // Ensure the admin key is sent as-is without encoding issues
-    const adminKeyValue = String(environment.adminKey).trim();
-
     const headers = new HttpHeaders({
-      'x-admin-key': adminKeyValue,
+      Authorization: `Bearer ${token}`,
     });
 
     this.http
@@ -110,34 +158,50 @@ export class AdminSubmissionsPage implements OnInit {
       }>(`${environment.apiUrl}/api/v1/submissions`, { headers })
       .subscribe({
         next: (response) => {
-          this.submissions = (response.submissions || []).map((sub) =>
+          const mapped = (response.submissions || []).map((sub) =>
             this.mapSubmission(sub),
           );
-          this.applySearchFilter();
+          // Sort by createdAt (newest first)
+          this.submissions = mapped.sort((a, b) => {
+            const dateA = a.createdAtRaw
+              ? new Date(a.createdAtRaw).getTime()
+              : 0;
+            const dateB = b.createdAtRaw
+              ? new Date(b.createdAtRaw).getTime()
+              : 0;
+            return dateB - dateA; // Descending order (newest first)
+          });
+          // Extract unique statuses for filter chips
+          this.availableStatuses = [
+            ...new Set(this.submissions.map((s) => s.status.toLowerCase())),
+          ].sort();
+          this.applyFilters();
+          this.lastRefreshed = new Date();
           this.isLoading = false;
         },
         error: (err) => {
           console.error('Failed to load submissions:', err);
           console.error('API URL:', `${environment.apiUrl}/api/v1/submissions`);
-          console.error('Admin key present:', !!environment.adminKey);
 
           if (err.status === 401) {
-            this.errorMessage =
-              'Access denied. Please verify the admin key matches the backend configuration.';
+            // Token expired or invalid, logout and redirect to login
+            this.authService.logout();
+            this.router.navigate(['/admin/login']);
+            return;
           } else {
             this.errorMessage =
               err?.error?.error?.message ||
               err?.error?.message ||
               'Failed to load submissions. Please try again.';
+            this.showErrorToast = true;
+            this.isLoading = false;
           }
-
-          this.showErrorToast = true;
-          this.isLoading = false;
         },
       });
   }
 
   private mapSubmission(sub: Submission): SubmissionDisplay {
+    const createdAtRaw = sub.createdAt || sub.created_at;
     return {
       id: sub.id,
       fullName: sub.fullName || sub.full_name || 'N/A',
@@ -145,7 +209,8 @@ export class AdminSubmissionsPage implements OnInit {
       phone: sub.phone || 'Not provided',
       issuedBy: sub.issuedBy || sub.issued_by || 'N/A',
       status: sub.status || 'unknown',
-      createdAt: this.formatDate(sub.createdAt || sub.created_at),
+      createdAt: this.formatDate(createdAtRaw),
+      createdAtRaw: createdAtRaw,
     };
   }
 
@@ -168,51 +233,151 @@ export class AdminSubmissionsPage implements OnInit {
 
   onSearchChange(event: any) {
     this.searchQuery = event.detail.value || '';
-    this.applySearchFilter();
+    this.applyFilters();
   }
 
-  applySearchFilter() {
-    if (!this.searchQuery.trim()) {
-      this.filteredSubmissions = [...this.submissions];
-      return;
+  onStatusFilterChange(status: string) {
+    this.selectedStatusFilter = status;
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    let filtered = [...this.submissions];
+
+    // Apply status filter
+    if (this.selectedStatusFilter !== 'all') {
+      filtered = filtered.filter(
+        (sub) =>
+          sub.status.toLowerCase() === this.selectedStatusFilter.toLowerCase(),
+      );
     }
 
-    const query = this.searchQuery.toLowerCase().trim();
-    this.filteredSubmissions = this.submissions.filter(
-      (sub) =>
-        sub.fullName.toLowerCase().includes(query) ||
-        sub.email.toLowerCase().includes(query) ||
-        sub.issuedBy.toLowerCase().includes(query) ||
-        sub.status.toLowerCase().includes(query),
-    );
+    // Apply search filter
+    if (this.searchQuery.trim()) {
+      const query = this.searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (sub) =>
+          sub.fullName.toLowerCase().includes(query) ||
+          sub.email.toLowerCase().includes(query) ||
+          sub.issuedBy.toLowerCase().includes(query) ||
+          sub.status.toLowerCase().includes(query),
+      );
+    }
+
+    this.filteredSubmissions = filtered;
   }
 
   copyToClipboard(text: string) {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        this.copyToastMessage = 'Copied!';
-        this.showCopyToast = true;
-      })
-      .catch((err) => {
-        console.error('Failed to copy:', err);
-        this.copyToastMessage = 'Failed to copy';
-        this.showCopyToast = true;
-      });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          this.copyToastMessage = 'Reference copied';
+          this.showCopyToast = true;
+        })
+        .catch((err) => {
+          console.error('Failed to copy:', err);
+          this.fallbackCopyToClipboard(text);
+        });
+    } else {
+      // Fallback for older browsers
+      this.fallbackCopyToClipboard(text);
+    }
   }
 
-  getStatusColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'approved':
-        return 'success';
-      case 'rejected':
-        return 'danger';
-      case 'in_review':
-        return 'warning';
+  private fallbackCopyToClipboard(text: string) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        this.copyToastMessage = 'Reference copied';
+        this.showCopyToast = true;
+      } else {
+        this.copyToastMessage = 'Failed to copy';
+        this.showCopyToast = true;
+      }
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+      this.copyToastMessage = 'Failed to copy';
+      this.showCopyToast = true;
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  }
+
+  toggleId(submissionId: string) {
+    this.showIdMap[submissionId] = !this.showIdMap[submissionId];
+  }
+
+  isIdVisible(submissionId: string): boolean {
+    return this.showIdMap[submissionId] || false;
+  }
+
+  formatLastRefreshed(): string {
+    if (!this.lastRefreshed) return '';
+    return this.lastRefreshed.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  }
+
+  /**
+   * Maps submission status to color and icon metadata
+   * @param status - The submission status string
+   * @returns Status metadata with color, icon, and label
+   */
+  getStatusMeta(status: string): StatusMeta {
+    const normalizedStatus = status.toLowerCase().trim();
+
+    switch (normalizedStatus) {
       case 'received':
-        return 'primary';
+        return {
+          color: 'medium',
+          icon: 'mail-outline',
+          label: 'Received',
+        };
+      case 'in_review':
+      case 'in review':
+        return {
+          color: 'warning',
+          icon: 'time-outline',
+          label: 'In Review',
+        };
+      case 'awaiting_info':
+      case 'awaiting_documents':
+      case 'awaiting documents':
+        return {
+          color: 'tertiary',
+          icon: 'help-circle-outline',
+          label: 'Awaiting Info',
+        };
+      case 'approved':
+        return {
+          color: 'success',
+          icon: 'checkmark-outline',
+          label: 'Approved',
+        };
+      case 'rejected':
+        return {
+          color: 'danger',
+          icon: 'close-outline',
+          label: 'Rejected',
+        };
       default:
-        return 'medium';
+        return {
+          color: 'medium',
+          icon: 'mail-outline',
+          label: status.charAt(0).toUpperCase() + status.slice(1),
+        };
     }
   }
 }

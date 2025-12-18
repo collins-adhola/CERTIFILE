@@ -8,8 +8,8 @@
  *   - Admin review endpoint: Allows admins to view all submissions
  *
  * Authentication Strategy:
- *   - v1.0: Uses simple x-admin-key header for admin endpoints
- *   - v2.0: Will implement proper authentication (JWT, OAuth, etc.)
+ *   - v1.0: Used simple x-admin-key header for admin endpoints (deprecated)
+ *   - v2.0: JWT-based authentication with bcrypt password hashing
  *
  * How to Reuse:
  *   1. Copy this backend folder to your new project
@@ -32,5 +32,5 @@ const PORT = process.env.PORT || 5050;
 const app = createApp();
 
 app.listen(PORT, () => {
-  console.log(`Core Intake API v1.0 running on port ${PORT}`);
+  console.log(`Core Intake API v2.0 running on port ${PORT}`);
 });

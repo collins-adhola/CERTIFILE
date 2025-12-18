@@ -1,24 +1,25 @@
-# Core Intake API v1.0
+# Core Intake API v2.0
 
-A standalone, reusable backend API for handling form submissions with admin review capabilities.
+A standalone, reusable backend API for handling form submissions with admin review capabilities and JWT-based authentication.
 
 ## What This Backend Is
 
 This is a simple, production-ready Node.js/Express API that provides:
 
 - **Public submission endpoint**: Accept form submissions from any frontend
-- **Admin review endpoint**: View all submissions (protected with admin key)
+- **Admin review endpoint**: View all submissions (protected with JWT authentication)
+- **Admin authentication**: JWT-based login system with bcrypt password hashing
 - **Metadata endpoint**: Check API version and feature flags
 
-**This backend is intentionally standalone** - it has no authentication, sessions, or user concepts. It uses a simple admin key approach for v1.0.
+**This backend includes JWT authentication** - v1.0 is a stable baseline (admin-key). v2.0 introduces JWT auth.
 
 ## What Problems It Solves
 
 - **Form submission handling**: Collect structured data from contact forms, enquiry forms, etc.
 - **Admin dashboard support**: Provide data for admin interfaces to review submissions
+- **Secure authentication**: JWT-based auth with password hashing (no secrets in frontend)
 - **Reusability**: Generic design allows reuse across different projects and domains
 - **Quick deployment**: Minimal setup required, works with Supabase out of the box
-- **Zero dependencies on auth systems**: You can add your own authentication layer later
 
 ## Required Environment Variables
 
@@ -29,10 +30,35 @@ PORT=5050                                    # Server port (default: 5050)
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your_key_here     # Secret! Never expose to frontend
 CORS_ORIGIN=http://localhost:8100           # Allowed frontend origins (comma-separated)
-ADMIN_KEY=your_strong_random_string         # Secret key for admin endpoints
+
+# Admin Authentication (v2.0)
+ADMIN_EMAIL=admin@certifile.co.uk          # Admin email for login
+ADMIN_PASSWORD_HASH=bcrypt_hash_here       # Bcrypt hash of admin password
+JWT_SECRET=long_random_string              # Secret for signing JWT tokens
+JWT_EXPIRES_IN=12h                         # Token expiration (e.g., "12h", "7d")
 ```
 
 See `.env.example` for detailed comments on each variable.
+
+### Generating Password Hash
+
+To generate a bcrypt hash for `ADMIN_PASSWORD_HASH`, run:
+
+```bash
+node -e "console.log(require('bcryptjs').hashSync('your_password_here', 10))"
+```
+
+Replace `'your_password_here'` with your actual password. Copy the output to `ADMIN_PASSWORD_HASH` in your `.env` file.
+
+### Generating JWT Secret
+
+To generate a secure JWT secret, run:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Copy the output to `JWT_SECRET` in your `.env` file.
 
 ## How to Run Locally
 
@@ -47,6 +73,7 @@ See `.env.example` for detailed comments on each variable.
    ```bash
    cp .env.example .env
    # Edit .env with your actual values
+   # Don't forget to generate ADMIN_PASSWORD_HASH and JWT_SECRET!
    ```
 
 3. **Start the server:**
@@ -78,7 +105,10 @@ See `.env.example` for detailed comments on each variable.
    - `SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
    - `CORS_ORIGIN` (your frontend URL, e.g., `https://yourdomain.com`)
-   - `ADMIN_KEY` (generate a strong random string)
+   - `ADMIN_EMAIL` (your admin email)
+   - `ADMIN_PASSWORD_HASH` (generate using the command above)
+   - `JWT_SECRET` (generate using the command above)
+   - `JWT_EXPIRES_IN` (e.g., `12h`)
 
 4. **Set build command:**
 
@@ -153,14 +183,61 @@ Public endpoint for creating submissions. No authentication required.
 }
 ```
 
-### `GET /api/v1/submissions`
+### `POST /api/v1/auth/login`
 
-Admin endpoint to list all submissions. Requires `x-admin-key` header.
+Admin login endpoint. Returns JWT token for authenticated requests.
+
+**Request body:**
+
+```json
+{
+  "email": "admin@certifile.co.uk",
+  "password": "your_password"
+}
+```
+
+**Response (200):**
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiresIn": "12h"
+}
+```
+
+**Error (401):** Returns `{"message": "Invalid credentials"}` if email or password is incorrect.
+
+**Rate Limited:** 10 requests per 15 minutes per IP address.
+
+### `GET /api/v1/auth/me`
+
+Get current authenticated user info. Requires JWT token.
 
 **Headers:**
 
 ```
-x-admin-key: your_admin_key_here
+Authorization: Bearer <token>
+```
+
+**Response (200):**
+
+```json
+{
+  "email": "admin@certifile.co.uk",
+  "role": "admin"
+}
+```
+
+**Error (401):** Returns `{"message": "Authentication required"}` if token is missing or invalid.
+
+### `GET /api/v1/submissions`
+
+Admin endpoint to list all submissions. Requires JWT token.
+
+**Headers:**
+
+```
+Authorization: Bearer <token>
 ```
 
 **Response (200):**
@@ -182,7 +259,7 @@ x-admin-key: your_admin_key_here
 }
 ```
 
-**Error (401):** Returns `{"message": "Unauthorized"}` if admin key is missing or incorrect.
+**Error (401):** Returns `{"message": "Authentication required"}` if token is missing or invalid.
 
 ### `GET /api/v1/meta`
 
@@ -193,11 +270,11 @@ Returns API metadata (version, features). No authentication required.
 ```json
 {
   "name": "Core Intake API",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "features": {
     "publicSubmission": true,
     "adminRead": true,
-    "authentication": false
+    "authentication": true
   }
 }
 ```
@@ -213,6 +290,58 @@ Health check endpoint. No authentication required.
   "status": "ok"
 }
 ```
+
+## Using JWT Tokens
+
+### 1. Login to Get Token
+
+```bash
+curl -X POST http://localhost:5050/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "admin@certifile.co.uk", "password": "your_password"}'
+```
+
+Response:
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiresIn": "12h"
+}
+```
+
+### 2. Use Token for Admin Requests
+
+```bash
+curl http://localhost:5050/api/v1/submissions \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
+
+### 3. Frontend Implementation
+
+**Store the token** (in memory, localStorage, or secure storage):
+
+```javascript
+const response = await fetch("http://localhost:5050/api/v1/auth/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email, password }),
+});
+const { token } = await response.json();
+// Store token securely
+```
+
+**Use token for authenticated requests:**
+
+```javascript
+const response = await fetch("http://localhost:5050/api/v1/submissions", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+```
+
+**Important:** Never commit tokens to version control. Store them securely in your frontend (consider using httpOnly cookies in production).
 
 ## How to Reuse This Backend for Another Project
 
@@ -234,7 +363,10 @@ Copy the entire `backend/` folder to your new project.
 1. Copy `.env.example` to `.env`
 2. Add your Supabase credentials (from Supabase dashboard > Settings > API)
 3. Set `CORS_ORIGIN` to your frontend URL (comma-separated for multiple)
-4. Generate a strong `ADMIN_KEY` (use a password generator, 32+ characters)
+4. Set `ADMIN_EMAIL` to your admin email
+5. Generate `ADMIN_PASSWORD_HASH` using the command in "Generating Password Hash"
+6. Generate `JWT_SECRET` using the command in "Generating JWT Secret"
+7. Set `JWT_EXPIRES_IN` (e.g., `12h`)
 
 ### Step 4: Deploy
 
@@ -245,51 +377,65 @@ Copy the entire `backend/` folder to your new project.
 ### Step 5: Connect Frontend
 
 1. Point your frontend to the API URL
-2. For admin endpoints, include `x-admin-key` header with your `ADMIN_KEY`
-3. Test with the `/api/v1/meta` endpoint first
+2. Implement login flow using `POST /api/v1/auth/login`
+3. Store JWT token securely
+4. Include `Authorization: Bearer <token>` header in admin requests
+5. Test with the `/api/v1/meta` endpoint first
 
-**That's it!** Your backend is ready to accept submissions.
+**That's it!** Your backend is ready to accept submissions and handle admin authentication.
 
 ## Versioning & Extension
 
-### v1.0 (Current)
+### v1.0 (Stable Baseline)
 
-**Core Intake + Admin Read**
+**Core Intake + Admin Read (Simple Admin Key)**
 
 - Public submission endpoint (no auth)
-- Admin read endpoint (simple admin key)
+- Admin read endpoint (simple admin key via `x-admin-key` header)
 - Generic submission structure
 - No authentication, sessions, or user concepts
-- Intentionally minimal for maximum flexibility
 
-**Use v1.0 when:**
+**Status:** v1.0 is a stable baseline (admin-key). v2.0 introduces JWT auth.
 
-- You need a quick MVP
-- You want to add your own auth layer later
-- You need a simple form submission handler
-- You're building an admin dashboard with basic protection
+### v2.0 (Current)
 
-### v2.0 (Future)
+**Core Intake + Admin Read + JWT Authentication**
+
+- Public submission endpoint (no auth)
+- Admin read endpoint (JWT token required)
+- JWT-based authentication with bcrypt password hashing
+- Rate limiting on login endpoint
+- Security headers via Helmet
+- No secrets exposed to frontend
+
+**Use v2.0 when:**
+
+- You need secure admin authentication
+- You want password-based login (not just API keys)
+- You need token expiration and refresh
+- You're building a production system
+
+### v3.0 (Future)
 
 **Authentication, Roles, Audit Logs**
 
 Planned features (not implemented yet):
 
-- JWT-based authentication
-- User roles and permissions
+- Multiple admin users
+- Role-based access control (admin, viewer, etc.)
 - Audit logs for all actions
-- Rate limiting
+- Token refresh mechanism
 - Webhook support
 - File upload handling
 
-**When to upgrade to v2.0:**
+**When to upgrade to v3.0:**
 
-- You need multi-user authentication
-- You need role-based access control
+- You need multiple admin users
+- You need role-based permissions
 - You need audit trails
-- You're building a production system with compliance requirements
+- You're building a compliance-focused system
 
-**Migration path:** v1.0 is designed to be extended, not replaced. You can add v2.0 features alongside v1.0 endpoints.
+**Migration path:** v2.0 is designed to be extended. You can add v3.0 features alongside v2.0 endpoints.
 
 ## Reusability Notes
 
@@ -307,10 +453,10 @@ Planned features (not implemented yet):
 
 ### Authentication Strategy
 
-- **v1.0 uses simple admin key**: The `x-admin-key` header is intentional for MVP/admin dashboards
-- **No authentication baked in**: This allows you to choose your own auth strategy when needed
+- **v2.0 uses JWT tokens**: Secure, stateless authentication with token expiration
+- **No secrets in frontend**: Password hash and JWT secret stay server-side only
 - **Easy to extend**: Add your own auth middleware without modifying core endpoints
-- **Future-proof**: v2.0 will add proper authentication, but v1.0 will remain compatible
+- **Future-proof**: v3.0 will add more features, but v2.0 will remain compatible
 
 ### Customization Points
 
@@ -318,19 +464,40 @@ Planned features (not implemented yet):
 - **Error handling**: Structured error responses make it easy to handle errors in frontends
 - **CORS**: Configurable via `CORS_ORIGIN` environment variable
 - **Database**: Use the provided schema or adapt it to your needs
+- **Token expiration**: Configurable via `JWT_EXPIRES_IN` environment variable
 
 ## Troubleshooting
 
 ### "Server misconfigured" error
 
-- Check that `ADMIN_KEY` is set in your `.env` file
-- Verify the key is not empty and has no extra whitespace
+- Check that `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, and `JWT_SECRET` are set in your `.env` file
+- Verify the values are not empty and have no extra whitespace
+
+### "Invalid credentials" on login
+
+- Verify `ADMIN_EMAIL` matches exactly (case-insensitive)
+- Check that `ADMIN_PASSWORD_HASH` was generated correctly using bcrypt
+- Ensure you're using the correct password that was hashed
+
+### 401 Unauthorized on admin endpoints
+
+- Check that you're including the `Authorization: Bearer <token>` header
+- Verify the token hasn't expired (check `JWT_EXPIRES_IN` setting)
+- Ensure `JWT_SECRET` matches between token generation and verification
+- Try logging in again to get a fresh token
+
+### "Too many login attempts" error
+
+- Rate limiting is active: 10 requests per 15 minutes per IP
+- Wait 15 minutes or use a different IP address
+- This is a security feature to prevent brute force attacks
 
 ### CORS errors
 
 - Verify `CORS_ORIGIN` matches your frontend URL exactly (including protocol and port)
 - For development, you can temporarily set `CORS_ORIGIN=*` (not recommended for production)
 - Multiple origins: Use comma-separated values: `http://localhost:8100,https://yourdomain.com`
+- Ensure `Authorization` header is in `allowedHeaders` (already configured)
 
 ### Database connection errors
 
@@ -339,11 +506,15 @@ Planned features (not implemented yet):
 - Ensure the `submissions` table exists with the correct schema
 - Verify you're using the `service_role` key, not the `anon` key
 
-### 401 Unauthorized on admin endpoint
+## Security Best Practices
 
-- Check that `ADMIN_KEY` is set in both backend `.env` and frontend environment
-- Verify the key matches exactly (no extra spaces, same case)
-- Check that the `x-admin-key` header is being sent correctly
+1. **Never commit `.env` files** - Use `.env.example` as a template
+2. **Use strong passwords** - Generate secure passwords for admin accounts
+3. **Rotate JWT secrets** - Change `JWT_SECRET` periodically in production
+4. **Set appropriate token expiration** - Use `JWT_EXPIRES_IN` to limit token lifetime
+5. **Use HTTPS in production** - Never send tokens over unencrypted connections
+6. **Store tokens securely** - In frontend, use secure storage (consider httpOnly cookies)
+7. **Monitor login attempts** - Rate limiting helps, but monitor for suspicious activity
 
 ## License
 

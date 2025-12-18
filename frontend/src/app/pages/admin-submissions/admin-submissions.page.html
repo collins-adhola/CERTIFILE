@@ -1,89 +1,140 @@
 <ion-content>
   <div class="admin-submissions-container">
-    <!-- Header with Title and Refresh Button -->
+    <!-- Page Title -->
     <div class="page-header">
       <h1 class="page-title">Submissions</h1>
-      <ion-button
-        fill="outline"
-        size="small"
-        (click)="loadSubmissions()"
-        [disabled]="isLoading"
-      >
-        <ion-icon name="refresh-outline" slot="start"></ion-icon>
-        Refresh
-      </ion-button>
     </div>
 
-    <!-- Search Bar -->
-    <ion-searchbar
-      *ngIf="!isLoading && submissions.length > 0"
-      [(ngModel)]="searchQuery"
-      (ionInput)="onSearchChange($event)"
-      placeholder="Search by name, email, topic, or status..."
-      debounce="300"
-      class="search-bar"
-    ></ion-searchbar>
+    <!-- Sticky Control Bar (Desktop Only) -->
+    <div class="control-bar">
+      <div class="control-bar-content">
+        <!-- Search Bar -->
+        <ion-searchbar
+          *ngIf="submissions.length > 0 || !isLoading"
+          [(ngModel)]="searchQuery"
+          (ionInput)="onSearchChange($event)"
+          placeholder="Search by name, email, topic, or status..."
+          debounce="300"
+          class="search-bar"
+          [disabled]="isLoading"
+          aria-label="Search submissions"
+        ></ion-searchbar>
+
+        <!-- Status Filter Chips -->
+        <div *ngIf="submissions.length > 0" class="filter-chips">
+          <ion-chip
+            [class.active]="selectedStatusFilter === 'all'"
+            (click)="onStatusFilterChange('all')"
+            class="filter-chip"
+            [disabled]="isLoading"
+          >
+            All
+          </ion-chip>
+          <ion-chip
+            *ngFor="let status of availableStatuses"
+            [class.active]="selectedStatusFilter === status"
+            (click)="onStatusFilterChange(status)"
+            [color]="getStatusMeta(status).color"
+            class="filter-chip"
+            [disabled]="isLoading"
+          >
+            <ion-icon [name]="getStatusMeta(status).icon"></ion-icon>
+            {{ getStatusMeta(status).label }}
+          </ion-chip>
+        </div>
+
+        <!-- Refresh Section -->
+        <div class="refresh-section">
+          <ion-button
+            fill="outline"
+            size="small"
+            (click)="loadSubmissions()"
+            [disabled]="isLoading"
+            class="refresh-button"
+          >
+            <ion-spinner
+              *ngIf="isLoading"
+              name="crescent"
+              class="refresh-spinner"
+            ></ion-spinner>
+            <ion-icon
+              *ngIf="!isLoading"
+              name="refresh-outline"
+              slot="start"
+            ></ion-icon>
+            Refresh
+          </ion-button>
+          <p *ngIf="lastRefreshed" class="last-refreshed">
+            Last refreshed: {{ formatLastRefreshed() }}
+          </p>
+        </div>
+      </div>
+    </div>
 
     <!-- Loading State -->
-    <div *ngIf="isLoading" class="loading-container">
+    <div
+      *ngIf="isLoading && submissions.length === 0"
+      class="loading-container"
+    >
       <ion-spinner name="crescent"></ion-spinner>
-      <p class="loading-text">Loading submissions...</p>
+      <p class="loading-text">Loading submissions…</p>
     </div>
 
-    <!-- Error State (Inline Card) -->
+    <!-- Error State -->
     <ion-card
-      *ngIf="!isLoading && errorMessage && submissions.length === 0"
+      *ngIf="!isLoading && errorMessage"
       color="danger"
       class="error-card"
     >
       <ion-card-header>
-        <ion-card-title>Error</ion-card-title>
+        <ion-card-title>Couldn't load submissions</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>{{ errorMessage }}</p>
+        <p class="error-message">{{ errorMessage }}</p>
         <ion-button
           fill="solid"
           color="danger"
           size="small"
           (click)="loadSubmissions()"
-          style="margin-top: 16px"
+          class="retry-button"
         >
           Try again
         </ion-button>
       </ion-card-content>
     </ion-card>
 
-    <!-- Empty State -->
+    <!-- Empty State (No submissions at all) -->
     <ion-card
-      *ngIf="!isLoading && !errorMessage && filteredSubmissions.length === 0 && submissions.length === 0"
+      *ngIf="!isLoading && !errorMessage && submissions.length === 0"
       class="empty-card"
     >
       <ion-card-content>
         <div class="empty-state">
+          <ion-icon name="document-outline" class="empty-icon"></ion-icon>
           <p class="empty-title">No submissions yet</p>
           <p class="empty-hint">
-            Submissions from the contact form will appear here.
+            When new enquiries arrive, they'll appear here.
           </p>
         </div>
       </ion-card-content>
     </ion-card>
 
-    <!-- No Search Results -->
+    <!-- Empty State (No results after filter/search) -->
     <ion-card
       *ngIf="!isLoading && !errorMessage && filteredSubmissions.length === 0 && submissions.length > 0"
       class="empty-card"
     >
       <ion-card-content>
         <div class="empty-state">
-          <p class="empty-title">No results found</p>
-          <p class="empty-hint">Try adjusting your search query.</p>
+          <p class="empty-title">No submissions match your filters.</p>
+          <p class="empty-hint">Try adjusting your search query or filter.</p>
         </div>
       </ion-card-content>
     </ion-card>
 
     <!-- Submissions List -->
     <div
-      *ngIf="!isLoading && filteredSubmissions.length > 0"
+      *ngIf="!isLoading && !errorMessage && filteredSubmissions.length > 0"
       class="submissions-list"
     >
       <ion-card
@@ -95,38 +146,89 @@
             <ion-card-title class="submission-name">
               {{ submission.fullName }}
             </ion-card-title>
-            <ion-badge [color]="getStatusColor(submission.status)">
-              {{ submission.status | titlecase }}
+            <ion-badge
+              [color]="getStatusMeta(submission.status).color"
+              class="status-badge"
+            >
+              <ion-icon
+                [name]="getStatusMeta(submission.status).icon"
+              ></ion-icon>
+              {{ getStatusMeta(submission.status).label }}
             </ion-badge>
           </div>
         </ion-card-header>
         <ion-card-content>
           <div class="submission-details">
             <div class="detail-row">
-              <span class="detail-label">Email:</span>
+              <span class="detail-label">
+                <ion-icon name="mail-outline" class="detail-icon"></ion-icon>
+                Email:
+              </span>
               <span class="detail-value">{{ submission.email }}</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Phone:</span>
+              <span class="detail-label">
+                <ion-icon name="call-outline" class="detail-icon"></ion-icon>
+                Phone:
+              </span>
               <span class="detail-value">{{ submission.phone }}</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Topic:</span>
+              <span class="detail-label">
+                <ion-icon
+                  name="document-text-outline"
+                  class="detail-icon"
+                ></ion-icon>
+                Topic:
+              </span>
               <span class="detail-value">{{ submission.issuedBy }}</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Submitted:</span>
+              <span class="detail-label">
+                <ion-icon name="time-outline" class="detail-icon"></ion-icon>
+                Submitted:
+              </span>
               <span class="detail-value">{{ submission.createdAt }}</span>
             </div>
             <div class="detail-row id-row">
-              <span class="detail-label">ID:</span>
+              <div class="id-label-section">
+                <span class="detail-label">Internal reference:</span>
+                <p class="id-helper-text">
+                  Use this reference when discussing the submission internally.
+                </p>
+              </div>
               <div class="id-container">
-                <span class="detail-value id-value">{{ submission.id }}</span>
+                <span
+                  *ngIf="isIdVisible(submission.id)"
+                  class="detail-value id-value"
+                >
+                  {{ submission.id }}
+                </span>
+                <span
+                  *ngIf="!isIdVisible(submission.id)"
+                  class="detail-value id-value id-hidden"
+                >
+                  •••••••••••••••••
+                </span>
+                <ion-button
+                  fill="clear"
+                  size="small"
+                  (click)="toggleId(submission.id)"
+                  class="toggle-id-button"
+                  title="{{ isIdVisible(submission.id) ? 'Hide ID' : 'Show ID' }}"
+                >
+                  <ion-icon
+                    [name]="isIdVisible(submission.id) ? 'chevron-up-outline' : 'chevron-down-outline'"
+                    slot="icon-only"
+                  ></ion-icon>
+                </ion-button>
                 <ion-button
                   fill="clear"
                   size="small"
                   (click)="copyToClipboard(submission.id)"
                   class="copy-button"
+                  aria-label="Copy internal reference"
+                  title="Copy internal reference"
                 >
                   <ion-icon name="copy-outline" slot="icon-only"></ion-icon>
                 </ion-button>

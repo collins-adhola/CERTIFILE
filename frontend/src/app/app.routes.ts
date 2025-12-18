@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout.component';
 import { authGuard } from './core/guards/auth.guard';
+import { adminAuthGuard } from './guards/admin-auth.guard';
 
 export const routes: Routes = [
   {
@@ -101,7 +102,15 @@ export const routes: Routes = [
           import('./pages/settings/settings.page').then((m) => m.SettingsPage),
       },
       {
+        path: 'admin/login',
+        loadComponent: () =>
+          import('./pages/admin-login/admin-login.page').then(
+            (m) => m.AdminLoginPage,
+          ),
+      },
+      {
         path: 'admin/submissions',
+        canActivate: [adminAuthGuard],
         loadComponent: () =>
           import('./pages/admin-submissions/admin-submissions.page').then(
             (m) => m.AdminSubmissionsPage,
