@@ -1,3 +1,33 @@
+/**
+ * Core Intake API v1.0 - Express Application
+ *
+ * This is a reusable backend API designed to be copied into new projects.
+ *
+ * Purpose:
+ *   - Public submission endpoint: Accepts form submissions from any frontend
+ *   - Admin review endpoint: Allows admins to view all submissions
+ *
+ * Authentication Strategy:
+ *   - v1.0: Uses simple x-admin-key header for admin endpoints
+ *   - v2.0: Will implement proper authentication (JWT, OAuth, etc.)
+ *
+ * Endpoints:
+ *   - POST /api/v1/submissions - Public endpoint for creating submissions
+ *   - GET /api/v1/submissions - Admin endpoint (requires x-admin-key header)
+ *   - GET /api/v1/meta - Metadata endpoint (API version, features)
+ *   - GET /health - Health check endpoint
+ *
+ * Database:
+ *   - Uses Supabase PostgreSQL
+ *   - Table: submissions (see README.md for schema)
+ *   - Maps frontend camelCase to database snake_case
+ *
+ * Reusability Notes:
+ *   - Submissions are generic by design (document_type, issued_by allow domain flexibility)
+ *   - Frontends should not know about database structure
+ *   - Auth is intentionally not baked in yet for flexibility
+ */
+
 const express = require("express");
 const cors = require("cors");
 const { createClient } = require("@supabase/supabase-js");
@@ -36,7 +66,20 @@ function createApp() {
 
   // Health check route
   app.get("/health", (req, res) => {
-    res.json({ status: "okey Collins - it works" });
+    res.json({ status: "ok" });
+  });
+
+  // Metadata endpoint - Returns API version and feature flags
+  app.get("/api/v1/meta", (req, res) => {
+    res.json({
+      name: "Core Intake API",
+      version: "1.0.0",
+      features: {
+        publicSubmission: true,
+        adminRead: true,
+        authentication: false,
+      },
+    });
   });
 
   // ✅ Public endpoint – create a submission (used by your Certifile form)
@@ -120,7 +163,7 @@ function createApp() {
     }
   });
 
-  // ✅ TEMP: simple admin-style list (no auth yet – just for you to see data)
+  // ✅ Admin endpoint – list all submissions (requires x-admin-key header)
   app.get("/api/v1/submissions", async (req, res) => {
     try {
       // Admin key protection
