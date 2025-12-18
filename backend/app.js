@@ -124,8 +124,8 @@ function createApp() {
   app.get("/api/v1/submissions", async (req, res) => {
     try {
       // Admin key protection
-      const expectedKey = process.env.ADMIN_KEY;
-      const providedKey = req.header("x-admin-key");
+      const expectedKey = process.env.ADMIN_KEY?.trim();
+      const providedKey = req.header("x-admin-key")?.trim();
 
       if (!expectedKey) {
         return res.status(500).json({
@@ -135,6 +135,12 @@ function createApp() {
 
       if (!providedKey || providedKey !== expectedKey) {
         console.warn("Unauthorized attempt to access submissions list");
+        console.warn(
+          `Key mismatch - Expected length: ${expectedKey?.length}, Provided length: ${providedKey?.length}`,
+        );
+        console.warn(
+          `Expected starts with: ${expectedKey?.substring(0, 10)}..., Provided starts with: ${providedKey?.substring(0, 10)}...`,
+        );
         return res.status(401).json({
           message: "Unauthorized",
         });

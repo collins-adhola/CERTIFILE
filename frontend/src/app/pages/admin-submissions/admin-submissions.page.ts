@@ -71,8 +71,18 @@ export class AdminSubmissionsPage implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
+    if (!environment.adminKey) {
+      this.errorMessage = 'Admin key not configured.';
+      this.showErrorToast = true;
+      this.isLoading = false;
+      return;
+    }
+
+    // Ensure the admin key is sent as-is without encoding issues
+    const adminKeyValue = String(environment.adminKey).trim();
+
     const headers = new HttpHeaders({
-      'x-admin-key': environment.adminKey,
+      'x-admin-key': adminKeyValue,
     });
 
     this.http
@@ -88,9 +98,12 @@ export class AdminSubmissionsPage implements OnInit {
         },
         error: (err) => {
           console.error('Failed to load submissions:', err);
+          console.error('API URL:', `${environment.apiUrl}/api/v1/submissions`);
+          console.error('Admin key present:', !!environment.adminKey);
 
           if (err.status === 401) {
-            this.errorMessage = 'Access denied (admin only).';
+            this.errorMessage =
+              'Access denied. Please verify the admin key matches the backend configuration.';
           } else {
             this.errorMessage =
               err?.error?.error?.message ||
