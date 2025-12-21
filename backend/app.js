@@ -1,5 +1,5 @@
 /**
- * Core Intake API v2.0 - Express Application
+ * Core Intake API v3.0 - Express Application
  *
  * This is a reusable backend API designed to be copied into new projects.
  *
@@ -9,13 +9,14 @@
  *
  * Authentication Strategy:
  *   - v1.0: Used simple x-admin-key header for admin endpoints (deprecated)
- *   - v2.0: JWT-based authentication with bcrypt password hashing
+ *   - v2.0: JWT-based authentication with bcrypt password hashing (kept for backward compatibility)
+ *   - v3.0: Supabase Auth JWT verification with email allowlist
  *
  * Endpoints:
  *   - POST /api/v1/submissions - Public endpoint for creating submissions
- *   - GET /api/v1/submissions - Admin endpoint (requires JWT token)
- *   - POST /api/v1/auth/login - Admin login endpoint
- *   - GET /api/v1/auth/me - Get current user info (requires JWT token)
+ *   - GET /api/v1/submissions - Admin endpoint (requires Supabase Auth JWT token)
+ *   - POST /api/v1/auth/login - Admin login endpoint (v2.0 - kept for backward compatibility)
+ *   - GET /api/v1/auth/me - Get current user info (v2.0 - kept for backward compatibility)
  *   - GET /api/v1/meta - Metadata endpoint (API version, features)
  *   - GET /health - Health check endpoint
  *
@@ -27,7 +28,7 @@
  * Reusability Notes:
  *   - Submissions are generic by design (document_type, issued_by allow domain flexibility)
  *   - Frontends should not know about database structure
- *   - JWT authentication is built-in for admin endpoints
+ *   - v3.0 uses Supabase Auth for admin authentication
  */
 
 const express = require("express");
@@ -36,7 +37,9 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const { createClient } = require("@supabase/supabase-js");
 const authRoutes = require("./routes/auth");
-const { authenticateToken } = require("./middleware/auth");
+const { authenticateToken } = require("./middleware/auth"); // v2.0 - kept for backward compatibility
+const { supabaseAuth } = require("./middleware/supabaseAuth"); // v3.0 - Supabase Auth
+const { requireAdmin } = require("./middleware/requireAdmin"); // v3.0 - Admin authorization
 
 function createApp() {
   const app = express();
@@ -68,7 +71,7 @@ function createApp() {
       origin: allowedOrigins,
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization", "x-admin-key"], // Keep x-admin-key for backward compatibility during migration
+      allowedHeaders: ["Content-Type", "Authorization", "x-admin-key"], // Keep x-admin-key for backward compatibility
     }),
   );
   app.use(express.json());
@@ -82,7 +85,8 @@ function createApp() {
   app.get("/api/v1/meta", (req, res) => {
     res.json({
       name: "Core Intake API",
-      version: "2.0.0",
+      version: "3.0.0",
+      authProvider: "supabase",
       features: {
         publicSubmission: true,
         adminRead: true,
@@ -176,35 +180,40 @@ function createApp() {
     }
   });
 
-  // ✅ Admin endpoint – list all submissions (requires JWT token)
-  app.get("/api/v1/submissions", authenticateToken, async (req, res) => {
-    try {
-      const { data, error } = await supabase
-        .from("submissions")
-        .select("*")
-        .order("created_at", { ascending: false });
+  // ✅ Admin endpoint – list all submissions (requires Supabase Auth JWT token + admin email)
+  app.get(
+    "/api/v1/submissions",
+    supabaseAuth,
+    requireAdmin,
+    async (req, res) => {
+      try {
+        const { data, error } = await supabase
+          .from("submissions")
+          .select("*")
+          .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error("Database error:", error);
+        if (error) {
+          console.error("Database error:", error);
+          return res.status(500).json({
+            error: {
+              message: "Failed to fetch submissions from database",
+              details: error.message,
+            },
+          });
+        }
+
+        return res.json({ submissions: data || [] });
+      } catch (err) {
+        console.error("Unexpected error:", err);
         return res.status(500).json({
           error: {
-            message: "Failed to fetch submissions from database",
-            details: error.message,
+            message: "Internal server error",
+            details: err.message,
           },
         });
       }
-
-      return res.json({ submissions: data || [] });
-    } catch (err) {
-      console.error("Unexpected error:", err);
-      return res.status(500).json({
-        error: {
-          message: "Internal server error",
-          details: err.message,
-        },
-      });
-    }
-  });
+    },
+  );
 
   return app;
 }

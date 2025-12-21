@@ -1,23 +1,23 @@
-# Core Intake API v2.0
+# Core Intake API v3.0
 
-A standalone, reusable backend API for handling form submissions with admin review capabilities and JWT-based authentication.
+A standalone, reusable backend API for handling form submissions with admin review capabilities and Supabase Auth authentication.
 
 ## What This Backend Is
 
 This is a simple, production-ready Node.js/Express API that provides:
 
 - **Public submission endpoint**: Accept form submissions from any frontend
-- **Admin review endpoint**: View all submissions (protected with JWT authentication)
-- **Admin authentication**: JWT-based login system with bcrypt password hashing
+- **Admin review endpoint**: View all submissions (protected with Supabase Auth JWT tokens)
+- **Admin authentication**: Supabase Auth JWT verification with email allowlist
 - **Metadata endpoint**: Check API version and feature flags
 
-**This backend includes JWT authentication** - v1.0 is a stable baseline (admin-key). v2.0 introduces JWT auth.
+**This backend uses Supabase Auth** - v1.0 is a stable baseline (admin-key). v2.0 introduced custom JWT auth. v3.0 uses Supabase Auth.
 
 ## What Problems It Solves
 
 - **Form submission handling**: Collect structured data from contact forms, enquiry forms, etc.
 - **Admin dashboard support**: Provide data for admin interfaces to review submissions
-- **Secure authentication**: JWT-based auth with password hashing (no secrets in frontend)
+- **Secure authentication**: Supabase Auth JWT verification (no password management in backend)
 - **Reusability**: Generic design allows reuse across different projects and domains
 - **Quick deployment**: Minimal setup required, works with Supabase out of the box
 
@@ -259,7 +259,9 @@ Authorization: Bearer <token>
 }
 ```
 
-**Error (401):** Returns `{"message": "Authentication required"}` if token is missing or invalid.
+**Error (401):** Returns `{"error": {"message": "Unauthorized"}}` if token is missing or invalid.
+
+**Error (403):** Returns `{"error": {"message": "Forbidden"}}` if token is valid but email is not in `ADMIN_EMAIL_ALLOWLIST`.
 
 ### `GET /api/v1/meta`
 
@@ -270,7 +272,8 @@ Returns API metadata (version, features). No authentication required.
 ```json
 {
   "name": "Core Intake API",
-  "version": "2.0.0",
+  "version": "3.0.0",
+  "authProvider": "supabase",
   "features": {
     "publicSubmission": true,
     "adminRead": true,
@@ -291,7 +294,153 @@ Health check endpoint. No authentication required.
 }
 ```
 
-## Using JWT Tokens
+## v3.0 Supabase Auth Setup
+
+### 1. Get Your Supabase URL
+
+1. Go to your Supabase project dashboard: https://supabase.com/dashboard
+2. Navigate to **Settings** > **API**
+3. Copy your **Project URL** (format: `https://<project-ref>.supabase.co`)
+4. Add it to your `.env` file as `SUPABASE_URL`
+
+### 2. Add Redirect URLs in Supabase
+
+1. In Supabase dashboard, go to **Authentication** > **URL Configuration**
+2. Add your frontend URLs to **Redirect URLs**:
+   - `http://localhost:8100` (for local development)
+   - `https://www.certifile.co.uk` (for production)
+3. Save changes
+
+### 3. Create Admin User in Supabase
+
+1. Go to **Authentication** > **Users** in Supabase dashboard
+2. Click **Add user** or **Invite user**
+3. Enter admin email address (e.g., `admin@certifile.co.uk`)
+4. Set a secure password
+5. **Important:** Make sure the email is confirmed (check the "Email Confirmed" checkbox)
+6. The user will receive an email to confirm their account
+
+**Alternative: Create user via SQL (for testing)**
+
+```sql
+-- In Supabase SQL Editor
+INSERT INTO auth.users (
+  instance_id,
+  id,
+  aud,
+  role,
+  email,
+  encrypted_password,
+  email_confirmed_at,
+  created_at,
+  updated_at
+)
+VALUES (
+  '00000000-0000-0000-0000-000000000000',
+  gen_random_uuid(),
+  'authenticated',
+  'authenticated',
+  'admin@certifile.co.uk',
+  crypt('your_password_here', gen_salt('bf')),
+  NOW(),
+  NOW(),
+  NOW()
+);
+```
+
+### 4. Configure Admin Email Allowlist
+
+In your backend `.env` file, set `ADMIN_EMAIL_ALLOWLIST`:
+
+```bash
+ADMIN_EMAIL_ALLOWLIST=admin@certifile.co.uk,admin2@certifile.co.uk
+```
+
+- Use comma-separated list for multiple admins
+- Email addresses are case-insensitive
+- Only users with emails in this list can access admin endpoints
+
+## Using Supabase Auth Tokens (v3.0)
+
+### 1. Get Supabase Auth Token (Frontend)
+
+The frontend should use Supabase Auth client to authenticate:
+
+```javascript
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Sign in with email/password
+const { data, error } = await supabase.auth.signInWithPassword({
+  email: "admin@certifile.co.uk",
+  password: "your_password",
+});
+
+// Get the access token
+const accessToken = data.session.access_token;
+```
+
+### 2. Use Token for Admin Requests
+
+```bash
+curl http://localhost:5050/api/v1/submissions \
+  -H "Authorization: Bearer <supabase-access-token>"
+```
+
+### 3. Testing with curl
+
+**Test without token (should return 401):**
+
+```bash
+curl http://localhost:5050/api/v1/submissions
+```
+
+Response:
+
+```json
+{
+  "error": {
+    "message": "Unauthorized"
+  }
+}
+```
+
+**Test with token but email not in allowlist (should return 403):**
+
+```bash
+curl http://localhost:5050/api/v1/submissions \
+  -H "Authorization: Bearer <valid-supabase-token-but-email-not-in-allowlist>"
+```
+
+Response:
+
+```json
+{
+  "error": {
+    "message": "Forbidden"
+  }
+}
+```
+
+**Test with allowed admin token (should return 200):**
+
+```bash
+curl http://localhost:5050/api/v1/submissions \
+  -H "Authorization: Bearer <supabase-token-for-admin@certifile.co.uk>"
+```
+
+Response:
+
+```json
+{
+  "submissions": [...]
+}
+```
+
+## Using JWT Tokens (v2.0 - Deprecated)
+
+**⚠️ Note:** v2.0 custom JWT authentication is deprecated. The following is for reference only.
 
 ### 1. Login to Get Token
 
@@ -301,47 +450,12 @@ curl -X POST http://localhost:5050/api/v1/auth/login \
   -d '{"email": "admin@certifile.co.uk", "password": "your_password"}'
 ```
 
-Response:
-
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "expiresIn": "12h"
-}
-```
-
 ### 2. Use Token for Admin Requests
 
 ```bash
 curl http://localhost:5050/api/v1/submissions \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  -H "Authorization: Bearer <v2-custom-jwt-token>"
 ```
-
-### 3. Frontend Implementation
-
-**Store the token** (in memory, localStorage, or secure storage):
-
-```javascript
-const response = await fetch("http://localhost:5050/api/v1/auth/login", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email, password }),
-});
-const { token } = await response.json();
-// Store token securely
-```
-
-**Use token for authenticated requests:**
-
-```javascript
-const response = await fetch("http://localhost:5050/api/v1/submissions", {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
-```
-
-**Important:** Never commit tokens to version control. Store them securely in your frontend (consider using httpOnly cookies in production).
 
 ## How to Reuse This Backend for Another Project
 
@@ -397,45 +511,44 @@ Copy the entire `backend/` folder to your new project.
 
 **Status:** v1.0 is a stable baseline (admin-key). v2.0 introduces JWT auth.
 
-### v2.0 (Current)
+### v2.0 (Superseded by v3.0)
 
-**Core Intake + Admin Read + JWT Authentication**
+**Core Intake + Admin Read + Custom JWT Authentication**
 
 - Public submission endpoint (no auth)
-- Admin read endpoint (JWT token required)
+- Admin read endpoint (custom JWT token required)
 - JWT-based authentication with bcrypt password hashing
 - Rate limiting on login endpoint
 - Security headers via Helmet
 - No secrets exposed to frontend
 
-**Use v2.0 when:**
+**Status:** v2.0 is superseded by v3.0. v2.0 auth endpoints are kept for backward compatibility but are not used for admin submissions in v3.0.
 
-- You need secure admin authentication
-- You want password-based login (not just API keys)
-- You need token expiration and refresh
-- You're building a production system
+### v3.0 (Current)
 
-### v3.0 (Future)
+**Core Intake + Admin Read + Supabase Auth**
 
-**Authentication, Roles, Audit Logs**
+- Public submission endpoint (no auth)
+- Admin read endpoint (Supabase Auth JWT token required)
+- Supabase Auth JWT verification using JWKS
+- Email-based admin allowlist
+- Multiple admin users via Supabase dashboard
+- No password management in backend (handled by Supabase)
 
-Planned features (not implemented yet):
+**Use v3.0 when:**
 
-- Multiple admin users
-- Role-based access control (admin, viewer, etc.)
-- Audit logs for all actions
-- Token refresh mechanism
-- Webhook support
-- File upload handling
+- You want to use Supabase Auth for user management
+- You need multiple admin users without backend changes
+- You want password reset, email verification, etc. handled by Supabase
+- You're building a system that integrates with Supabase Auth
 
-**When to upgrade to v3.0:**
+**Migration from v2.0:**
 
-- You need multiple admin users
-- You need role-based permissions
-- You need audit trails
-- You're building a compliance-focused system
-
-**Migration path:** v2.0 is designed to be extended. You can add v3.0 features alongside v2.0 endpoints.
+- Update frontend to use Supabase Auth client instead of custom login
+- Remove `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `JWT_SECRET` from backend `.env` (optional, kept for backward compatibility)
+- Add `ADMIN_EMAIL_ALLOWLIST` to backend `.env`
+- Create admin users in Supabase dashboard
+- Frontend sends Supabase JWT tokens to backend endpoints
 
 ## Reusability Notes
 
